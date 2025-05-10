@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ dark: localStorage.getItem('theme') === 'dark' }" :class="{ 'dark': dark }" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Gita Project{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        };
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Initialize theme from localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+<body class="bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <!-- Navigation Bar -->
+    <nav class="p-4 shadow bg-gray-100 dark:bg-gray-800">
+        <div class="flex justify-between items-center max-w-6xl mx-auto">
+            <a href="/" class="text-2xl font-semibold">Gita Project</a>
+            <div class="space-x-4 text-sm">
+                <a href="/" class="hover:underline">Home</a>
+                <a href="/about" class="hover:underline">About</a>
+                <a href="/contact" class="hover:underline">Contact</a>
+                <a href="/product" class="hover:underline">Product</a>
+                <a href="/showcase" class="hover:underline">Showcase</a>
+                <a href="/blog" class="hover:underline">Blog</a>
+                <a href="/deep-dive" class="hover:underline">Deep Dive</a>
+                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="ml-4 bg-gray-300 dark:bg-gray-700 px-3 py-1 rounded transition">
+                    Toggle Theme
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="p-6 max-w-6xl mx-auto">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 text-center bg-gray-100 dark:bg-gray-800">
+        <p>&copy; 2025 Gita Project. All rights reserved.</p>
+    </footer>
+</body>
+</html>

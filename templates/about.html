@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}About | Gita Project{% endblock %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto py-12 px-6">
+    <h1 class="text-4xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">About the Gita Project</h1>
+    <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
+        The Gita Project is a spiritual and educational platform dedicated to presenting the eternal wisdom of the 
+        <span class="font-semibold text-yellow-600 dark:text-yellow-400">Bhagavad Gita</span> in a modern, accessible, and visually engaging way.
+    </p>
+
+    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Why This Project?</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+            In a time of distractions and confusion, the timeless truths of the Gita offer clarity and purpose. 
+            This project was born from the desire to help people, especially youth, rediscover their inner strength 
+            through Krishna’s teachings — one shloka at a time.
+        </p>
+    </div>
+
+    <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-200">What We Do</h2>
+        <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2">
+            <li>Present one verse of the Gita at a time with meaning and commentary.</li>
+            <li>Create a visual quote carousel for deeper connection and reflection.</li>
+            <li>Maintain a blog with insights, interpretations, and modern applications.</li>
+            <li>Offer a “Deep Dive” section for learners and seekers who want to explore further.</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

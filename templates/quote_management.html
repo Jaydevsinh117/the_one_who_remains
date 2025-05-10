@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Management</title>
+</head>
+<body>
+    <h1>Create a New Quote</h1>
+    <form id="quote-form" method="POST">
+        <label for="text">Quote Text:</label>
+        <input type="text" id="text" name="text" required><br>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required><br>
+
+        <button type="submit">Create Quote</button>
+    </form>
+
+    <script>
+        document.getElementById('quote-form').onsubmit = async function(event) {
+            event.preventDefault();
+            
+            const data = {
+                text: document.getElementById('text').value,
+                author: document.getElementById('author').value
+            };
+            
+            const response = await fetch('/api/quote', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert('Quote created successfully');
+            } else {
+                alert('Error: ' + result.error);
+            }
+        };
+    </script>
+</body>
+</html>

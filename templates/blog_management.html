@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Management</title>
+</head>
+<body>
+    <h1>Create a New Blog</h1>
+    <form id="blog-form" method="POST">
+        <label for="title">Blog Title:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" required></textarea><br>
+
+        <button type="submit">Create Blog</button>
+    </form>
+
+    <script>
+        document.getElementById('blog-form').onsubmit = async function(event) {
+            event.preventDefault();
+            
+            const data = {
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value
+            };
+            
+            const response = await fetch('/api/blog', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert('Blog created successfully');
+            } else {
+                alert('Error: ' + result.error);
+            }
+        };
+    </script>
+</body>
+</html>
