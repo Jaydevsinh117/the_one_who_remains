@@ -3,85 +3,302 @@
 {% block title %}Deep Dive | Maha Vishnu Project{% endblock %}
 
 {% block content %}
-<section class="text-center py-12 px-6 max-w-6xl mx-auto">
+<section
+  class="text-center py-16 px-6 max-w-6xl mx-auto bg-gradient-to-br from-yellow-50 via-sky-100 to-white dark:from-gray-900 dark:via-gray-800 dark:to-black animate-fade-in relative overflow-hidden">
+
+  <!-- Divine Aura Background -->
+  <div
+    class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-yellow-200 to-sky-200 opacity-30 blur-3xl animate-pulse-slow z-0 rounded-full">
+  </div>
+
   <!-- Heading -->
-  <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-6">
-    Deep Dive into Divine Wisdom
-  </h1>
+  <div class="relative z-10">
+    <h1 class="text-5xl font-heading text-vishnublue dark:text-gold font-bold mb-6 animate-glow">
+      ✨ Deep Dive into Divine Wisdom ✨
+    </h1>
+    <p class="text-lg font-sans text-darkslate dark:text-cream max-w-2xl mx-auto mb-10 animate-fade-slow">
+      Explore the eternal truths of the Bhagavad Gita, Vishnu Puranas, and sacred scriptures — through detailed chapters
+      that reflect on the soul, duty, devotion, and cosmic balance.
+    </p>
+  </div>
 
-  <!-- Description -->
-  <p class="text-lg font-sans text-darkslate dark:text-cream max-w-2xl mx-auto mb-10">
-    Explore the eternal truths of the Bhagavad Gita, Vishnu Puranas, and sacred scriptures — through detailed chapters
-    that reflect on the soul, duty, devotion, and cosmic balance.
-  </p>
+  <!-- Cards -->
+  <div class="space-y-8 relative z-10">
 
-  <!-- Dive Cards -->
-  <div class="space-y-6">
-    <!-- Chapter 2 -->
     <div
-      class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      class="chapter-card bg-gradient-to-r from-sky via-gold to-yellow-100 dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 1: Arjuna Vishada Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The Despondency of Arjuna — conflict, doubt, and
+        emotional turmoil on the battlefield.</p>
+      <a href="{{ url_for('chapter_1') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
       <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 2: Sankhya Yoga</h2>
-      <p class="mt-2 text-darkslate dark:text-cream font-sans">
-        Teachings on the nature of the Self, the mind, and the eternal spirit beyond birth and death.
-      </p>
-      <a href="{{ url_for('chapter_2') }}"
-        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
-        Read Full Chapter →
-      </a>
-
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">Teachings on the nature of the Self, the mind, and the
+        eternal spirit beyond birth and death.</p>
+      <a href="{{ url_for('chapter_2') }}" class="cta-god-button">Read Full Chapter</a>
     </div>
 
-    <!-- Chapter 3 -->
     <div
-      class="bg-gradient-to-r from-yellow-200 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      class="chapter-card bg-gradient-to-r from-yellow-200 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
       <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 3: Karma Yoga</h2>
-      <p class="mt-2 text-darkslate dark:text-cream font-sans">
-        The path of action — selfless service without attachment and acting in accordance with dharma.
-      </p>
-      <a href="{{ url_for('chapter_3') }}"
-        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
-        Read Full Chapter →
-      </a>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The path of action — selfless service without attachment
+        and acting in accordance with dharma.</p>
+      <a href="{{ url_for('chapter_3') }}" class="cta-god-button">Read Full Chapter</a>
     </div>
 
-    <!-- Chapter 4 -->
     <div
-      class="bg-gradient-to-r from-sky via-yellow-100 to-gold dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      class="chapter-card bg-gradient-to-r from-sky via-yellow-100 to-gold dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
       <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 4: Jnana Yoga</h2>
-      <p class="mt-2 text-darkslate dark:text-cream font-sans">
-        The yoga of wisdom — understanding divine incarnations, spiritual knowledge, and sacrifice.
-      </p>
-      <a href="{{ url_for('chapter_4') }}"
-        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
-        Read Full Chapter →
-      </a>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The yoga of wisdom — understanding divine incarnations,
+        spiritual knowledge, and sacrifice.</p>
+      <a href="{{ url_for('chapter_4') }}" class="cta-god-button">Read Full Chapter</a>
     </div>
 
-    <!-- Chapter 5 -->
     <div
-      class="bg-gradient-to-r from-gold via-sky to-yellow-100 dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      class="chapter-card bg-gradient-to-r from-gold via-sky to-yellow-100 dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
       <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 5: Karma Vairagya Yoga</h2>
-      <p class="mt-2 text-darkslate dark:text-cream font-sans">
-        Detachment in action — balancing renunciation and disciplined selfless work.
-      </p>
-      <a href="{{ url_for('chapter_5') }}"
-        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
-        Read Full Chapter →
-      </a>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">Detachment in action — balancing renunciation and
+        disciplined selfless work.</p>
+      <a href="{{ url_for('chapter_5') }}" class="cta-god-button">Read Full Chapter</a>
     </div>
 
-    <!-- Chapter 6 -->
     <div
-      class="bg-gradient-to-r from-yellow-100 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      class="chapter-card bg-gradient-to-r from-yellow-100 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
       <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 6: Dhyana Yoga</h2>
-      <p class="mt-2 text-darkslate dark:text-cream font-sans">
-        The yoga of meditation — cultivating discipline, inner peace, and union with the divine.
-      </p>
-       <a href="{{ url_for('chapter_6') }}"
-        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
-        Read Full Chapter →
-      </a>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The yoga of meditation — cultivating discipline, inner
+        peace, and union with the divine.</p>
+      <a href="{{ url_for('chapter_6') }}" class="cta-god-button">Read Full Chapter</a>
     </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 7: Jnana Vijnana Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">Knowledge and realization of the ultimate truth — the
+        Supreme Being.</p>
+      <a href="{{ url_for('chapter_7') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-yellow-200 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 8: Aksara Brahma Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The imperishable Brahman — what remains beyond time,
+        death, and change.</p>
+      <a href="{{ url_for('chapter_8') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-sky via-yellow-100 to-gold dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 9: Raja Vidya Raja Guhya Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The sovereign knowledge and secret — the essence of
+        devotion and divine power.</p>
+      <a href="{{ url_for('chapter_9') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-gold via-sky to-yellow-100 dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 10: Vibhuti Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">Understanding Krishna’s divine manifestations across
+        creation.</p>
+      <a href="{{ url_for('chapter_10') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-yellow-100 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 11: Vishwarupa Darshana Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The cosmic form — Arjuna beholds Krishna’s universal
+        form.</p>
+      <a href="{{ url_for('chapter_11') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-sky via-gold to-yellow-100 dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 12: Bhakti Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The path of devotion — surrendering to God with love and
+        faith.</p>
+      <a href="{{ url_for('chapter_12') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 13: Kshetra Kshetrajna Vibhaga Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">Distinction between the body and the knower of the body.
+      </p>
+      <a href="{{ url_for('chapter_13') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-yellow-200 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 14: Gunatraya Vibhaga Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The three gunas — qualities of nature that influence
+        behavior and destiny.</p>
+      <a href="{{ url_for('chapter_14') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-sky via-yellow-100 to-gold dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 15: Purushottama Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">The Supreme Person — eternal, beyond material nature.</p>
+      <a href="{{ url_for('chapter_15') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-gold via-sky to-yellow-100 dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 16: Daivasura Sampad Vibhaga Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">Divine vs. demoniac qualities — understanding spiritual
+        character.</p>
+      <a href="{{ url_for('chapter_16') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-yellow-100 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 17: Shraddhatraya Vibhaga Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">Types of faith and how they reflect individual nature.
+      </p>
+      <a href="{{ url_for('chapter_17') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
+    <div
+      class="chapter-card bg-gradient-to-r from-sky via-gold to-yellow-100 dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:scale-[1.015] transition-transform duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 18: Moksha Sannyasa Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">Liberation through renunciation — the final teaching and
+        synthesis of all yogas.</p>
+      <a href="{{ url_for('chapter_18') }}" class="cta-god-button">Read Full Chapter</a>
+    </div>
+
   </div>
 </section>
+
+<!-- Styles for Glow, Pulse, Button, Animation -->
+<style>
+  @keyframes glow {
+
+    0%,
+    100% {
+      text-shadow: 0 0 12px #ffd700, 0 0 24px #6fb4f2;
+    }
+
+    50% {
+      text-shadow: 0 0 18px #fff799, 0 0 36px #00bfff;
+    }
+  }
+
+  @keyframes fadeInSlow {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseSlow {
+
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.25;
+    }
+
+    50% {
+      transform: scale(1.1);
+      opacity: 0.5;
+    }
+  }
+
+  .animate-glow {
+    animation: glow 3s infinite ease-in-out;
+  }
+
+  .animate-fade-slow {
+    animation: fadeInSlow 2s ease forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeInSlow 1.5s ease forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 10s infinite ease-in-out;
+  }
+
+  .cta-god-button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    background-color: #6fb4f2;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(111, 180, 242, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .cta-god-button::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+    z-index: -1;
+  }
+
+  .cta-god-button:hover {
+    background-color: #1e7bc7;
+    box-shadow: 0 0 40px 12px rgba(30, 123, 199, 0.6);
+    color: #ffffff;
+  }
+
+  .cta-god-button:hover::before {
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+</style>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

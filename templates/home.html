@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | Maha Vishnu Project{% endblock %}
+
+{% block content %}
+
+<!-- Hero Divine Banner -->
+<section class="text-center py-20 px-6 bg-gradient-to-br from-vishnublue to-sky dark:from-darkslate dark:to-gray-900 text-white rounded-b-3xl shadow-lg" data-aos="fade-down">
+  <h1 class="text-5xl font-heading font-semibold mb-4 glow-text">ॐ Welcome to the Maha Vishnu Project</h1>
+  <p class="text-lg max-w-3xl mx-auto font-sans">
+    Explore the timeless teachings of the Bhagavad Gita and Vedic wisdom through a modern digital experience.
+  </p>
+  <a href="/deep-dive" class="inline-block mt-6 bg-gold text-black dark:bg-white dark:text-darkslate px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition hover:scale-105">
+    Begin Your Journey
+  </a>
+</section>
+
+<!-- Divine Call -->
+<section class="text-center py-20 bg-gradient-to-br from-sky-100 to-gold dark:from-darkslate dark:to-gray-900" data-aos="zoom-in">
+  <div class="max-w-4xl mx-auto px-4">
+    <h1 class="text-5xl font-heading text-vishnublue dark:text-gold font-bold leading-tight mb-6">Embark on a Journey through the Eternal Teachings</h1>
+    <p class="text-lg text-darkslate dark:text-cream max-w-2xl mx-auto">Discover the divine guidance of Lord Maha Vishnu through the timeless wisdom of the Bhagavad Gita, Puranas, and spiritual texts.</p>
+    <a href="/deep-dive" class="cta-god-button mt-6 inline-block">Start Exploring →</a>
+  </div>
+</section>
+
+<!-- About -->
+<section class="py-16 px-6 max-w-5xl mx-auto text-center" data-aos="fade-up">
+  <h2 class="text-3xl font-heading text-vishnublue dark:text-gold mb-4">About the Project</h2>
+  <p class="text-lg text-darkslate dark:text-cream font-sans max-w-3xl mx-auto">
+    The Maha Vishnu Project is a sacred initiative to preserve, present, and promote the divine teachings of the Gita, Vishnu Purana, and related scriptures in an immersive, reader-friendly format — accessible to all.
+  </p>
+</section>
+
+<!-- What is MVP -->
+<section class="py-16 px-6 max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="150">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-heading text-vishnublue dark:text-gold font-semibold">What is the Maha Vishnu Project?</h2>
+    <p class="mt-4 text-darkslate dark:text-cream max-w-3xl mx-auto font-sans">A humble attempt to illuminate the spiritual path by presenting sacred scriptures in an immersive, beautifully designed digital format — enabling seekers, students, and devotees to explore, learn, and connect with divine truths.</p>
+  </div>
+</section>
+
+<!-- Scriptures -->
+<section class="bg-sky-50 dark:bg-darkslate py-16" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 text-center">
+    {% for text in [
+      {'title': 'Bhagavad Gita', 'desc': 'Dialogues of Krishna and Arjuna on the battlefield, unfolding cosmic wisdom.'},
+      {'title': 'Vishnu Purana', 'desc': 'The divine leelas, avatars, and creation mysteries revealed through sacred lore.'},
+      {'title': 'Upanishads', 'desc': 'The core of spiritual inquiry — knowledge of Brahman and the Self.'}
+    ] %}
+    <div class="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition duration-300">
+      <h3 class="text-xl font-bold text-vishnublue dark:text-gold mb-2">{{ text.title }}</h3>
+      <p class="text-darkslate dark:text-cream text-sm">{{ text.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- 3 Sections -->
+<section class="py-16 px-6 bg-cream dark:bg-darkslate" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+    {% for card in [
+      {'url': '/deep-dive', 'title': '📚 Deep Dive', 'desc': 'Explore detailed commentaries on Gita chapters.'},
+      {'url': '/blog', 'title': '📝 Blog', 'desc': 'Modern perspectives and daily wisdom from Sanatan Dharma.'},
+      {'url': '/showcase', 'title': '🎴 Shloka Showcase', 'desc': 'Inspirational verses in visual formats.'}
+    ] %}
+    <a href="{{ card.url }}" class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition hover:scale-105">
+      <h3 class="text-2xl font-semibold text-vishnublue dark:text-gold mb-2">{{ card.title }}</h3>
+      <p class="text-darkslate dark:text-cream font-sans">{{ card.desc }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Quote Rotator -->
+<section class="py-10 text-center">
+  <div id="quote-block" class="text-lg italic text-darkslate dark:text-cream max-w-3xl mx-auto transition-opacity duration-1000">
+    “Whenever there is a decline in righteousness... I manifest myself.”<br>
+    <span class="text-sm text-gold">– Bhagavad Gita 4.7</span>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="bg-vishnublue dark:bg-darkslate text-white text-center py-12 px-6 rounded-t-3xl" data-aos="fade-up">
+  <h2 class="text-2xl font-heading mb-4">Stay Connected</h2>
+  <p class="text-lg mb-6 font-sans">Receive divine insights, updates, and features directly to your inbox.</p>
+  <form id="newsletter-form" class="max-w-md mx-auto space-y-3">
+    <input type="email" id="newsletter-email" class="w-full px-4 py-2 rounded bg-white text-black" placeholder="Enter your email" required>
+    <button type="submit" class="w-full bg-gold text-black py-2 rounded font-semibold hover:brightness-110 transition">Subscribe</button>
+  </form>
+</section>
+
+<!-- Features -->
+<section class="py-16 px-6 max-w-6xl mx-auto" data-aos="fade-up">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-heading text-vishnublue dark:text-gold font-semibold">What You’ll Find</h2>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    {% for feature in [
+      {'title': 'Chapter-wise Insights', 'desc': 'Breakdown of each chapter with interpretation & meaning.', 'gradient': 'from-yellow-100 to-gold'},
+      {'title': 'Deep Dive Mode', 'desc': 'Engage with deep reflections and scriptural wisdom.', 'gradient': 'from-sky-100 to-sky'},
+      {'title': 'Spiritual Glossary', 'desc': 'Know meanings of key Sanskrit words and mantras.', 'gradient': 'from-gold to-yellow-100'},
+      {'title': 'Responsive UI', 'desc': 'Works beautifully across devices.', 'gradient': 'from-yellow-100 to-sky'}
+    ] %}
+    <div class="bg-gradient-to-br {{ feature.gradient }} dark:from-gray-700 dark:to-darkslate p-6 rounded-xl shadow-md">
+      <h3 class="font-bold text-lg text-vishnublue dark:text-gold">{{ feature.title }}</h3>
+      <p class="text-sm text-darkslate dark:text-cream mt-2">{{ feature.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Final Call -->
+<section class="py-20 bg-gradient-to-br from-gold via-sky to-yellow-100 dark:from-darkslate dark:to-gray-900 text-center" data-aos="zoom-in">
+  <h2 class="text-3xl font-heading text-vishnublue dark:text-gold font-semibold mb-4">Begin Your Divine Quest</h2>
+  <p class="text-darkslate dark:text-cream max-w-xl mx-auto mb-6">
+    The eternal wisdom of Lord Vishnu awaits — dive into the chapters, reflect on the meanings, and walk the path of light.
+  </p>
+  <a href="/deep-dive" class="cta-god-button hover:scale-105 transition">Dive into Chapters →</a>
+</section>
+
+<!-- AOS & Quote Script -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+
+<script>
+  const quotes = [
+    '“You have the right to work, but not to the fruits thereof.” – Gita 2.47',
+    '“Whenever righteousness wanes, I incarnate.” – Gita 4.7',
+    '“The Self is not born, nor does it die.” – Gita 2.20'
+  ];
+  let index = 0;
+  const el = document.getElementById('quote-block');
+  setInterval(() => {
+    index = (index + 1) % quotes.length;
+    el.style.opacity = 0;
+    setTimeout(() => {
+      el.innerHTML = quotes[index];
+      el.style.opacity = 1;
+    }, 500);
+  }, 6000);
+</script>
+
+<style>
+  .glow-text {
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+  }
+  body {
+    background: linear-gradient(to bottom right, #eaf4f1, #fdfaf4);
+    background-attachment: fixed;
+  }
+</style>
+
+{% endblock %}

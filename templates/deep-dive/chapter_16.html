@@ -1,50 +1,58 @@
 {% extends 'base.html' %}
 
-{% block title %}Chapter 4 – Jnana Yoga | Maha Vishnu Project{% endblock %}
+{% block title %}Chapter 16 – Daivasura Sampad Vibhaga Yoga | Maha Vishnu Project{% endblock %}
 
 {% block content %}
 <section class="max-w-5xl mx-auto py-12 px-6">
+  <!-- Title -->
   <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-4 text-center">
-    Chapter 4: Jnana Yoga
+    Chapter 16: Daivasura Sampad Vibhaga Yoga
   </h1>
+
+  <!-- Subheading -->
   <p class="text-lg font-sans text-darkslate dark:text-cream text-center max-w-2xl mx-auto mb-10">
-    The yoga of wisdom — understanding divine incarnations, spiritual knowledge, and sacrifice.
+    Exploring the traits of the divine and the demoniac — how our nature influences our spiritual path.
   </p>
 
+  <!-- Overview -->
   <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🧘 Overview</h2>
     <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
-      In Chapter 4, Lord Krishna reveals His divine nature and the importance of acquiring spiritual knowledge with humility and faith.
+      Lord Krishna classifies human nature into two fundamental types: the divine (daivi) and the demoniac (asuri). The divine qualities lead to liberation, while the demoniac tendencies result in bondage and suffering.
     </p>
   </div>
 
+  <!-- Key Teachings -->
   <div class="bg-white dark:bg-darkslate rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">📜 Key Teachings</h2>
     <ul class="list-disc pl-6 text-darkslate dark:text-cream font-sans space-y-2">
-      <li>True wisdom dispels ignorance like the sun removes darkness.</li>
-      <li>The Divine incarnates to restore dharma.</li>
-      <li>Selfless action performed with knowledge leads to liberation.</li>
+      <li>Divine traits include fearlessness, purity, compassion, self-discipline, and wisdom.</li>
+      <li>Demoniac qualities include arrogance, hypocrisy, harshness, and ignorance.</li>
+      <li>Our nature is shaped by our tendencies and choices, not just birth.</li>
     </ul>
   </div>
 
+  <!-- Selected Verse -->
   <div class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🔖 Selected Verse</h2>
     <blockquote class="italic text-lg text-darkslate dark:text-cream mb-4">
-      “Whenever there is a decline in righteousness and an increase in unrighteousness, I manifest Myself.”<br>
-      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 4.7</span>
+      “Divine qualities lead to liberation, whereas demoniac qualities lead to bondage.”<br>
+      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 16.5</span>
     </blockquote>
   </div>
 
+  <!-- Practical Reflection -->
   <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🌱 Practical Reflection</h2>
     <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
-      Embrace knowledge as a path to freedom. Learn, serve, and rise in awareness to recognize divinity within and in others.
+      Cultivate divine virtues in daily life — truthfulness, humility, compassion — and actively root out egoistic impulses. This conscious refinement of character aligns us with our higher nature and the path of liberation.
     </p>
   </div>
 
+  <!-- Pagination -->
   <div class="mt-12 flex justify-between items-center text-sm font-semibold text-gold dark:text-vishnublue">
-    <a href="{{ url_for('chapter_3') }}" class="hover:underline">← Previous Chapter</a>
-    <a href="{{ url_for('chapter_5') }}" class="hover:underline">Next Chapter →</a>
+    <a href="{{ url_for('chapter_15') }}" class="hover:underline">← Previous Chapter</a>
+    <a href="{{ url_for('chapter_17') }}" class="hover:underline">Next Chapter →</a>
   </div>
 </section>
 {% endblock %}

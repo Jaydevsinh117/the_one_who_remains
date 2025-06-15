@@ -1,50 +1,58 @@
 {% extends 'base.html' %}
 
-{% block title %}Chapter 4 – Jnana Yoga | Maha Vishnu Project{% endblock %}
+{% block title %}Chapter 13 – Kshetra Kshetrajna Yoga | Maha Vishnu Project{% endblock %}
 
 {% block content %}
 <section class="max-w-5xl mx-auto py-12 px-6">
+  <!-- Heading -->
   <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-4 text-center">
-    Chapter 4: Jnana Yoga
+    Chapter 13: Kshetra Kshetrajna Vibhaga Yoga
   </h1>
+
+  <!-- Subheading -->
   <p class="text-lg font-sans text-darkslate dark:text-cream text-center max-w-2xl mx-auto mb-10">
-    The yoga of wisdom — understanding divine incarnations, spiritual knowledge, and sacrifice.
+    The distinction between the body (Kshetra) and the soul (Kshetrajna) — the field of action and the knower within.
   </p>
 
+  <!-- Overview -->
   <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🧘 Overview</h2>
     <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
-      In Chapter 4, Lord Krishna reveals His divine nature and the importance of acquiring spiritual knowledge with humility and faith.
+      Krishna explains the fundamental difference between the perishable body and the eternal soul. The body is the field of action, and the Self is the knower of that field. By understanding this distinction, one gains true wisdom.
     </p>
   </div>
 
+  <!-- Key Teachings -->
   <div class="bg-white dark:bg-darkslate rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">📜 Key Teachings</h2>
     <ul class="list-disc pl-6 text-darkslate dark:text-cream font-sans space-y-2">
-      <li>True wisdom dispels ignorance like the sun removes darkness.</li>
-      <li>The Divine incarnates to restore dharma.</li>
-      <li>Selfless action performed with knowledge leads to liberation.</li>
+      <li>The body is the field (kshetra), where experiences arise and karma plays out.</li>
+      <li>The soul (kshetrajna) is the eternal witness — the conscious being within the body.</li>
+      <li>True knowledge lies in understanding both the field and its knower, and recognizing the presence of the Supreme within all beings.</li>
     </ul>
   </div>
 
+  <!-- Selected Verse -->
   <div class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🔖 Selected Verse</h2>
     <blockquote class="italic text-lg text-darkslate dark:text-cream mb-4">
-      “Whenever there is a decline in righteousness and an increase in unrighteousness, I manifest Myself.”<br>
-      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 4.7</span>
+      “He who sees the Supreme Lord existing equally in all beings, the imperishable within the perishable — truly sees.”<br>
+      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 13.27</span>
     </blockquote>
   </div>
 
+  <!-- Practical Reflection -->
   <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🌱 Practical Reflection</h2>
     <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
-      Embrace knowledge as a path to freedom. Learn, serve, and rise in awareness to recognize divinity within and in others.
+      Reflect on your inner self as the silent witness of your actions, thoughts, and emotions. See the same divine presence in others — this vision brings humility, peace, and unity.
     </p>
   </div>
 
+  <!-- Pagination -->
   <div class="mt-12 flex justify-between items-center text-sm font-semibold text-gold dark:text-vishnublue">
-    <a href="{{ url_for('chapter_3') }}" class="hover:underline">← Previous Chapter</a>
-    <a href="{{ url_for('chapter_5') }}" class="hover:underline">Next Chapter →</a>
+    <a href="{{ url_for('chapter_12') }}" class="hover:underline">← Previous Chapter</a>
+    <a href="{{ url_for('chapter_14') }}" class="hover:underline">Next Chapter →</a>
   </div>
 </section>
 {% endblock %}

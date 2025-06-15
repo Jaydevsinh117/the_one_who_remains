@@ -1,50 +1,59 @@
 {% extends 'base.html' %}
 
-{% block title %}Chapter 4 – Jnana Yoga | Maha Vishnu Project{% endblock %}
+{% block title %}Chapter 8 – Akshara Brahma Yoga | Maha Vishnu Project{% endblock %}
 
 {% block content %}
 <section class="max-w-5xl mx-auto py-12 px-6">
+  <!-- Heading -->
   <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-4 text-center">
-    Chapter 4: Jnana Yoga
+    Chapter 8: Akshara Brahma Yoga
   </h1>
+
+  <!-- Subheading -->
   <p class="text-lg font-sans text-darkslate dark:text-cream text-center max-w-2xl mx-auto mb-10">
-    The yoga of wisdom — understanding divine incarnations, spiritual knowledge, and sacrifice.
+    Krishna reveals the secrets of the eternal soul, the nature of time, and the path beyond death.
   </p>
 
+  <!-- Overview -->
   <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🧘 Overview</h2>
     <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
-      In Chapter 4, Lord Krishna reveals His divine nature and the importance of acquiring spiritual knowledge with humility and faith.
+      In response to Arjuna's questions, Krishna speaks of Brahman (the imperishable), karma, and remembrance. This chapter teaches that one's consciousness at the time of death determines the soul’s next destination — and that meditating on the Lord leads to liberation.
     </p>
   </div>
 
+  <!-- Key Teachings -->
   <div class="bg-white dark:bg-darkslate rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">📜 Key Teachings</h2>
     <ul class="list-disc pl-6 text-darkslate dark:text-cream font-sans space-y-2">
-      <li>True wisdom dispels ignorance like the sun removes darkness.</li>
-      <li>The Divine incarnates to restore dharma.</li>
-      <li>Selfless action performed with knowledge leads to liberation.</li>
+      <li>The soul is eternal and transcendental — it never perishes.</li>
+      <li>Remembering Krishna at the time of death leads to liberation.</li>
+      <li>The wise know the two paths after death: one of light (no return), and one of darkness (rebirth).</li>
+      <li>Meditation and devotion are key to attaining the Supreme.</li>
     </ul>
   </div>
 
+  <!-- Selected Verse -->
   <div class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🔖 Selected Verse</h2>
     <blockquote class="italic text-lg text-darkslate dark:text-cream mb-4">
-      “Whenever there is a decline in righteousness and an increase in unrighteousness, I manifest Myself.”<br>
-      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 4.7</span>
+      “Whatever state of being one remembers when he quits his body, that state he will attain without fail.”<br>
+      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 8.6</span>
     </blockquote>
   </div>
 
+  <!-- Practical Reflection -->
   <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
     <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🌱 Practical Reflection</h2>
     <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
-      Embrace knowledge as a path to freedom. Learn, serve, and rise in awareness to recognize divinity within and in others.
+      Prepare your mind each day through spiritual practice. In cultivating remembrance of the Divine, the moment of death becomes a gateway to eternal peace, not fear.
     </p>
   </div>
 
+  <!-- Pagination -->
   <div class="mt-12 flex justify-between items-center text-sm font-semibold text-gold dark:text-vishnublue">
-    <a href="{{ url_for('chapter_3') }}" class="hover:underline">← Previous Chapter</a>
-    <a href="{{ url_for('chapter_5') }}" class="hover:underline">Next Chapter →</a>
+    <a href="{{ url_for('chapter_7') }}" class="hover:underline">← Previous Chapter</a>
+    <a href="{{ url_for('chapter_9') }}" class="hover:underline">Next Chapter →</a>
   </div>
 </section>
 {% endblock %}
