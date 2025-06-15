@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Chapter 6 – Dhyana Yoga | Maha Vishnu Project{% endblock %}
+
+{% block content %}
+<section class="max-w-5xl mx-auto py-12 px-6">
+  <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-4 text-center">
+    Chapter 6: Dhyana Yoga
+  </h1>
+  <p class="text-lg font-sans text-darkslate dark:text-cream text-center max-w-2xl mx-auto mb-10">
+    The yoga of meditation — mastering the mind and merging in divine consciousness.
+  </p>
+
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 mb-8">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🧘 Overview</h2>
+    <p class="text-darkslate dark:text-cream font-sans">
+      Dhyana Yoga teaches deep inner meditation and mind control. Krishna shows Arjuna the path to inner peace through disciplined stillness and detachment from the senses.
+    </p>
+  </div>
+
+  <div class="bg-white dark:bg-darkslate rounded-xl shadow-md p-6 mb-8">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">📜 Key Teachings</h2>
+    <ul class="list-disc pl-6 text-darkslate dark:text-cream font-sans space-y-2">
+      <li>A true yogi is balanced in success and failure, gain and loss.</li>
+      <li>Meditation should be regular, disciplined, and steady.</li>
+      <li>The yogi sees the Divine in all beings and all beings in the Divine.</li>
+    </ul>
+  </div>
+
+  <div class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl shadow-md p-6 mb-8">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🔖 Selected Verse</h2>
+    <blockquote class="italic text-lg text-darkslate dark:text-cream mb-4">
+      “A yogi is greater than the ascetic, greater than the man of knowledge, and greater than the man of action.”<br>
+      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 6.46</span>
+    </blockquote>
+  </div>
+
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🌱 Practical Reflection</h2>
+    <p class="text-darkslate dark:text-cream font-sans">
+      True meditation is a lifestyle of stillness, compassion, and balance. Begin with silence — and let it lead you to the Divine.
+    </p>
+  </div>
+<!-- Pagination -->
+ <div class="mt-12 flex justify-between items-center text-sm font-semibold text-gold dark:text-vishnublue">
+    <a href="{{ url_for('chapter_5') }}" class="hover:underline">← Previous Chapter</a>
+    <!-- <a href="{{ url_for('chapter_2') }}" class="hover:underline">Next Chapter →</a> -->
+  </div>
+</section>
+{% endblock %}

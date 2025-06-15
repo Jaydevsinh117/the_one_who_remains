@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Chapter 4 – Jnana Yoga | Maha Vishnu Project{% endblock %}
+
+{% block content %}
+<section class="max-w-5xl mx-auto py-12 px-6">
+  <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-4 text-center">
+    Chapter 4: Jnana Yoga
+  </h1>
+  <p class="text-lg font-sans text-darkslate dark:text-cream text-center max-w-2xl mx-auto mb-10">
+    The yoga of knowledge — exploring divine incarnations, wisdom through action, and the illuminating power of truth.
+  </p>
+
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🧘 Overview</h2>
+    <p class="text-darkslate dark:text-cream font-sans">
+      In this chapter, Krishna reveals His divine nature and explains how true wisdom liberates the soul. Knowledge is gained through disciplined action and devotion, not just reading or ritual.
+    </p>
+  </div>
+
+  <div class="bg-white dark:bg-darkslate rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">📜 Key Teachings</h2>
+    <ul class="list-disc pl-6 text-darkslate dark:text-cream font-sans space-y-2">
+      <li>Krishna descends in every age to protect righteousness.</li>
+      <li>Action done in knowledge is superior to mechanical rituals.</li>
+      <li>True knowledge burns past karma and leads to liberation.</li>
+    </ul>
+  </div>
+
+  <div class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl shadow-md p-6 mb-8">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🔖 Selected Verse</h2>
+    <blockquote class="italic text-lg text-darkslate dark:text-cream mb-4">
+      “Whenever righteousness declines and unrighteousness rises, I manifest Myself.”<br>
+      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 4.7</span>
+    </blockquote>
+  </div>
+
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🌱 Practical Reflection</h2>
+    <p class="text-darkslate dark:text-cream font-sans">
+      Seek knowledge not just intellectually but through surrender, devotion, and action. Recognize the divine presence guiding your journey.
+    </p>
+  </div>
+<!-- Pagination -->
+ <div class="mt-12 flex justify-between items-center text-sm font-semibold text-gold dark:text-vishnublue">
+    <a href="{{ url_for('chapter_3') }}" class="hover:underline">← Previous Chapter</a>
+    <a href="{{ url_for('chapter_5') }}" class="hover:underline">Next Chapter →</a>
+  </div>
+</section>
+{% endblock %}

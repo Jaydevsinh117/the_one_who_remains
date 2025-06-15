@@ -1,26 +1,39 @@
 {% extends 'base.html' %}
 
-{% block title %}Blog | Gita Project{% endblock %}
+{% block title %}Blog | Maha Vishnu Project{% endblock %}
 
 {% block content %}
 <section class="max-w-6xl mx-auto py-12 px-6">
-    <h1 class="text-4xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">Gita Insights Blog</h1>
-    <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-10">
-        Read thought-provoking articles, commentaries, and modern interpretations of the Bhagavad Gita.
-    </p>
+  <!-- Heading -->
+  <h1 class="text-4xl font-heading font-semibold mb-6 text-center text-vishnublue dark:text-gold">
+    Divine Insights Blog
+  </h1>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% for post in blog_posts %}
-        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition">
-            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4">{{ post.title }}</h2>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">{{ post.excerpt }}</p>
-            <a href="/blog/{{ post.slug }}" class="text-indigo-600 dark:text-indigo-400 hover:underline">
-                Read More
-            </a>
-        </div>
-        {% else %}
-        <p class="col-span-full text-center text-gray-600 dark:text-gray-400">No blog posts available yet.</p>
-        {% endfor %}
+  <!-- Intro -->
+  <p class="text-lg text-center text-darkslate dark:text-cream mb-10 font-sans max-w-3xl mx-auto">
+    Explore articles, divine commentaries, and reflections rooted in the teachings of Lord Vishnu, the Bhagavad Gita, and Sanatana Dharma.
+  </p>
+
+  <!-- Blog Cards Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for post in blog_posts %}
+    <div class="bg-cream dark:bg-gray-900 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-xl transition duration-300">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-4">
+        {{ post.title }}
+      </h2>
+      <p class="text-darkslate dark:text-cream font-sans mb-4">
+        {{ post.excerpt }}
+      </p>
+      <a href="/blog/{{ post.slug }}"
+         class="inline-block mt-2 text-gold dark:text-vishnublue hover:underline font-semibold">
+        Read More →
+      </a>
     </div>
+    {% else %}
+    <p class="col-span-full text-center text-gray-600 dark:text-gray-400 font-sans">
+      No blog posts available yet.
+    </p>
+    {% endfor %}
+  </div>
 </section>
 {% endblock %}

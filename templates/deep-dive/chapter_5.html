@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Chapter 5 – Karma Vairagya Yoga | Maha Vishnu Project{% endblock %}
+
+{% block content %}
+<section class="max-w-5xl mx-auto py-12 px-6">
+  <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-4 text-center">
+    Chapter 5: Karma Vairagya Yoga
+  </h1>
+  <p class="text-lg font-sans text-darkslate dark:text-cream text-center max-w-2xl mx-auto mb-10">
+    The yoga of action and renunciation — choosing the inner detachment of a true yogi while fulfilling one's worldly role.
+  </p>
+
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🧘 Overview</h2>
+    <p class="text-darkslate dark:text-cream font-sans">
+      This chapter resolves the apparent conflict between action and renunciation. True renunciation means acting without attachment. Both paths lead to liberation when practiced with discipline and detachment.
+    </p>
+  </div>
+
+  <div class="bg-white dark:bg-darkslate rounded-xl shadow-md p-6 mb-8">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">📜 Key Teachings</h2>
+    <ul class="list-disc pl-6 text-darkslate dark:text-cream font-sans space-y-2">
+      <li>The renounced yogi and the karma yogi reach the same spiritual goal.</li>
+      <li>One who sees all beings with equality becomes liberated.</li>
+      <li>Detachment leads to inner joy and bliss in the Self.</li>
+    </ul>
+  </div>
+
+  <div class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl shadow-md p-6 mb-8">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🔖 Selected Verse</h2>
+    <blockquote class="italic text-lg text-darkslate dark:text-cream mb-4">
+      “He who is free from attachment and liberated in mind, performing actions with self-control, is not tainted by sin.”<br>
+      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 5.7</span>
+    </blockquote>
+  </div>
+
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🌱 Practical Reflection</h2>
+    <p class="text-darkslate dark:text-cream font-sans">
+      Whether you act or renounce, do it in surrender to the Divine. Peace comes not from outer stillness but from inner clarity.
+    </p>
+  </div>
+<!-- Pagination -->
+ <div class="mt-12 flex justify-between items-center text-sm font-semibold text-gold dark:text-vishnublue">
+    <a href="{{ url_for('chapter_4') }}" class="hover:underline">← Previous Chapter</a>
+    <a href="{{ url_for('chapter_6') }}" class="hover:underline">Next Chapter →</a>
+  </div>
+</section>
+{% endblock %}

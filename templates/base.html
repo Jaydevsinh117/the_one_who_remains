@@ -1,58 +1,90 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ dark: localStorage.getItem('theme') === 'dark' }" :class="{ 'dark': dark }" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" x-data="{ dark: localStorage.getItem('theme') === 'dark' }" :class="{ 'dark': dark }">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Gita Project{% endblock %}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {}
-            }
-        };
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const isDark = html.classList.toggle('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}The One Who remains{% endblock %}</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"DM Serif Display"', 'serif'],
+            sans: ['"Poppins"', 'sans-serif'],
+            shloka: ['"Noto Serif Devanagari"', 'serif']
+          },
+          colors: {
+            vishnublue: '#002366',
+            gold: '#f4c430',
+            cream: '#f5f5dc',
+            sky: '#e8f1f9',
+            darkslate: '#1e293b'
+          }
         }
+      }
+    };
 
-        // Initialize theme from localStorage
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-        }
-    </script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Serif+Devanagari&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body class="bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
-    <!-- Navigation Bar -->
-    <nav class="p-4 shadow bg-gray-100 dark:bg-gray-800">
-        <div class="flex justify-between items-center max-w-6xl mx-auto">
-            <a href="/" class="text-2xl font-semibold">Gita Project</a>
-            <div class="space-x-4 text-sm">
-                <a href="/" class="hover:underline">Home</a>
-                <a href="/about" class="hover:underline">About</a>
-                <a href="/contact" class="hover:underline">Contact</a>
-                <a href="/product" class="hover:underline">Product</a>
-                <a href="/showcase" class="hover:underline">Showcase</a>
-                <a href="/blog" class="hover:underline">Blog</a>
-                <a href="/deep-dive" class="hover:underline">Deep Dive</a>
-                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="ml-4 bg-gray-300 dark:bg-gray-700 px-3 py-1 rounded transition">
-                    Toggle Theme
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Main Content -->
-    <main class="p-6 max-w-6xl mx-auto">
-        {% block content %}{% endblock %}
-    </main>
+<body class="bg-cream text-darkslate dark:bg-darkslate dark:text-cream font-sans transition-colors duration-300 ease-in-out">
 
-    <!-- Footer -->
-    <footer class="p-4 text-center bg-gray-100 dark:bg-gray-800">
-        <p>&copy; 2025 Gita Project. All rights reserved.</p>
-    </footer>
+  <!-- 🔱 Navigation Bar -->
+  <nav class="p-4 shadow bg-sky dark:bg-darkslate">
+    <div class="flex justify-between items-center max-w-7xl mx-auto">
+      <a href="/" class="text-2xl font-heading text-vishnublue dark:text-gold hover:tracking-wide transition-all duration-300">
+        The One Who remains
+      </a>
+      <div class="flex items-center space-x-4 text-sm font-medium">
+        <a href="/" class="hover:text-gold transition">Home</a>
+        <a href="/about" class="hover:text-gold transition">About</a>
+        <a href="/contact" class="hover:text-gold transition">Contact</a>
+        <a href="/product" class="hover:text-gold transition">Product</a>
+        <a href="/showcase" class="hover:text-gold transition">Showcase</a>
+        <a href="/blog" class="hover:text-gold transition">Blog</a>
+        <a href="/deep-dive" class="hover:text-gold transition">Deep Dive</a>
+        <button onclick="toggleTheme()" aria-label="Toggle Theme"
+          class="flex items-center gap-2 bg-gold/80 dark:bg-vishnublue text-white px-3 py-1 rounded hover:opacity-90 transition">
+          <i data-feather="sun" class="dark:hidden w-4 h-4"></i>
+          <i data-feather="moon" class="hidden dark:inline w-4 h-4"></i>
+          <span>Theme</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 📖 Main Content -->
+  <main class="p-6 max-w-7xl mx-auto">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- 🪔 Footer -->
+  <footer class="p-6 text-center bg-sky dark:bg-darkslate mt-10 border-t border-gray-300 dark:border-gray-700">
+    <p class="text-sm text-gray-700 dark:text-gray-300 font-shloka">
+      &copy; 2025 Maha Vishnu Project. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    feather.replace();
+  </script>
 </body>
 </html>

@@ -1,23 +1,35 @@
 {% extends 'base.html' %}
 
-{% block title %}Showcase | Gita Project{% endblock %}
+{% block title %}Showcase | Maha Vishnu Project{% endblock %}
 
 {% block content %}
 <section class="max-w-6xl mx-auto py-12 px-6">
-    <h1 class="text-4xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">Shloka Showcase</h1>
-    <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-10">
-        Discover key verses from the Bhagavad Gita presented in beautiful, inspiring formats.
-    </p>
+  <!-- Heading -->
+  <h1 class="text-4xl font-heading text-center font-semibold text-vishnublue dark:text-gold mb-6">
+    Shloka Showcase
+  </h1>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for shloka in shlokas %}
-        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition">
-            <p class="text-gray-800 dark:text-gray-200 italic mb-3">“{{ shloka.quote }}”</p>
-            <p class="text-sm text-right text-gray-600 dark:text-gray-400">– Gita {{ shloka.chapter }}.{{ shloka.verse }}</p>
-        </div>
-        {% else %}
-        <p class="col-span-full text-center text-gray-600 dark:text-gray-400">No shlokas available yet.</p>
-        {% endfor %}
+  <!-- Description -->
+  <p class="text-lg text-center text-darkslate dark:text-cream mb-10 font-sans max-w-3xl mx-auto">
+    Discover sacred verses from the Bhagavad Gita, presented in serene, inspiring formats that reflect their divine essence.
+  </p>
+
+  <!-- Shloka Cards Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for shloka in shlokas %}
+    <div class="bg-cream dark:bg-gray-900 p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-200 dark:border-gray-700">
+      <p class="text-lg italic font-shloka text-darkslate dark:text-cream mb-3 leading-relaxed">
+        “{{ shloka.quote }}”
+      </p>
+      <p class="text-sm text-right text-gold dark:text-vishnublue font-semibold">
+        – Gita {{ shloka.chapter }}.{{ shloka.verse }}
+      </p>
     </div>
+    {% else %}
+    <p class="col-span-full text-center text-gray-600 dark:text-gray-400 font-sans">
+      No shlokas available yet.
+    </p>
+    {% endfor %}
+  </div>
 </section>
 {% endblock %}

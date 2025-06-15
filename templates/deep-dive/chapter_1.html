@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Chapter 1 – Arjuna Vishada Yoga | Maha Vishnu Project{% endblock %}
+
+{% block content %}
+<section class="max-w-5xl mx-auto py-12 px-6">
+  <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-4 text-center">
+    Chapter 1: Arjuna Vishada Yoga
+  </h1>
+  <p class="text-lg font-sans text-darkslate dark:text-cream text-center max-w-2xl mx-auto mb-10">
+    The Yoga of Arjuna's Despondency — the beginning of the Gita, where Arjuna faces a moral crisis and seeks guidance.
+  </p>
+
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🧘 Overview</h2>
+    <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
+      In this chapter, the great warrior Arjuna is overwhelmed by sorrow and compassion upon seeing his kinsmen arrayed for battle.
+      His inner turmoil and unwillingness to fight set the stage for the profound spiritual teachings of the Bhagavad Gita. This is the chapter of emotional conflict, reflection, and the search for dharma.
+    </p>
+  </div>
+
+  <div class="bg-white dark:bg-darkslate rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">📜 Key Teachings</h2>
+    <ul class="list-disc pl-6 text-darkslate dark:text-cream font-sans space-y-2">
+      <li>Arjuna's conflict between emotion and duty (dharma).</li>
+      <li>The futility and sorrow of war between relatives and teachers.</li>
+      <li>The need for guidance and surrender when faced with inner confusion.</li>
+    </ul>
+  </div>
+
+  <div class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🖖 Selected Verse</h2>
+    <blockquote class="italic text-lg text-darkslate dark:text-cream mb-4">
+      "My limbs give way, my mouth is dry, my body trembles, and my hair stands on end."<br>
+      <span class="text-sm text-gold dark:text-vishnublue block mt-2">– Bhagavad Gita 1.28</span>
+    </blockquote>
+  </div>
+
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🌱 Practical Reflection</h2>
+    <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
+      This chapter reminds us that confusion and pain are often the starting points of wisdom. Arjuna’s struggle is universal: how to act when heart and duty collide. His surrender to Krishna becomes the foundation for spiritual transformation.
+    </p>
+  </div>
+
+  <!-- Pagination -->
+  <div class="mt-12 flex justify-between items-center text-sm font-semibold text-gold dark:text-vishnublue">
+    <span></span>
+    <a href="{{ url_for('chapter_2') }}" class="hover:underline">Next Chapter →</a>
+  </div>
+</section>
+{% endblock %}

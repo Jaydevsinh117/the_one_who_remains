@@ -1,15 +1,87 @@
 {% extends 'base.html' %}
-{% block title %}Deep Dive | Gita Project{% endblock %}
+
+{% block title %}Deep Dive | Maha Vishnu Project{% endblock %}
+
 {% block content %}
-<section class="text-center">
-    <h1 class="text-3xl font-bold mb-6">Deep Dive into Bhagavad Gita</h1>
-    <p class="text-lg max-w-2xl mx-auto mb-4">Take an in-depth look at the core teachings of the Bhagavad Gita and how they apply to our modern life.</p>
-    <div class="space-y-6">
-        <div class="bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-300 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg">
-            <h2 class="text-2xl font-semibold">Chapter 2: Sankhya Yoga</h2>
-            <p class="mt-2">Teachings on the nature of the self, and the mind.</p>
-            <a href="#" class="text-blue-600">Read Full Chapter</a>
-        </div>
+<section class="text-center py-12 px-6 max-w-6xl mx-auto">
+  <!-- Heading -->
+  <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-6">
+    Deep Dive into Divine Wisdom
+  </h1>
+
+  <!-- Description -->
+  <p class="text-lg font-sans text-darkslate dark:text-cream max-w-2xl mx-auto mb-10">
+    Explore the eternal truths of the Bhagavad Gita, Vishnu Puranas, and sacred scriptures — through detailed chapters
+    that reflect on the soul, duty, devotion, and cosmic balance.
+  </p>
+
+  <!-- Dive Cards -->
+  <div class="space-y-6">
+    <!-- Chapter 2 -->
+    <div
+      class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 2: Sankhya Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">
+        Teachings on the nature of the Self, the mind, and the eternal spirit beyond birth and death.
+      </p>
+      <a href="{{ url_for('chapter_2') }}"
+        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
+        Read Full Chapter →
+      </a>
+
     </div>
+
+    <!-- Chapter 3 -->
+    <div
+      class="bg-gradient-to-r from-yellow-200 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 3: Karma Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">
+        The path of action — selfless service without attachment and acting in accordance with dharma.
+      </p>
+      <a href="{{ url_for('chapter_3') }}"
+        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
+        Read Full Chapter →
+      </a>
+    </div>
+
+    <!-- Chapter 4 -->
+    <div
+      class="bg-gradient-to-r from-sky via-yellow-100 to-gold dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 4: Jnana Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">
+        The yoga of wisdom — understanding divine incarnations, spiritual knowledge, and sacrifice.
+      </p>
+      <a href="{{ url_for('chapter_4') }}"
+        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
+        Read Full Chapter →
+      </a>
+    </div>
+
+    <!-- Chapter 5 -->
+    <div
+      class="bg-gradient-to-r from-gold via-sky to-yellow-100 dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 5: Karma Vairagya Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">
+        Detachment in action — balancing renunciation and disciplined selfless work.
+      </p>
+      <a href="{{ url_for('chapter_5') }}"
+        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
+        Read Full Chapter →
+      </a>
+    </div>
+
+    <!-- Chapter 6 -->
+    <div
+      class="bg-gradient-to-r from-yellow-100 via-gold to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 transition hover:shadow-xl">
+      <h2 class="text-2xl font-heading text-vishnublue dark:text-gold">Chapter 6: Dhyana Yoga</h2>
+      <p class="mt-2 text-darkslate dark:text-cream font-sans">
+        The yoga of meditation — cultivating discipline, inner peace, and union with the divine.
+      </p>
+       <a href="{{ url_for('chapter_6') }}"
+        class="inline-block mt-3 text-gold dark:text-vishnublue font-semibold hover:underline">
+        Read Full Chapter →
+      </a>
+    </div>
+  </div>
 </section>
 {% endblock %}

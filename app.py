@@ -63,6 +63,30 @@ def blog():
 def deep_dive():
     return render_template('deep_dive.html')  # Render the deep_dive.html template
 
+@app.route('/deep-dive/chapter-1')
+def chapter_1():
+    return render_template('deep-dive/chapter_1.html')
+
+@app.route('/deep-dive/chapter-2')
+def chapter_2():
+    return render_template('deep-dive/chapter_2.html')
+
+@app.route('/deep-dive/chapter-3')
+def chapter_3():
+    return render_template('deep-dive/chapter_3.html')
+
+@app.route('/deep-dive/chapter-4')
+def chapter_4():
+    return render_template('deep-dive/chapter_4.html')
+
+@app.route('/deep-dive/chapter-5')
+def chapter_5():
+    return render_template('deep-dive/chapter_5.html')
+
+@app.route('/deep-dive/chapter-6')
+def chapter_6():
+    return render_template('deep-dive/chapter_6.html')
+
 if __name__ == '__main__':
     # Create the database tables if they don't exist
     with app.app_context():

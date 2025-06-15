@@ -1,48 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Registration | Maha Vishnu Project</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"DM Serif Display"', 'serif'],
+            sans: ['"Poppins"', 'sans-serif']
+          },
+          colors: {
+            vishnublue: '#002366',
+            gold: '#f4c430',
+            cream: '#f5f5dc',
+            darkslate: '#1e293b'
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
-<body>
-    <h1>Register a New User</h1>
-    <form id="register-form" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
+<body class="bg-cream text-darkslate dark:bg-darkslate dark:text-cream font-sans transition-all duration-300 ease-in-out">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
+  <!-- 🕉️ Registration Form -->
+  <section class="max-w-md mx-auto px-6 py-12">
+    <h1 class="text-3xl font-heading text-vishnublue dark:text-gold text-center mb-6">
+      Register a New User
+    </h1>
 
-        <button type="submit">Register</button>
+    <form id="register-form" method="POST" class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 space-y-6">
+      <!-- Username -->
+      <div>
+        <label for="username" class="block mb-2 font-medium">Username:</label>
+        <input type="text" id="username" name="username" required
+          class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-cream dark:bg-darkslate text-darkslate dark:text-cream focus:outline-none focus:ring-2 focus:ring-gold transition" />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block mb-2 font-medium">Email:</label>
+        <input type="email" id="email" name="email" required
+          class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-cream dark:bg-darkslate text-darkslate dark:text-cream focus:outline-none focus:ring-2 focus:ring-gold transition" />
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block mb-2 font-medium">Password:</label>
+        <input type="password" id="password" name="password" required
+          class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-cream dark:bg-darkslate text-darkslate dark:text-cream focus:outline-none focus:ring-2 focus:ring-gold transition" />
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center">
+        <button type="submit"
+          class="bg-vishnublue hover:bg-gold text-white dark:text-darkslate px-6 py-2 rounded-md shadow-md hover:shadow-lg transition-all">
+          Register
+        </button>
+      </div>
     </form>
+  </section>
 
-    <script>
-        document.getElementById('register-form').onsubmit = async function(event) {
-            event.preventDefault();
-            
-            const data = {
-                username: document.getElementById('username').value,
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value
-            };
-            
-            const response = await fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
+  <!-- 🔐 Submission Script -->
+  <script>
+    document.getElementById('register-form').onsubmit = async function(event) {
+      event.preventDefault();
 
-            const result = await response.json();
-            if (response.ok) {
-                alert('Registration successful');
-            } else {
-                alert('Error: ' + result.error);
-            }
-        };
-    </script>
+      const data = {
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      };
+
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert('🪔 Registration successful!');
+        document.getElementById('register-form').reset();
+      } else {
+        alert('⚠️ Error: ' + result.error);
+      }
+    };
+  </script>
 </body>
 </html>

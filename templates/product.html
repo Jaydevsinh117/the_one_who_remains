@@ -1,31 +1,48 @@
 {% extends 'base.html' %}
 
-{% block title %}Products | Gita Project{% endblock %}
+{% block title %}Products | Maha Vishnu Project{% endblock %}
 
 {% block content %}
 <section class="max-w-6xl mx-auto py-12 px-6">
-    <h1 class="text-4xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">Our Offerings</h1>
-    <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-10">
-        Explore our curated products inspired by the wisdom of the Bhagavad Gita.
-    </p>
+  <!-- Page Heading -->
+  <h1 class="text-4xl font-heading text-center text-vishnublue dark:text-gold font-semibold mb-6">
+    Our Offerings
+  </h1>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% for product in products %}
-        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 flex flex-col justify-between">
-            <div>
-                <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">{{ product.name }}</h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">{{ product.description }}</p>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-lg font-bold text-indigo-600 dark:text-indigo-400">${{ '%.2f'|format(product.price) }}</span>
-                <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
-                    Buy Now
-                </button>
-            </div>
-        </div>
-        {% else %}
-        <p class="col-span-full text-center text-gray-600 dark:text-gray-400">No products available at the moment.</p>
-        {% endfor %}
+  <!-- Subheading -->
+  <p class="text-lg text-center text-darkslate dark:text-cream mb-10 font-sans max-w-3xl mx-auto">
+    Explore our curated sacred items, spiritual tools, and artistic expressions inspired by the timeless wisdom of Lord Vishnu and the Bhagavad Gita.
+  </p>
+
+  <!-- Product Cards Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for product in products %}
+    <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col justify-between border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all">
+      <!-- Product Info -->
+      <div>
+        <h2 class="text-xl font-heading text-vishnublue dark:text-gold mb-2">
+          {{ product.name }}
+        </h2>
+        <p class="text-darkslate dark:text-cream font-sans mb-4">
+          {{ product.description }}
+        </p>
+      </div>
+
+      <!-- Price & Button -->
+      <div class="flex justify-between items-center">
+        <span class="text-lg font-bold text-gold dark:text-vishnublue">
+          ₹{{ '%.2f'|format(product.price) }}
+        </span>
+        <button class="bg-vishnublue hover:bg-gold text-white dark:text-darkslate px-4 py-2 rounded-lg font-semibold transition-all shadow-sm hover:shadow-md">
+          Buy Now
+        </button>
+      </div>
     </div>
+    {% else %}
+    <p class="col-span-full text-center text-gray-600 dark:text-gray-400 font-sans">
+      No products available at the moment.
+    </p>
+    {% endfor %}
+  </div>
 </section>
 {% endblock %}

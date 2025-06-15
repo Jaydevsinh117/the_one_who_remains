@@ -1,44 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quote Management</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Quote | Maha Vishnu Project</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"DM Serif Display"', 'serif'],
+            sans: ['"Poppins"', 'sans-serif'],
+          },
+          colors: {
+            vishnublue: '#002366',
+            gold: '#f4c430',
+            cream: '#f5f5dc',
+            darkslate: '#1e293b',
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
-<body>
-    <h1>Create a New Quote</h1>
-    <form id="quote-form" method="POST">
-        <label for="text">Quote Text:</label>
-        <input type="text" id="text" name="text" required><br>
 
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author" required><br>
+<body class="bg-cream text-darkslate dark:bg-darkslate dark:text-cream font-sans transition-all duration-300 ease-in-out">
 
-        <button type="submit">Create Quote</button>
+  <!-- 🌟 Quote Form Container -->
+  <section class="max-w-3xl mx-auto px-6 py-12">
+    <h1 class="text-3xl font-heading text-center text-vishnublue dark:text-gold mb-6">
+      Create a New Quote
+    </h1>
+
+    <form id="quote-form" method="POST" class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg space-y-6 border border-gray-200 dark:border-gray-700">
+      
+      <!-- Quote Text -->
+      <div>
+        <label for="text" class="block mb-2 font-medium">Quote Text:</label>
+        <input type="text" id="text" name="text" required
+          class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-cream dark:bg-darkslate text-darkslate dark:text-cream focus:outline-none focus:ring-2 focus:ring-gold transition" />
+      </div>
+
+      <!-- Author -->
+      <div>
+        <label for="author" class="block mb-2 font-medium">Author:</label>
+        <input type="text" id="author" name="author" required
+          class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-cream dark:bg-darkslate text-darkslate dark:text-cream focus:outline-none focus:ring-2 focus:ring-gold transition" />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit"
+          class="bg-vishnublue hover:bg-gold text-white dark:text-darkslate px-6 py-2 rounded-md shadow-md hover:shadow-lg transition-all">
+          Create Quote
+        </button>
+      </div>
     </form>
+  </section>
 
-    <script>
-        document.getElementById('quote-form').onsubmit = async function(event) {
-            event.preventDefault();
-            
-            const data = {
-                text: document.getElementById('text').value,
-                author: document.getElementById('author').value
-            };
-            
-            const response = await fetch('/api/quote', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
+  <!-- 🚀 Script -->
+  <script>
+    document.getElementById('quote-form').onsubmit = async function (event) {
+      event.preventDefault();
 
-            const result = await response.json();
-            if (response.ok) {
-                alert('Quote created successfully');
-            } else {
-                alert('Error: ' + result.error);
-            }
-        };
-    </script>
+      const data = {
+        text: document.getElementById('text').value,
+        author: document.getElementById('author').value
+      };
+
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert('🙏 Quote created successfully!');
+        document.getElementById('quote-form').reset();
+      } else {
+        alert('⚠️ Error: ' + result.error);
+      }
+    };
+  </script>
 </body>
 </html>

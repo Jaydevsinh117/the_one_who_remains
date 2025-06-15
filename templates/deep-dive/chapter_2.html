@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Chapter 2 – Sankhya Yoga | Maha Vishnu Project{% endblock %}
+
+{% block content %}
+<section class="max-w-5xl mx-auto py-12 px-6">
+  <!-- Title -->
+  <h1 class="text-4xl font-heading text-vishnublue dark:text-gold font-semibold mb-4 text-center">
+    Chapter 2: Sankhya Yoga
+  </h1>
+
+  <!-- Subheading -->
+  <p class="text-lg font-sans text-darkslate dark:text-cream text-center max-w-2xl mx-auto mb-10">
+    Teachings on the nature of the Self, the mind, and the eternal spirit beyond birth and death.
+  </p>
+
+  <!-- Section 1: Overview -->
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🧘 Overview</h2>
+    <p class="text-darkslate dark:text-cream leading-relaxed font-sans">
+      Sankhya Yoga is one of the most philosophically profound chapters in the Bhagavad Gita. In this chapter, Lord Krishna explains the eternal, indestructible nature of the Atman (Self), which is neither born nor does it die.
+      He guides Arjuna through spiritual reasoning, encouraging him to rise above sorrow, perform his dharma, and remain detached from the fruits of action.
+    </p>
+  </div>
+
+  <!-- Section 2: Key Teachings -->
+  <div class="bg-white dark:bg-darkslate rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">📜 Key Teachings</h2>
+    <ul class="list-disc pl-6 text-darkslate dark:text-cream space-y-2 font-sans">
+      <li>The soul (Atman) is eternal, unchanging, and indestructible.</li>
+      <li>Death is merely the shedding of the physical body, not the end of the Self.</li>
+      <li>One should perform their duty (dharma) without attachment to outcomes.</li>
+      <li>Wisdom lies in balanced understanding — neither being elated by success nor dejected by failure.</li>
+      <li>Equanimity is the essence of Yoga.</li>
+    </ul>
+  </div>
+
+  <!-- Section 3: Selected Verses -->
+  <div class="bg-gradient-to-r from-gold via-yellow-100 to-sky dark:from-darkslate dark:via-gray-800 dark:to-gray-900 rounded-xl shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🔖 Selected Verses</h2>
+    <blockquote class="italic text-lg text-darkslate dark:text-cream mb-4">
+      “For the soul, there is neither birth nor death at any time. It has not come into being, does not come into being, and will not come into being.”<br>
+      <span class="text-sm text-right block text-gold dark:text-vishnublue mt-2">– Bhagavad Gita 2.20</span>
+    </blockquote>
+    <blockquote class="italic text-lg text-darkslate dark:text-cream">
+      “You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.”<br>
+      <span class="text-sm text-right block text-gold dark:text-vishnublue mt-2">– Bhagavad Gita 2.47</span>
+    </blockquote>
+  </div>
+
+  <!-- Section 4: Practical Application -->
+  <div class="bg-cream dark:bg-gray-900 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
+    <h2 class="text-2xl font-heading text-vishnublue dark:text-gold mb-3">🌱 Practical Reflection</h2>
+    <p class="text-darkslate dark:text-cream font-sans leading-relaxed">
+      Sankhya Yoga inspires us to live with inner steadiness — to perform our responsibilities with devotion, detachment, and trust in the higher purpose. 
+      In the modern world, this message is a call to remain unaffected by temporary outcomes and root our identity in something deeper than material success or failure.
+    </p>
+  </div>
+
+  <!-- Pagination -->
+ <div class="mt-12 flex justify-between items-center text-sm font-semibold text-gold dark:text-vishnublue">
+    <a href="{{ url_for('chapter_1') }}" class="hover:underline">← Previous Chapter</a>
+    <a href="{{ url_for('chapter_3') }}" class="hover:underline">Next Chapter →</a>
+  </div>
+</section>
+{% endblock %}
