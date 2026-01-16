@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -14,22 +14,19 @@
         extend: {
           fontFamily: {
             heading: ['"DM Serif Display"', 'serif'],
-            sans: ['"Poppins"', 'sans-serif'],
+            sans: ['"Outfit"', 'sans-serif'],
             shloka: ['"Noto Serif Devanagari"', 'serif']
           },
           colors: {
             vishnublue: '#002366',
             gold: '#f4c430',
-            cream: '#f5f5dc',
-            sky: '#e8f1f9',
-            darkslate: '#1e293b',
-            'cosmic-dark': '#0b0d17',
-            'cosmic-blue': '#1c1e26',
-            'starlight': '#e2e8f0',
-            'divine-gold': '#ffd700'
+            'slate-text': '#2c3e50',
+            'mist-light': '#f0f2f5',
+            'mist-dark': '#cfd9df',
+            'divine-gold': '#d4af37'
           },
           backgroundImage: {
-            'cosmic-gradient': 'radial-gradient(circle at center, #1b2735 0%, #090a0f 100%)',
+            'mist-gradient': 'linear-gradient(to bottom, #e0e0e0 0%, #f5f5f5 100%)',
           }
         }
       }
@@ -38,10 +35,6 @@
   </script>
 
   <style>
-    /* Global Link Glow */
-    a:not(.btn):hover {
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-    }
     /* Grain Effect */
     .grain-overlay {
       position: fixed;
@@ -51,22 +44,31 @@
       height: 100%;
       pointer-events: none;
       z-index: 50;
-      opacity: 0.05;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Cosmic Background */
+    /* Misty Background */
     body {
-        background-color: #0b0d17;
-        background-image: radial-gradient(circle at 50% 50%, #1c2e4a 0%, #0b0d17 100%);
+        background-color: #f5f5f5;
+        background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         min-height: 100vh;
+        color: #2c3e50;
+    }
+
+    /* Subtle Fog Animation */
+    @keyframes fog {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 
   <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Serif+Devanagari&family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=DM+Serif+Display&family=Noto+Serif+Devanagari&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
@@ -78,13 +80,13 @@
   <div class="grain-overlay"></div>
 
   <!-- 🔱 Navigation Bar -->
-  <nav class="p-4 fixed w-full top-0 z-40 bg-black/60 backdrop-blur-xl border-b border-divine-gold/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+  <nav class="p-4 fixed w-full top-0 z-40 bg-white/30 backdrop-blur-xl border-b border-white/40 shadow-sm">
     <div class="flex justify-between items-center max-w-7xl mx-auto">
       <a href="/"
-        class="text-2xl font-heading text-divine-gold hover:tracking-wide transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
+        class="text-3xl font-sans font-extralight tracking-tight text-slate-text hover:tracking-wide transition-all duration-300">
         The One Who Remains
       </a>
-      <div class="flex items-center space-x-6 text-base font-semibold text-starlight tracking-wide">
+      <div class="flex items-center space-x-6 text-base font-medium text-slate-text tracking-wide">
         <a href="/" class="hover:text-divine-gold transition-all duration-300">Home</a>
         <a href="/about" class="hover:text-divine-gold transition-all duration-300">About</a>
         <a href="/contact" class="hover:text-divine-gold transition-all duration-300">Contact</a>
@@ -101,13 +103,10 @@
     {% block content %}{% endblock %}
   </main>
 
-
-
-
   <footer>
     {% block footer %}
     <footer
-      class="relative bg-[#2d6146] dark:bg-black/40 backdrop-blur-lg border-t border-white/10 text-white dark:text-gray-300 px-6 pt-12 pb-16 overflow-hidden z-10">
+      class="relative bg-white/20 backdrop-blur-lg border-t border-white/30 text-slate-text px-6 pt-12 pb-16 overflow-hidden z-10">
       <!-- Decorative Floating Icon -->
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Vishnu_icon.png" alt="Lord Vishnu Icon"
         class="absolute top-4 right-4 w-20 opacity-10 animate-pulse hidden md:block pointer-events-none" />
@@ -121,40 +120,40 @@
 
         <!-- Logo + Tagline -->
         <div>
-          <h2 class="text-2xl font-bold tracking-wide text-gold">Maha Vishnu Project</h2>
-          <p class="mt-2 text-sm opacity-80">Exploring divine wisdom,<br>one shloka at a time.</p>
+          <h2 class="text-2xl font-bold tracking-wide text-slate-700">Maha Vishnu Project</h2>
+          <p class="mt-2 text-sm opacity-80 text-slate-600">Exploring divine wisdom,<br>one shloka at a time.</p>
         </div>
 
         <!-- Navigation Links -->
         <div>
-          <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/about" class="hover:underline hover:text-yellow-300">About</a></li>
-            <li><a href="/deep-dive" class="hover:underline hover:text-yellow-300">Deep Dive</a></li>
-            <li><a href="/blog" class="hover:underline hover:text-yellow-300">Blog</a></li>
-            <li><a href="/contact" class="hover:underline hover:text-yellow-300">Contact</a></li>
+          <h3 class="text-lg font-semibold mb-3 text-slate-700">Quick Links</h3>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li><a href="/about" class="hover:underline hover:text-divine-gold">About</a></li>
+            <li><a href="/deep-dive" class="hover:underline hover:text-divine-gold">Deep Dive</a></li>
+            <li><a href="/blog" class="hover:underline hover:text-divine-gold">Blog</a></li>
+            <li><a href="/contact" class="hover:underline hover:text-divine-gold">Contact</a></li>
           </ul>
         </div>
 
         <!-- Social Media -->
         <div>
-          <h3 class="text-lg font-semibold mb-3">Connect</h3>
-          <div class="flex justify-center sm:justify-start gap-4 text-xl">
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-youtube"></i></a>
+          <h3 class="text-lg font-semibold mb-3 text-slate-700">Connect</h3>
+          <div class="flex justify-center sm:justify-start gap-4 text-xl text-slate-600">
+            <a href="#" class="hover:text-divine-gold transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-divine-gold transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-divine-gold transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-divine-gold transition"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
 
         <!-- Email Subscription -->
         <div>
-          <h3 class="text-lg font-semibold mb-3">Subscribe</h3>
+          <h3 class="text-lg font-semibold mb-3 text-slate-700">Subscribe</h3>
           <form class="space-y-3">
             <input type="email" placeholder="Your email"
-              class="w-full px-4 py-2 rounded-lg bg-white text-black dark:bg-gray-700 dark:text-white focus:outline-none">
+              class="w-full px-4 py-2 rounded-lg bg-white/60 text-slate-800 border border-slate-200 focus:outline-none focus:border-divine-gold">
             <button type="submit"
-              class="w-full bg-gold dark:bg-vishnublue text-black dark:text-white py-2 rounded-lg hover:brightness-110 transition">
+              class="w-full bg-slate-800 text-white py-2 rounded-lg hover:bg-slate-900 transition">
               Subscribe
             </button>
           </form>
@@ -162,7 +161,7 @@
       </div>
 
       <!-- Footer Base -->
-      <div class="mt-12 border-t border-white/30 pt-6 text-center text-sm opacity-80 relative z-10">
+      <div class="mt-12 border-t border-slate-300 pt-6 text-center text-sm text-slate-500 relative z-10">
         © 2025 Maha Vishnu Project • All rights reserved
       </div>
 
