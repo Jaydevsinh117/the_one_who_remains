@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ dark: localStorage.getItem('theme') === 'dark' }" :class="{ 'dark': dark }">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -35,19 +35,13 @@
       }
     };
 
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-
-    // Force dark mode for cosmic theme preference
-    if (localStorage.getItem('theme') !== 'light') {
-      document.documentElement.classList.add('dark');
-    }
   </script>
 
   <style>
+    /* Global Link Glow */
+    a:not(.btn):hover {
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    }
     /* Grain Effect */
     .grain-overlay {
       position: fixed;
@@ -84,26 +78,20 @@
   <div class="grain-overlay"></div>
 
   <!-- 🔱 Navigation Bar -->
-  <nav class="p-4 fixed w-full top-0 z-40 bg-white/10 dark:bg-black/20 backdrop-blur-md border-b border-white/10">
+  <nav class="p-4 fixed w-full top-0 z-40 bg-black/60 backdrop-blur-xl border-b border-divine-gold/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
     <div class="flex justify-between items-center max-w-7xl mx-auto">
       <a href="/"
-        class="text-2xl font-heading text-vishnublue dark:text-divine-gold hover:tracking-wide transition-all duration-300 drop-shadow-lg">
+        class="text-2xl font-heading text-divine-gold hover:tracking-wide transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
         The One Who Remains
       </a>
-      <div class="flex items-center space-x-4 text-sm font-medium text-darkslate dark:text-starlight">
-        <a href="/" class="hover:text-divine-gold transition">Home</a>
-        <a href="/about" class="hover:text-divine-gold transition">About</a>
-        <a href="/contact" class="hover:text-divine-gold transition">Contact</a>
-        <a href="/product" class="hover:text-divine-gold transition">Product</a>
-        <a href="/showcase" class="hover:text-divine-gold transition">Showcase</a>
-        <a href="/blog" class="hover:text-divine-gold transition">Blog</a>
-        <a href="/deep-dive" class="hover:text-divine-gold transition">Deep Dive</a>
-        <button onclick="toggleTheme()" aria-label="Toggle Theme"
-          class="flex items-center gap-2 bg-gold/80 dark:bg-vishnublue text-white px-3 py-1 rounded hover:opacity-90 transition">
-          <i data-feather="sun" class="dark:hidden w-4 h-4"></i>
-          <i data-feather="moon" class="hidden dark:inline w-4 h-4"></i>
-          <span>Theme</span>
-        </button>
+      <div class="flex items-center space-x-6 text-base font-semibold text-starlight tracking-wide">
+        <a href="/" class="hover:text-divine-gold transition-all duration-300">Home</a>
+        <a href="/about" class="hover:text-divine-gold transition-all duration-300">About</a>
+        <a href="/contact" class="hover:text-divine-gold transition-all duration-300">Contact</a>
+        <a href="/product" class="hover:text-divine-gold transition-all duration-300">Product</a>
+        <a href="/showcase" class="hover:text-divine-gold transition-all duration-300">Showcase</a>
+        <a href="/blog" class="hover:text-divine-gold transition-all duration-300">Blog</a>
+        <a href="/deep-dive" class="hover:text-divine-gold transition-all duration-300">Deep Dive</a>
       </div>
     </div>
   </nav>
