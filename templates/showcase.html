@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}Shloka Showcase | Maha Vishnu Project{% endblock %}
+{% block title %}Shloka Showcase | The One Who Remains{% endblock %}
 
 {% block content %}
 <section class="max-w-7xl mx-auto py-16 px-6">
   <!-- Heading -->
   <div class="text-center mb-12">
-    <h1 class="text-4xl font-heading font-bold text-vishnublue dark:text-gold mb-4">Shloka Showcase</h1>
-    <p class="text-lg text-darkslate dark:text-cream font-sans max-w-3xl mx-auto">
-      Explore sacred verses from the Bhagavad Gita in both Sanskrit and English with chanting options and divine filters.
+    <h1 class="text-5xl font-heading font-light text-void-black mb-6 tracking-wide">Shloka Showcase</h1>
+    <p class="text-lg text-stone-grey font-sans max-w-2xl mx-auto leading-relaxed">
+      Sacred verses from the Bhagavad Gita. Knowledge does not shout; it remains.
     </p>
   </div>
 
@@ -24,22 +24,22 @@
   <!-- Shloka Cards -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="shloka-grid">
     {% for shloka in shlokas %}
-    <div class="shloka-card bg-cream dark:bg-gray-900 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 transition" data-category="{{ shloka.category }}">
-      <p class="text-xl font-shloka text-center text-darkslate dark:text-cream leading-relaxed mb-4">
+    <div class="shloka-card bg-white p-8 rounded-sm shadow-sm border border-stone-grey/20 hover:border-muted-blue/50 transition-all duration-500" data-category="{{ shloka.category }}">
+      <p class="text-2xl font-shloka text-center text-void-black leading-loose mb-6">
         {{ shloka.sanskrit }}
       </p>
-      <p class="text-base italic text-center text-darkslate dark:text-cream mb-4">“{{ shloka.english }}”</p>
-      <p class="text-sm text-right text-gold dark:text-vishnublue font-semibold mb-3">– Gita {{ shloka.chapter }}.{{ shloka.verse }}</p>
-      <div class="flex justify-between items-center gap-2 text-sm">
-        <button onclick="copyShloka(this)" class="copy-btn hover:text-vishnublue">📋 Copy</button>
-        <button onclick="shareShloka('{{ shloka.english }}')" class="hover:text-vishnublue">🔗 Share</button>
-        <button onclick="toggleAudio(this, '{{ shloka.audio_male }}')" data-type="male" class="hover:text-vishnublue transition-colors" aria-label="Play male chant">👨‍🎤 Male</button>
-        <button onclick="toggleAudio(this, '{{ shloka.audio_female }}')" data-type="female" class="hover:text-vishnublue transition-colors" aria-label="Play female chant">👩‍🎤 Female</button>
+      <p class="text-base italic text-center text-stone-grey mb-6 font-light">“{{ shloka.english }}”</p>
+      <p class="text-xs text-right text-muted-blue font-medium uppercase tracking-widest mb-4">Gita {{ shloka.chapter }}.{{ shloka.verse }}</p>
+      <div class="flex justify-between items-center gap-2 text-xs font-medium text-stone-grey/80 border-t border-stone-grey/10 pt-4">
+        <button onclick="copyShloka(this)" class="copy-btn hover:text-muted-blue transition-colors uppercase tracking-wider">Copy</button>
+        <button onclick="shareShloka('{{ shloka.english }}')" class="hover:text-muted-blue transition-colors uppercase tracking-wider">Share</button>
+        <button onclick="toggleAudio(this, '{{ shloka.audio_male }}')" data-type="male" class="hover:text-muted-blue transition-colors uppercase tracking-wider" aria-label="Play male chant">Male</button>
+        <button onclick="toggleAudio(this, '{{ shloka.audio_female }}')" data-type="female" class="hover:text-muted-blue transition-colors uppercase tracking-wider" aria-label="Play female chant">Female</button>
       </div>
     </div>
     {% else %}
-    <p class="col-span-full text-center text-gray-600 dark:text-gray-400 font-sans">
-      No shlokas available yet.
+    <p class="col-span-full text-center text-stone-grey font-sans font-light">
+      Silence. No shlokas found.
     </p>
     {% endfor %}
   </div>
@@ -115,16 +115,17 @@ function updateButtonState(btn, state) {
   const defaultIcon = type === 'male' ? '👨‍🎤' : '👩‍🎤';
 
   if (state === 'playing') {
-    btn.innerHTML = `⏸️ ${label}`;
+    btn.innerHTML = `⏸ ${label}`;
     btn.setAttribute('aria-label', `Pause ${label} chant`);
-    btn.classList.add('font-bold', 'text-vishnublue', 'dark:text-gold');
+    btn.classList.add('text-muted-blue');
   } else if (state === 'paused') {
-    btn.innerHTML = `▶️ ${label}`;
+    btn.innerHTML = `▶ ${label}`;
     btn.setAttribute('aria-label', `Resume ${label} chant`);
   } else {
-    btn.innerHTML = `${defaultIcon} ${label}`;
+    // Removed emoji icons for cleaner aesthetic as per guidelines
+    btn.innerHTML = `${label}`;
     btn.setAttribute('aria-label', `Play ${label} chant`);
-    btn.classList.remove('font-bold', 'text-vishnublue', 'dark:text-gold');
+    btn.classList.remove('text-muted-blue');
   }
 }
 
@@ -143,15 +144,25 @@ filterBtns.forEach(btn => btn.addEventListener('click', () => {
 
 <style>
   .filter-btn {
-    padding: 0.5rem 1rem;
-    background: #f0f0f0;
-    border-radius: 9999px;
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    border: 1px solid #E6E8EB; /* ash-white */
+    border-radius: 2px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 400;
+    color: #B8BDC3; /* stone-grey */
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+  .filter-btn:hover {
+    border-color: #B8BDC3;
+    color: #0E0F11;
   }
   .filter-btn.active {
-    background: #2d6146;
-    color: white;
+    background: #0E0F11; /* void-black */
+    color: #E6E8EB; /* ash-white */
+    border-color: #0E0F11;
   }
 </style>
 {% endblock %}

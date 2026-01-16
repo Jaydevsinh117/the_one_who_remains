@@ -13,16 +13,21 @@
       theme: {
         extend: {
           fontFamily: {
-            heading: ['"DM Serif Display"', 'serif'],
-            sans: ['"Poppins"', 'sans-serif'],
+            heading: ['"Roboto"', 'sans-serif'],
+            sans: ['"Roboto"', 'sans-serif'],
             shloka: ['"Noto Serif Devanagari"', 'serif']
           },
           colors: {
-            vishnublue: '#002366',
-            gold: '#f4c430',
-            cream: '#f5f5dc',
-            sky: '#e8f1f9',
-            darkslate: '#1e293b'
+            'ash-white': '#E6E8EB',
+            'stone-grey': '#B8BDC3',
+            'void-black': '#0E0F11',
+            'muted-blue': '#5F738A',
+            // Legacy colors mapped to new palette or kept for safety but discouraged
+            vishnublue: '#0E0F11', // Map to Void Black
+            gold: '#5F738A',      // Map to Muted Blue (as accent)
+            cream: '#E6E8EB',     // Map to Ash White
+            sky: '#E6E8EB',       // Map to Ash White
+            darkslate: '#0E0F11'  // Map to Void Black
           }
         }
       }
@@ -41,7 +46,7 @@
 
   <!-- Fonts -->
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Serif+Devanagari&family=Poppins:wght@400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Noto+Serif+Devanagari&display=swap"
     rel="stylesheet" />
 
   <!-- Icons -->
@@ -49,29 +54,24 @@
 </head>
 
 <body
-  class="bg-cream text-darkslate dark:bg-darkslate dark:text-cream font-sans transition-colors duration-300 ease-in-out">
+  class="bg-ash-white text-void-black font-sans transition-colors duration-300 ease-in-out">
 
   <!-- 🔱 Navigation Bar -->
-  <nav class="p-4 shadow bg-sky dark:bg-darkslate">
+  <nav class="p-4 shadow-sm bg-ash-white">
     <div class="flex justify-between items-center max-w-7xl mx-auto">
       <a href="/"
-        class="text-2xl font-heading text-vishnublue dark:text-gold hover:tracking-wide transition-all duration-300">
-        The One Who remains
+        class="text-2xl font-heading font-light text-void-black hover:tracking-wide transition-all duration-300">
+        The One Who Remains
       </a>
-      <div class="flex items-center space-x-4 text-sm font-medium">
-        <a href="/" class="hover:text-gold transition">Home</a>
-        <a href="/about" class="hover:text-gold transition">About</a>
-        <a href="/contact" class="hover:text-gold transition">Contact</a>
-        <a href="/product" class="hover:text-gold transition">Product</a>
-        <a href="/showcase" class="hover:text-gold transition">Showcase</a>
-        <a href="/blog" class="hover:text-gold transition">Blog</a>
-        <a href="/deep-dive" class="hover:text-gold transition">Deep Dive</a>
-        <button onclick="toggleTheme()" aria-label="Toggle Theme"
-          class="flex items-center gap-2 bg-gold/80 dark:bg-vishnublue text-white px-3 py-1 rounded hover:opacity-90 transition">
-          <i data-feather="sun" class="dark:hidden w-4 h-4"></i>
-          <i data-feather="moon" class="hidden dark:inline w-4 h-4"></i>
-          <span>Theme</span>
-        </button>
+      <div class="flex items-center space-x-6 text-sm font-normal text-stone-grey">
+        <a href="/" class="hover:text-muted-blue transition">Home</a>
+        <a href="/about" class="hover:text-muted-blue transition">About</a>
+        <a href="/contact" class="hover:text-muted-blue transition">Contact</a>
+        <a href="/product" class="hover:text-muted-blue transition">Product</a>
+        <a href="/showcase" class="hover:text-muted-blue transition">Showcase</a>
+        <a href="/blog" class="hover:text-muted-blue transition">Blog</a>
+        <a href="/deep-dive" class="hover:text-muted-blue transition">Deep Dive</a>
+        <!-- Theme Toggle hidden as per strict brand guidelines enforcement (Monochrome Ascension is primary) -->
       </div>
     </div>
   </nav>
@@ -87,54 +87,45 @@
   <footer>
     {% block footer %}
     <footer
-      class="relative bg-[#2d6146] dark:bg-gray-900 text-white dark:text-gray-300 px-6 pt-12 pb-16 overflow-hidden">
-      <!-- Decorative Floating Icon -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Vishnu_icon.png" alt="Lord Vishnu Icon"
-        class="absolute top-4 right-4 w-20 opacity-10 animate-pulse hidden md:block pointer-events-none" />
-
-      <!-- Background Floating Leaf -->
-      <div class="absolute left-0 bottom-0 w-40 opacity-10">
-        <img src="https://img.icons8.com/emoji/96/leaf-fluttering-in-wind.png" alt="Leaf" />
-      </div>
+      class="relative bg-void-black text-stone-grey px-6 pt-12 pb-16 overflow-hidden font-light">
 
       <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-8 text-center sm:text-left relative z-10">
 
         <!-- Logo + Tagline -->
         <div>
-          <h2 class="text-2xl font-bold tracking-wide text-gold">Maha Vishnu Project</h2>
-          <p class="mt-2 text-sm opacity-80">Exploring divine wisdom,<br>one shloka at a time.</p>
+          <h2 class="text-2xl font-light tracking-wide text-ash-white">The One Who Remains</h2>
+          <p class="mt-4 text-sm opacity-80 leading-relaxed">Knowledge does not shout.<br>It remains.</p>
         </div>
 
         <!-- Navigation Links -->
         <div>
-          <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+          <h3 class="text-lg font-normal text-ash-white mb-3">Explore</h3>
           <ul class="space-y-2 text-sm">
-            <li><a href="/about" class="hover:underline hover:text-yellow-300">About</a></li>
-            <li><a href="/deep-dive" class="hover:underline hover:text-yellow-300">Deep Dive</a></li>
-            <li><a href="/blog" class="hover:underline hover:text-yellow-300">Blog</a></li>
-            <li><a href="/contact" class="hover:underline hover:text-yellow-300">Contact</a></li>
+            <li><a href="/about" class="hover:text-muted-blue transition-colors">About</a></li>
+            <li><a href="/deep-dive" class="hover:text-muted-blue transition-colors">Deep Dive</a></li>
+            <li><a href="/blog" class="hover:text-muted-blue transition-colors">Blog</a></li>
+            <li><a href="/contact" class="hover:text-muted-blue transition-colors">Contact</a></li>
           </ul>
         </div>
 
         <!-- Social Media -->
         <div>
-          <h3 class="text-lg font-semibold mb-3">Connect</h3>
-          <div class="flex justify-center sm:justify-start gap-4 text-xl">
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-youtube"></i></a>
+          <h3 class="text-lg font-normal text-ash-white mb-3">Connect</h3>
+          <div class="flex justify-center sm:justify-start gap-4 text-xl opacity-80">
+            <a href="#" class="hover:text-muted-blue transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-muted-blue transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-muted-blue transition"><i class="fab fa-twitter"></i></a>
           </div>
         </div>
 
         <!-- Email Subscription -->
         <div>
-          <h3 class="text-lg font-semibold mb-3">Subscribe</h3>
+          <h3 class="text-lg font-normal text-ash-white mb-3">Subscribe</h3>
           <form class="space-y-3">
             <input type="email" placeholder="Your email"
-              class="w-full px-4 py-2 rounded-lg bg-white text-black dark:bg-gray-700 dark:text-white focus:outline-none">
+              class="w-full px-4 py-2 bg-stone-grey/10 border border-stone-grey/30 text-ash-white placeholder-stone-grey/50 focus:outline-none focus:border-muted-blue transition">
             <button type="submit"
-              class="w-full bg-gold dark:bg-vishnublue text-black dark:text-white py-2 rounded-lg hover:brightness-110 transition">
+              class="w-full bg-stone-grey/20 text-ash-white py-2 hover:bg-muted-blue/50 transition duration-300 uppercase text-xs tracking-widest">
               Subscribe
             </button>
           </form>
