@@ -22,7 +22,14 @@
             gold: '#f4c430',
             cream: '#f5f5dc',
             sky: '#e8f1f9',
-            darkslate: '#1e293b'
+            darkslate: '#1e293b',
+            'cosmic-dark': '#0b0d17',
+            'cosmic-blue': '#1c1e26',
+            'starlight': '#e2e8f0',
+            'divine-gold': '#ffd700'
+          },
+          backgroundImage: {
+            'cosmic-gradient': 'radial-gradient(circle at center, #1b2735 0%, #090a0f 100%)',
           }
         }
       }
@@ -34,10 +41,33 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
 
-    if (localStorage.getItem('theme') === 'dark') {
+    // Force dark mode for cosmic theme preference
+    if (localStorage.getItem('theme') !== 'light') {
       document.documentElement.classList.add('dark');
     }
   </script>
+
+  <style>
+    /* Grain Effect */
+    .grain-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Cosmic Background */
+    body {
+        background-color: #0b0d17;
+        background-image: radial-gradient(circle at 50% 50%, #1c2e4a 0%, #0b0d17 100%);
+        min-height: 100vh;
+    }
+  </style>
 
   <!-- Fonts -->
   <link
@@ -49,23 +79,25 @@
 </head>
 
 <body
-  class="bg-cream text-darkslate dark:bg-darkslate dark:text-cream font-sans transition-colors duration-300 ease-in-out">
+  class="bg-cream text-darkslate dark:bg-cosmic-dark dark:text-starlight font-sans transition-colors duration-300 ease-in-out relative">
+
+  <div class="grain-overlay"></div>
 
   <!-- 🔱 Navigation Bar -->
-  <nav class="p-4 shadow bg-sky dark:bg-darkslate">
+  <nav class="p-4 fixed w-full top-0 z-40 bg-white/10 dark:bg-black/20 backdrop-blur-md border-b border-white/10">
     <div class="flex justify-between items-center max-w-7xl mx-auto">
       <a href="/"
-        class="text-2xl font-heading text-vishnublue dark:text-gold hover:tracking-wide transition-all duration-300">
-        The One Who remains
+        class="text-2xl font-heading text-vishnublue dark:text-divine-gold hover:tracking-wide transition-all duration-300 drop-shadow-lg">
+        The One Who Remains
       </a>
-      <div class="flex items-center space-x-4 text-sm font-medium">
-        <a href="/" class="hover:text-gold transition">Home</a>
-        <a href="/about" class="hover:text-gold transition">About</a>
-        <a href="/contact" class="hover:text-gold transition">Contact</a>
-        <a href="/product" class="hover:text-gold transition">Product</a>
-        <a href="/showcase" class="hover:text-gold transition">Showcase</a>
-        <a href="/blog" class="hover:text-gold transition">Blog</a>
-        <a href="/deep-dive" class="hover:text-gold transition">Deep Dive</a>
+      <div class="flex items-center space-x-4 text-sm font-medium text-darkslate dark:text-starlight">
+        <a href="/" class="hover:text-divine-gold transition">Home</a>
+        <a href="/about" class="hover:text-divine-gold transition">About</a>
+        <a href="/contact" class="hover:text-divine-gold transition">Contact</a>
+        <a href="/product" class="hover:text-divine-gold transition">Product</a>
+        <a href="/showcase" class="hover:text-divine-gold transition">Showcase</a>
+        <a href="/blog" class="hover:text-divine-gold transition">Blog</a>
+        <a href="/deep-dive" class="hover:text-divine-gold transition">Deep Dive</a>
         <button onclick="toggleTheme()" aria-label="Toggle Theme"
           class="flex items-center gap-2 bg-gold/80 dark:bg-vishnublue text-white px-3 py-1 rounded hover:opacity-90 transition">
           <i data-feather="sun" class="dark:hidden w-4 h-4"></i>
@@ -77,7 +109,7 @@
   </nav>
 
   <!-- 📖 Main Content -->
-  <main class="p-6 max-w-7xl mx-auto">
+  <main class="p-6 pt-24 max-w-7xl mx-auto relative z-10">
     {% block content %}{% endblock %}
   </main>
 
@@ -87,7 +119,7 @@
   <footer>
     {% block footer %}
     <footer
-      class="relative bg-[#2d6146] dark:bg-gray-900 text-white dark:text-gray-300 px-6 pt-12 pb-16 overflow-hidden">
+      class="relative bg-[#2d6146] dark:bg-black/40 backdrop-blur-lg border-t border-white/10 text-white dark:text-gray-300 px-6 pt-12 pb-16 overflow-hidden z-10">
       <!-- Decorative Floating Icon -->
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Vishnu_icon.png" alt="Lord Vishnu Icon"
         class="absolute top-4 right-4 w-20 opacity-10 animate-pulse hidden md:block pointer-events-none" />
