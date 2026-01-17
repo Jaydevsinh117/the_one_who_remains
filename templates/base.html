@@ -1,222 +1,163 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ dark: localStorage.getItem('theme') === 'dark' }" :class="{ 'dark': dark }">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}The One Who Remains{% endblock %}</title>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Brand Configuration -->
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Roboto', 'sans-serif'], // Body: Roboto Regular
-            heading: ['Roboto', 'sans-serif'], // Headings: Roboto Light
-            mono: ['Roboto Mono', 'monospace'], // Tech/Stats
-            shloka: ['"Noto Serif Devanagari"', 'serif'] // Keep for specific scripts
+            sans: ['"Roboto"', 'sans-serif'],
+            shloka: ['"Noto Serif Devanagari"', 'serif']
           },
           colors: {
-            // STRICT BRAND PALETTE
-            'ash-white': '#E6E8EB',   // Backgrounds
-            'stone-grey': '#B8BDC3',  // Borders, Secondary Text
-            'void-black': '#0E0F11',  // Headings, Focus
-            'celestial-blue': '#5F738A', // Accents (Rare)
-
-            // Mapping legacy colors to Brand System to prevent breakage
-            // Everything forces the Monochrome aesthetic
-            vishnublue: '#0E0F11', // Maps to Void
-            gold: '#5F738A',       // Maps to Celestial (Accent)
-            cream: '#E6E8EB',      // Maps to Ash
-            sky: '#E6E8EB',        // Maps to Ash
-            darkslate: '#0E0F11',  // Maps to Void
-            starlight: '#B8BDC3',  // Maps to Stone
-            'divine-gold': '#5F738A' // Maps to Celestial
+            'ash-white': '#E6E8EB',
+            'stone-grey': '#B8BDC3',
+            'void-black': '#0E0F11',
+            'muted-celestial': '#5F738A',
           },
-          letterSpacing: {
-            'brand-wide': '0.05em', // For headings
-          },
-          animation: {
-            'mist-drift': 'mistDrift 60s infinite alternate linear',
-            'fade-up': 'fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-          },
-          keyframes: {
-            mistDrift: {
-              '0%': { backgroundPosition: '0% 0%' },
-              '100%': { backgroundPosition: '0% 100%' },
-            },
-            fadeUp: {
-              '0%': { opacity: '0', transform: 'translateY(20px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            }
-          }
         }
       }
     };
+
   </script>
 
-  <!-- Fonts: Roboto (Light 300, Regular 400, Medium 500) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
-  <script src="https://unpkg.com/feather-icons"></script>
-
   <style>
-    /* BRAND ESSENCE: Ethereal Monochrome Ascension */
-    
-    body {
-      background-color: #E6E8EB; /* Ash White */
-      color: #0E0F11; /* Void Black */
-      font-family: 'Roboto', sans-serif;
-      overflow-x: hidden;
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
-
-    /* Dark Mode Override - "Void" Theme */
-    .dark body {
-      background-color: #0E0F11;
-      color: #E6E8EB;
-    }
-
-    /* Fog/Mist Texture Overlay */
-    .mist-overlay {
+    /* Grain Effect */
+    .grain-overlay {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      opacity: 0.4;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.8) 0%, rgba(230,232,235,0) 60%);
-      mix-blend-mode: soft-light;
+      z-index: 50;
+      opacity: 0.05;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    .dark .mist-overlay {
-      background: radial-gradient(circle at 50% 50%, rgba(95, 115, 138, 0.15) 0%, rgba(14, 15, 17, 0) 70%);
-      opacity: 0.3;
+    /* Ethereal Monochrome Background */
+    body {
+        background-color: #E6E8EB;
+        color: #0E0F11;
+        min-height: 100vh;
     }
 
-    /* Typography Rules */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 300; /* Roboto Light */
-      letter-spacing: 0.5px;
-    }
-
-    /* Scrollbar - Minimal */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #B8BDC3; /* Stone Grey */
-      border-radius: 3px;
-    }
-    .dark ::-webkit-scrollbar-thumb {
-      background: #5F738A; /* Celestial Blue Muted */
-    }
-
-    /* Utilities */
-    .glass-panel {
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(184, 189, 195, 0.3); /* Stone Grey transparent */
-    }
-    .dark .glass-panel {
-      background: rgba(14, 15, 17, 0.6);
-      border: 1px solid rgba(95, 115, 138, 0.2);
-    }
-    
-    .text-balance {
-      text-wrap: balance;
+    /* Selection Color */
+    ::selection {
+      background: #5F738A;
+      color: #E6E8EB;
     }
   </style>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Noto+Serif+Devanagari&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
-<body class="flex flex-col min-h-screen">
-  
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-void-black text-ash-white px-4 py-2 rounded text-sm">Skip to content</a>
+<body
+  class="bg-cream text-darkslate dark:bg-cosmic-dark dark:text-starlight font-sans transition-colors duration-300 ease-in-out relative">
 
-  <!-- Atmospheric Background -->
-  <div class="mist-overlay"></div>
+  <div class="grain-overlay"></div>
 
-  <!-- 1. Navigation: Minimal, Vertical Flow Alignment -->
-  <nav class="fixed w-full top-0 z-40 transition-all duration-500 bg-ash-white/80 dark:bg-void-black/80 backdrop-blur-md border-b border-stone-grey/20">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-      <!-- Brand Logo / Text -->
-      <a href="/" class="text-xl md:text-2xl font-light tracking-[0.1em] text-void-black dark:text-ash-white uppercase hover:opacity-70 transition-opacity">
-        The One Who Remains
+  <!-- 🔱 Navigation Bar -->
+  <nav class="p-4 fixed w-full top-0 z-40 bg-ash-white/80 backdrop-blur-md border-b border-stone-grey/20">
+    <div class="flex justify-between items-center max-w-7xl mx-auto">
+      <a href="/"
+        class="text-2xl font-light tracking-wide text-void-black hover:text-muted-celestial transition-colors duration-300">
+        One Who Remains
       </a>
-
-      <!-- Desktop Links -->
-      <div class="hidden md:flex items-center gap-8 text-sm tracking-widest uppercase text-void-black/70 dark:text-ash-white/70">
-        <a href="/deep-dive" class="hover:text-celestial-blue transition-colors duration-300">Deep Dive</a>
-        <a href="/showcase" class="hover:text-celestial-blue transition-colors duration-300">Showcase</a>
-        <a href="/blog" class="hover:text-celestial-blue transition-colors duration-300">Journal</a>
-        <a href="/about" class="hover:text-celestial-blue transition-colors duration-300">About</a>
-        
-        <!-- Theme Toggle: Minimal Icon -->
-        <button onclick="toggleTheme()" aria-label="Toggle Theme" class="ml-4 opacity-50 hover:opacity-100 transition-opacity">
-          <i data-feather="circle" class="w-4 h-4 fill-current"></i>
-        </button>
+      <div class="flex items-center space-x-8 text-sm font-normal text-void-black tracking-widest uppercase">
+        <a href="/" class="hover:text-muted-celestial transition-all duration-300">Home</a>
+        <a href="/about" class="hover:text-muted-celestial transition-all duration-300">About</a>
+        <a href="/deep-dive" class="hover:text-muted-celestial transition-all duration-300">Deep Dive</a>
+        <a href="/blog" class="hover:text-muted-celestial transition-all duration-300">Journal</a>
       </div>
-
-      <!-- Mobile Menu Button (Simple) -->
-      <button class="md:hidden text-void-black dark:text-ash-white" aria-label="Menu">
-        <i data-feather="menu" class="w-6 h-6"></i>
-      </button>
     </div>
   </nav>
 
-  <!-- 2. Main Content -->
-  <main id="main-content" class="flex-grow pt-24 px-6 relative z-10">
+  <!-- 📖 Main Content -->
+  <main class="p-6 pt-32 max-w-5xl mx-auto relative z-10 min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- 3. Footer: Simple, Clean, "Presence Refined" -->
-  <footer class="mt-24 border-t border-stone-grey/20 bg-ash-white/50 dark:bg-void-black/50 backdrop-blur-sm">
-    <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-      
-      <div>
-        <h3 class="text-lg font-light tracking-widest uppercase text-void-black dark:text-ash-white">The One Who Remains</h3>
-        <p class="mt-2 text-sm text-stone-grey font-light">Silence is not absence. It is presence refined.</p>
+  <footer>
+    {% block footer %}
+    <footer
+      class="relative border-t border-stone-grey/20 text-void-black px-6 py-20 overflow-hidden z-10">
+
+      <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12 text-left relative z-10">
+
+        <!-- Brand -->
+        <div>
+          <h2 class="text-xl font-light tracking-widest text-void-black uppercase mb-4">The One Who Remains</h2>
+          <p class="text-sm text-stone-grey leading-relaxed max-w-xs">
+            Silence is not absence.<br>
+            It is presence refined.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-col sm:items-end gap-2 text-sm text-stone-grey uppercase tracking-wider">
+          <a href="/about" class="hover:text-muted-celestial transition-colors">About</a>
+          <a href="/deep-dive" class="hover:text-muted-celestial transition-colors">Deep Dive</a>
+          <a href="/blog" class="hover:text-muted-celestial transition-colors">Journal</a>
+          <a href="/contact" class="hover:text-muted-celestial transition-colors">Contact</a>
+        </div>
       </div>
 
-      <div class="flex gap-8 text-sm text-void-black/60 dark:text-ash-white/60 font-light">
-        <a href="/contact" class="hover:text-celestial-blue transition">Contact</a>
-        <a href="/product" class="hover:text-celestial-blue transition">Offerings</a>
+      <!-- Footer Base -->
+      <div class="mt-20 text-center text-xs text-stone-grey tracking-widest relative z-10 uppercase">
+        © 2026 One Who Remains
       </div>
 
-    </div>
-    <div class="text-center py-6 text-xs text-stone-grey border-t border-stone-grey/10 font-mono opacity-50">
-      © 2025 Ascension Edition.
-    </div>
+      <!-- Font Awesome -->
+      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    </footer>
+    {% endblock %}
+
   </footer>
+  <script>
+    document.getElementById("newsletter-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const email = document.getElementById("newsletter-email").value;
+      const messageEl = document.getElementById("newsletter-message");
+
+      try {
+        const res = await fetch("/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          messageEl.textContent = data.message;
+          messageEl.style.color = "green";
+        } else {
+          messageEl.textContent = data.error || "Something went wrong.";
+          messageEl.style.color = "red";
+        }
+      } catch (err) {
+        messageEl.textContent = "Network error. Please try again.";
+        messageEl.style.color = "red";
+      }
+    });
+  </script>
 
   <script>
     feather.replace();
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-
-    // Initialize Theme
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
   </script>
 </body>
+
 </html>

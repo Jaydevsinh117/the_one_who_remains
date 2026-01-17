@@ -1,100 +1,121 @@
 {% extends 'base.html' %}
 
-{% block title %}Showcase | The One Who Remains{% endblock %}
+{% block title %}Shloka Showcase | One Who Remains{% endblock %}
 
 {% block content %}
-<section class="max-w-6xl mx-auto py-12 animate-fade-up">
-  
-  <div class="text-center mb-16">
-    <h1 class="text-3xl md:text-4xl font-light text-void-black dark:text-ash-white tracking-widest uppercase mb-4">
-      Sacred Verses
-    </h1>
-    <p class="text-stone-grey font-light max-w-2xl mx-auto">
-      Sanskrit glyphs and English translations. The vibration of truth.
+<section class="max-w-7xl mx-auto py-20 px-6">
+  <!-- Heading -->
+  <div class="text-center mb-16 space-y-4" data-aos="fade-down">
+    <h1 class="text-5xl md:text-6xl font-light text-void-black tracking-tight">Showcase</h1>
+    <div class="w-12 h-[1px] bg-stone-grey mx-auto opacity-50"></div>
+    <p class="text-lg text-stone-grey font-light max-w-2xl mx-auto leading-relaxed">
+      Sacred verses. Pure knowledge.
     </p>
   </div>
 
-  <!-- Filter Tabs: Minimal pills -->
-  <div class="flex flex-wrap justify-center gap-4 mb-16" id="filter-tabs">
-    <button class="filter-btn active px-6 py-2 text-xs uppercase tracking-widest border border-void-black dark:border-ash-white text-void-black dark:text-ash-white hover:bg-void-black hover:text-ash-white dark:hover:bg-ash-white dark:hover:text-void-black transition" data-filter="all">All</button>
-    <button class="filter-btn px-6 py-2 text-xs uppercase tracking-widest border border-stone-grey text-stone-grey hover:border-void-black hover:text-void-black dark:hover:border-ash-white dark:hover:text-ash-white transition" data-filter="karma">Karma</button>
-    <button class="filter-btn px-6 py-2 text-xs uppercase tracking-widest border border-stone-grey text-stone-grey hover:border-void-black hover:text-void-black dark:hover:border-ash-white dark:hover:text-ash-white transition" data-filter="bhakti">Bhakti</button>
-    <button class="filter-btn px-6 py-2 text-xs uppercase tracking-widest border border-stone-grey text-stone-grey hover:border-void-black hover:text-void-black dark:hover:border-ash-white dark:hover:text-ash-white transition" data-filter="jnana">Jnana</button>
+  <!-- Filter Tabs -->
+  <div class="flex flex-wrap justify-center gap-3 mb-16" id="filter-tabs">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="karma">Karma</button>
+    <button class="filter-btn" data-filter="bhakti">Bhakti</button>
+    <button class="filter-btn" data-filter="jnana">Jnana</button>
+    <button class="filter-btn" data-filter="moksha">Moksha</button>
   </div>
 
-  <!-- Shloka Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="shloka-grid">
+  <!-- Shloka Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="shloka-grid">
     {% for shloka in shlokas %}
-    <div class="shloka-card glass-panel p-8 rounded-sm hover:border-celestial-blue/40 transition duration-300 relative group" data-category="{{ shloka.category }}">
-      
-      <!-- Decorative Quote Icon -->
-      <div class="absolute top-6 right-6 opacity-10 text-4xl font-serif text-void-black dark:text-ash-white">”</div>
-
-      <div class="mb-6">
-        <p class="text-lg md:text-xl font-shloka text-center text-void-black dark:text-ash-white leading-loose mb-4 opacity-90">
-          {{ shloka.sanskrit }}
-        </p>
-        <div class="h-px w-12 bg-celestial-blue/30 mx-auto my-4"></div>
-        <p class="text-sm md:text-base font-light italic text-center text-stone-grey">
-          {{ shloka.english }}
-        </p>
+    <div class="shloka-card relative bg-white/60 backdrop-blur-md p-8 border-l-2 border-stone-grey/20 hover:border-muted-celestial transition-colors duration-500 group" data-category="{{ shloka.category }}">
+      <!-- Decorative Icon -->
+      <div class="absolute top-6 right-6 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor" class="text-void-black">
+          <path d="M14.017 21L14.017 18C14.017 16.896 14.321 15.923 14.932 15.079C15.543 14.235 16.299 13.565 17.198 13.07C18.098 12.574 19.011 12.308 19.937 12.271L19.98 12.271C20.485 12.271 20.895 11.861 20.895 11.356L20.895 6.4C20.895 5.895 20.485 5.485 19.98 5.485C19.066 5.485 18.04 5.753 16.902 6.289C15.764 6.825 14.654 7.643 13.571 8.743C12.489 9.843 11.751 11.196 11.358 12.802L11.332 12.924L11.232 13.344C11.127 13.801 11.074 14.227 11.074 14.622L11.074 21L14.017 21ZM4.975 21L4.975 18C4.975 16.896 5.279 15.923 5.889 15.079C6.5 14.235 7.256 13.565 8.155 13.07C9.055 12.574 9.969 12.308 10.895 12.271L10.938 12.271C11.443 12.271 11.853 11.861 11.853 11.356L11.853 6.4C11.853 5.895 11.443 5.485 10.938 5.485C10.023 5.485 8.997 5.753 7.859 6.289C6.721 6.825 5.611 7.643 4.529 8.743C3.447 9.843 2.709 11.196 2.316 12.802L2.29 12.924L2.19 13.344C2.084 13.801 2.032 14.227 2.032 14.622L2.032 21L4.975 21Z" />
+        </svg>
       </div>
 
-      <div class="flex justify-between items-end mt-8 border-t border-stone-grey/10 pt-4">
-        <span class="text-xs font-mono text-celestial-blue">
-          {{ shloka.chapter }}.{{ shloka.verse }}
-        </span>
-        
-        <div class="flex gap-4">
-           <button onclick="copyShloka(this)" class="text-xs uppercase tracking-wider text-stone-grey hover:text-void-black dark:hover:text-ash-white transition">Copy</button>
-           <button class="text-xs uppercase tracking-wider text-stone-grey hover:text-void-black dark:hover:text-ash-white transition opacity-50 cursor-not-allowed">Audio</button>
+      <div class="relative z-10">
+        <p class="text-xl font-shloka text-center text-void-black leading-loose mb-6 font-medium">
+          {{ shloka.sanskrit }}
+        </p>
+        <p class="text-sm italic text-center text-stone-grey mb-6 font-light">“{{ shloka.english }}”</p>
+        <div class="text-center mb-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-muted-celestial">Gita {{ shloka.chapter }}.{{ shloka.verse }}</span>
+        </div>
+
+        <div class="flex justify-center items-center gap-6 pt-6 border-t border-stone-grey/10">
+          <button onclick="copyShloka(this)" class="text-xs uppercase tracking-widest font-bold text-stone-grey hover:text-void-black transition-colors">Copy</button>
+          <button onclick="shareShloka('{{ shloka.english }}')" class="text-xs uppercase tracking-widest font-bold text-stone-grey hover:text-void-black transition-colors">Share</button>
+          <!-- Simplified Audio Controls -->
+          <button onclick="playAudio('{{ shloka.audio_male }}')" class="text-xs uppercase tracking-widest font-bold text-stone-grey hover:text-void-black transition-colors">Audio</button>
         </div>
       </div>
     </div>
     {% else %}
-    <div class="col-span-full text-center py-12 border border-dashed border-stone-grey/30 rounded">
-      <p class="text-stone-grey font-light">The void is empty. No verses found.</p>
-    </div>
+    <p class="col-span-full text-center text-stone-grey font-light italic">
+      Silence. No verses found.
+    </p>
     {% endfor %}
   </div>
-
 </section>
 
 <script>
 function copyShloka(btn) {
-  const card = btn.closest('.shloka-card');
-  const text = card.querySelector('.font-shloka').innerText + '\n' + card.querySelector('.italic').innerText;
+  const text = btn.closest('.shloka-card').querySelector('p.italic').innerText;
   navigator.clipboard.writeText(text);
   const original = btn.innerText;
   btn.innerText = 'Copied';
-  setTimeout(() => btn.innerText = original, 2000);
+  setTimeout(() => btn.innerText = original, 1500);
 }
 
-// Simple Client Side Filtering
-const buttons = document.querySelectorAll('.filter-btn');
+function shareShloka(text) {
+  if (navigator.share) {
+    navigator.share({
+      title: 'One Who Remains',
+      text: text,
+      url: window.location.href
+    });
+  } else {
+    alert("Share not supported on this device.");
+  }
+}
+
+function playAudio(src) {
+  // Simple audio player implementation
+  const audio = new Audio(src);
+  audio.play();
+}
+
+const filterBtns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.shloka-card');
-
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Reset buttons
-    buttons.forEach(b => {
-      b.classList.remove('border-void-black', 'text-void-black', 'dark:border-ash-white', 'dark:text-ash-white');
-      b.classList.add('border-stone-grey', 'text-stone-grey');
-    });
-    // Active state
-    btn.classList.remove('border-stone-grey', 'text-stone-grey');
-    btn.classList.add('border-void-black', 'text-void-black', 'dark:border-ash-white', 'dark:text-ash-white');
-
-    const filter = btn.getAttribute('data-filter');
-    cards.forEach(card => {
-      if (filter === 'all' || card.getAttribute('data-category') === filter) {
-        card.style.display = 'block';
-        card.classList.add('animate-fade-up');
-      } else {
-        card.style.display = 'none';
-      }
-    });
+filterBtns.forEach(btn => btn.addEventListener('click', () => {
+  filterBtns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filter = btn.getAttribute('data-filter');
+  cards.forEach(card => {
+    const category = card.getAttribute('data-category');
+    card.style.display = (filter === 'all' || filter === category) ? 'block' : 'none';
   });
-});
+}));
 </script>
+
+<style>
+  .filter-btn {
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    border: 1px solid #B8BDC3; /* Stone Grey */
+    color: #0E0F11;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  .filter-btn:hover {
+    border-color: #0E0F11;
+  }
+  .filter-btn.active {
+    background: #0E0F11; /* Void Black */
+    color: #E6E8EB; /* Ash White */
+    border-color: #0E0F11;
+  }
+</style>
 {% endblock %}

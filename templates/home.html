@@ -1,112 +1,117 @@
 {% extends 'base.html' %}
 
-{% block title %}The One Who Remains{% endblock %}
+{% block title %}Home | Maha Vishnu Project{% endblock %}
 
 {% block content %}
 
-<!-- HERO SECTION: Minimal UI, Maximum Meaning -->
-<section class="min-h-[80vh] flex flex-col justify-center items-center text-center relative max-w-4xl mx-auto animate-fade-up">
-  
-  <!-- Subtle Symbolic Glyph (Optional, strict CSS shape) -->
-  <div class="w-16 h-16 border border-stone-grey/30 rounded-full flex items-center justify-center mb-12 animate-[spin_120s_linear_infinite]">
-    <div class="w-12 h-12 border border-celestial-blue/20 rounded-full"></div>
-  </div>
+<!-- Hero: Ascension -->
+<section class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden" data-aos="fade-down">
 
-  <!-- Primary Heading: Roboto Light, Open Spacing -->
-  <h1 class="text-4xl md:text-6xl lg:text-7xl font-light text-void-black dark:text-ash-white tracking-[0.05em] leading-tight mb-8">
-    THE ONE WHO REMAINS
-  </h1>
+  <div class="relative z-10 max-w-4xl mx-auto space-y-8">
+      <!-- Title -->
+      <h1 class="text-6xl md:text-8xl font-light text-void-black tracking-tight leading-tight">
+        One Who Remains
+      </h1>
 
-  <!-- One-Line Brand Truth -->
-  <p class="text-lg md:text-xl font-light text-void-black/70 dark:text-ash-white/70 max-w-2xl mx-auto mb-16 leading-relaxed">
-    Knowledge does not shout. It remains.
-  </p>
+      <!-- Divider -->
+      <div class="w-16 h-[1px] bg-stone-grey mx-auto opacity-50"></div>
 
-  <!-- Interaction: Ghost Button style -->
-  <a href="/deep-dive" 
-     class="group relative px-8 py-3 overflow-hidden rounded border border-stone-grey/50 text-void-black dark:text-ash-white transition-all hover:border-celestial-blue hover:text-celestial-blue">
-    <span class="relative z-10 text-sm tracking-widest uppercase font-medium">Enter the Silence</span>
-  </a>
-
-</section>
-
-<!-- SECTION: Brand Pillars (Vertical Flow) -->
-<section class="py-24 max-w-5xl mx-auto border-t border-stone-grey/10">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-    
-    <!-- Pillar 1 -->
-    <div class="space-y-4 opacity-0 animate-fade-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
-      <span class="block text-3xl text-celestial-blue opacity-50">01</span>
-      <h3 class="text-xl font-light text-void-black dark:text-ash-white">Timeless Truth</h3>
-      <p class="text-sm leading-relaxed text-stone-grey">
-        Wisdom that has always existed. Not invented, but revealed through the mist of time.
+      <!-- Tagline -->
+      <p class="text-xl md:text-2xl font-light text-stone-grey tracking-wide max-w-2xl mx-auto leading-relaxed">
+        Knowledge does not shout.<br>
+        <span class="text-muted-celestial/80">It remains.</span>
       </p>
-    </div>
 
-    <!-- Pillar 2 -->
-    <div class="space-y-4 opacity-0 animate-fade-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
-      <span class="block text-3xl text-celestial-blue opacity-50">02</span>
-      <h3 class="text-xl font-light text-void-black dark:text-ash-white">Inner Drift</h3>
-      <p class="text-sm leading-relaxed text-stone-grey">
-        Move vertically through consciousness. From the noise of the surface to the silence of the depth.
-      </p>
-    </div>
-
-    <!-- Pillar 3 -->
-    <div class="space-y-4 opacity-0 animate-fade-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
-      <span class="block text-3xl text-celestial-blue opacity-50">03</span>
-      <h3 class="text-xl font-light text-void-black dark:text-ash-white">Presence</h3>
-      <p class="text-sm leading-relaxed text-stone-grey">
-        The divine does not need to shout. It is the inevitable background of all things.
-      </p>
-    </div>
-
+      <!-- CTA -->
+      <div class="pt-8">
+        <a href="/deep-dive" class="inline-flex items-center justify-center px-10 py-3 text-sm tracking-widest uppercase font-medium text-ash-white bg-void-black rounded-sm hover:bg-muted-celestial transition-colors duration-500 ease-out">
+          Begin Observation
+        </a>
+      </div>
   </div>
 </section>
 
-<!-- SECTION: Featured Content (Minimal Cards) -->
-<section class="py-24 max-w-6xl mx-auto">
-  <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-stone-grey/10 pb-4">
-    <h2 class="text-2xl font-light tracking-wide text-void-black dark:text-ash-white">SCRIPTURES</h2>
-    <a href="/deep-dive" class="text-xs uppercase tracking-widest text-celestial-blue hover:text-void-black dark:hover:text-ash-white transition mt-4 md:mt-0">View All Chapters</a>
+<!-- Section: The Truth -->
+<section class="text-center py-24 relative z-10" data-aos="fade-up">
+  <div class="max-w-3xl mx-auto px-6">
+    <p class="text-lg md:text-xl font-normal text-void-black leading-loose">
+      Discover the divine guidance of the Bhagavad Gita, Puranas, and spiritual texts.<br>
+      <span class="text-stone-grey">A journey without noise.</span>
+    </p>
   </div>
+</section>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    
-    <!-- Card 1 -->
-    <a href="/deep-dive/chapter-2" class="group block p-8 glass-panel rounded-sm hover:border-celestial-blue/50 transition duration-500">
-      <span class="text-xs font-mono text-celestial-blue mb-2 block">CHAPTER 02</span>
-      <h3 class="text-xl font-light text-void-black dark:text-ash-white mb-4 group-hover:translate-x-1 transition-transform duration-500">Sankhya Yoga</h3>
-      <p class="text-sm text-stone-grey group-hover:text-void-black/60 dark:group-hover:text-ash-white/60 transition-colors">
-        The nature of the eternal Self. That which is not born does not die.
-      </p>
+<!-- Scriptures Grid -->
+<section class="py-24 border-t border-stone-grey/10" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 px-6 text-center">
+    {% for text in [
+      {'title': 'Gita', 'desc': 'The dialogue of duty.'},
+      {'title': 'Puranas', 'desc': 'The cycle of time.'},
+      {'title': 'Upanishads', 'desc': 'The nature of self.'}
+    ] %}
+    <div class="group cursor-default">
+      <h3 class="text-2xl font-light text-void-black mb-3 group-hover:text-muted-celestial transition-colors duration-300">{{ text.title }}</h3>
+      <p class="text-stone-grey text-sm font-normal tracking-wide">{{ text.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Content Pillars -->
+<section class="py-24 px-6 bg-white/40" data-aos="fade-up">
+  <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-16 text-center">
+    {% for card in [
+      {'url': '/deep-dive', 'title': 'Deep Dive', 'desc': 'Detailed commentaries.'},
+      {'url': '/blog', 'title': 'Journal', 'desc': 'Daily wisdom.'},
+      {'url': '/showcase', 'title': 'Showcase', 'desc': 'Visual verses.'}
+    ] %}
+    <a href="{{ card.url }}" class="block group">
+      <div class="w-12 h-[1px] bg-stone-grey mx-auto mb-6 group-hover:bg-muted-celestial transition-colors"></div>
+      <h3 class="text-lg font-normal text-void-black uppercase tracking-widest mb-2 group-hover:text-muted-celestial transition-colors">{{ card.title }}</h3>
+      <p class="text-stone-grey font-light text-sm">{{ card.desc }}</p>
     </a>
-
-    <!-- Card 2 -->
-    <a href="/deep-dive/chapter-11" class="group block p-8 glass-panel rounded-sm hover:border-celestial-blue/50 transition duration-500">
-      <span class="text-xs font-mono text-celestial-blue mb-2 block">CHAPTER 11</span>
-      <h3 class="text-xl font-light text-void-black dark:text-ash-white mb-4 group-hover:translate-x-1 transition-transform duration-500">Vishwarupa Darshana</h3>
-      <p class="text-sm text-stone-grey group-hover:text-void-black/60 dark:group-hover:text-ash-white/60 transition-colors">
-        The cosmic form. Seeing the infinite within the finite moment.
-      </p>
-    </a>
-
+    {% endfor %}
   </div>
 </section>
 
-<!-- SECTION: Newsletter (Quiet, Center) -->
-<section class="py-24 text-center">
-  <div class="max-w-xl mx-auto">
-    <h2 class="text-lg font-light tracking-widest uppercase mb-6 text-void-black dark:text-ash-white">Remembrance</h2>
-    <p class="text-stone-grey mb-8 font-light">Receive signals from the void. No spam, only essence.</p>
-    
-    <form class="flex flex-col sm:flex-row gap-4" onsubmit="event.preventDefault(); alert('Subscribed to the silence.');">
-      <input type="email" placeholder="Email Address" class="flex-grow bg-transparent border-b border-stone-grey/30 py-2 px-4 focus:outline-none focus:border-celestial-blue transition text-void-black dark:text-ash-white placeholder-stone-grey/50">
-      <button type="submit" class="text-xs uppercase tracking-widest text-void-black dark:text-ash-white hover:text-celestial-blue transition py-2">
-        Join
-      </button>
-    </form>
+<!-- Quote -->
+<section class="py-32 text-center relative z-10">
+  <div id="quote-block" class="text-2xl md:text-3xl font-light text-void-black max-w-4xl mx-auto transition-opacity duration-1000 leading-relaxed italic">
+    “Truth does not arrive. It reveals itself.”
   </div>
 </section>
+
+<!-- Newsletter -->
+<section class="py-24 px-6 max-w-2xl mx-auto text-center border-t border-stone-grey/10" data-aos="fade-up">
+  <h2 class="text-lg font-normal text-void-black uppercase tracking-widest mb-2">Refine Your Presence</h2>
+  <p class="text-stone-grey font-light text-sm mb-8">Receive updates. No noise.</p>
+  <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4 justify-center">
+    <input type="email" id="newsletter-email" class="w-full sm:w-auto px-4 py-2 bg-transparent border-b border-stone-grey text-void-black placeholder-stone-grey/50 focus:outline-none focus:border-muted-celestial transition-colors text-center sm:text-left" placeholder="Email Address" required>
+    <button type="submit" class="text-xs uppercase tracking-widest font-bold text-void-black hover:text-muted-celestial transition-colors">Subscribe</button>
+  </form>
+</section>
+
+<!-- AOS & Quote Script -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+
+<script>
+  const quotes = [
+    '“You have the right to work, but not to the fruits thereof.” – Gita 2.47',
+    '“Whenever righteousness wanes, I incarnate.” – Gita 4.7',
+    '“The Self is not born, nor does it die.” – Gita 2.20'
+  ];
+  let index = 0;
+  const el = document.getElementById('quote-block');
+  setInterval(() => {
+    index = (index + 1) % quotes.length;
+    el.style.opacity = 0;
+    setTimeout(() => {
+      el.innerHTML = quotes[index];
+      el.style.opacity = 1;
+    }, 500);
+  }, 6000);
+</script>
 
 {% endblock %}

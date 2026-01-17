@@ -1,60 +1,54 @@
 {% extends 'base.html' %}
 
-{% block title %}Deep Dive | The One Who Remains{% endblock %}
+{% block title %}Deep Dive | One Who Remains{% endblock %}
 
 {% block content %}
-<section class="max-w-6xl mx-auto py-12 animate-fade-up">
-  
-  <!-- Header: Left Aligned, Minimal -->
-  <div class="mb-16 border-l-2 border-celestial-blue/30 pl-6 py-2">
-    <h1 class="text-3xl md:text-5xl font-light text-void-black dark:text-ash-white tracking-wide mb-2">
-      DEEP DIVE
-    </h1>
-    <p class="text-stone-grey font-light max-w-xl">
-      Detailed commentaries on the Bhagavad Gita. Reflect on the soul, duty, and the nature of reality.
+<section class="max-w-4xl mx-auto py-20 px-6">
+  <!-- Heading -->
+  <div class="text-center mb-24 space-y-4" data-aos="fade-down">
+    <h1 class="text-5xl md:text-6xl font-light text-void-black tracking-tight">Deep Dive</h1>
+    <div class="w-12 h-[1px] bg-stone-grey mx-auto opacity-50"></div>
+    <p class="text-lg text-stone-grey font-light max-w-2xl mx-auto leading-relaxed">
+      Detailed commentaries on the Bhagavad Gita.<br>
+      Study the eternal dialogue chapter by chapter.
     </p>
   </div>
 
-  <!-- Grid: Space is intentional -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <!-- Chapters Grid -->
+  <div class="grid grid-cols-1 gap-8">
+    {% set chapters = [
+      {'num': 1, 'name': 'Arjuna Vishada Yoga', 'desc': 'The despondency of Arjuna. The crisis of conscience.'},
+      {'num': 2, 'name': 'Sankhya Yoga', 'desc': 'The yoga of knowledge. The eternal nature of the soul.'},
+      {'num': 3, 'name': 'Karma Yoga', 'desc': 'The yoga of action. Performing duty without attachment.'},
+      {'num': 4, 'name': 'Jnana Karma Sanyasa Yoga', 'desc': 'The yoga of wisdom and renunciation of action.'},
+      {'num': 5, 'name': 'Karma Sanyasa Yoga', 'desc': 'The yoga of renunciation. Action vs. inaction.'},
+      {'num': 6, 'name': 'Dhyana Yoga', 'desc': 'The yoga of meditation. Controlling the mind.'},
+      {'num': 7, 'name': 'Jnana Vijnana Yoga', 'desc': 'Knowledge and realization. Understanding the Supreme.'},
+      {'num': 8, 'name': 'Akshara Brahma Yoga', 'desc': 'The yoga of the Imperishable Brahman.'},
+      {'num': 9, 'name': 'Raja Vidya Raja Guhya Yoga', 'desc': 'The most confidential knowledge.'},
+      {'num': 10, 'name': 'Vibhuti Yoga', 'desc': 'The yoga of divine opulence. Seeing God in everything.'},
+      {'num': 11, 'name': 'Vishwarupa Darshana Yoga', 'desc': 'The vision of the Universal Form.'},
+      {'num': 12, 'name': 'Bhakti Yoga', 'desc': 'The yoga of devotion. The path of love.'},
+      {'num': 13, 'name': 'Kshetra Kshetrajna Vibhaga', 'desc': 'Distinction between the Field and the Knower.'},
+      {'num': 14, 'name': 'Gunatraya Vibhaga Yoga', 'desc': 'The three modes of material nature.'},
+      {'num': 15, 'name': 'Purushottama Yoga', 'desc': 'The yoga of the Supreme Person.'},
+      {'num': 16, 'name': 'Daivasura Sampad Vibhaga', 'desc': 'Divine and demoniac natures.'},
+      {'num': 17, 'name': 'Shraddhatraya Vibhaga Yoga', 'desc': 'The three divisions of faith.'},
+      {'num': 18, 'name': 'Moksha Sannyasa Yoga', 'desc': 'Liberation through renunciation.'}
+    ] %}
 
-    {% for i in range(1, 19) %}
-    <!-- Card Component: Ethereal Monochrome -->
-    <div class="glass-panel p-6 rounded-sm hover:border-stone-grey/60 transition-colors duration-500 flex flex-col justify-between min-h-[200px] group">
-      <div>
-        <span class="text-xs font-mono text-stone-grey block mb-3 opacity-60">CHAPTER {{ i }}</span>
-        <h2 class="text-xl font-light text-void-black dark:text-ash-white mb-3 group-hover:text-celestial-blue transition-colors">
-          {% if i == 1 %}Arjuna Vishada Yoga
-          {% elif i == 2 %}Sankhya Yoga
-          {% elif i == 3 %}Karma Yoga
-          {% elif i == 4 %}Jnana Yoga
-          {% elif i == 5 %}Karma Vairagya Yoga
-          {% elif i == 6 %}Dhyana Yoga
-          {% elif i == 7 %}Jnana Vijnana Yoga
-          {% elif i == 8 %}Akshara Brahma Yoga
-          {% elif i == 9 %}Raja Vidya Yoga
-          {% elif i == 10 %}Vibhuti Yoga
-          {% elif i == 11 %}Vishwarupa Darshana
-          {% elif i == 12 %}Bhakti Yoga
-          {% elif i == 13 %}Kshetra Kshetrajna
-          {% elif i == 14 %}Gunatraya Vibhaga
-          {% elif i == 15 %}Purushottama Yoga
-          {% elif i == 16 %}Daivasura Sampad
-          {% elif i == 17 %}Shraddhatraya Vibhaga
-          {% elif i == 18 %}Moksha Sannyasa Yoga
-          {% endif %}
-        </h2>
-        <p class="text-sm text-stone-grey font-light leading-relaxed line-clamp-2">
-           Explore the divine wisdom contained within this chapter.
-        </p>
+    {% for chapter in chapters %}
+    <a href="/deep-dive/chapter-{{ chapter.num }}" class="group block p-8 bg-white/60 backdrop-blur-md border border-stone-grey/20 hover:border-muted-celestial/50 transition-all duration-500 ease-out hover:bg-white/80">
+      <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 mb-2">
+        <span class="text-sm font-medium text-muted-celestial uppercase tracking-widest">Chapter {{ chapter.num }}</span>
+        <h2 class="text-2xl font-light text-void-black group-hover:text-muted-celestial transition-colors">{{ chapter.name }}</h2>
       </div>
-      
-      <a href="/deep-dive/chapter-{{ i }}" class="mt-6 inline-flex items-center text-xs uppercase tracking-widest text-void-black dark:text-ash-white opacity-50 group-hover:opacity-100 transition-opacity">
-        Read <i data-feather="arrow-right" class="w-3 h-3 ml-2"></i>
-      </a>
-    </div>
+      <p class="text-stone-grey font-light leading-relaxed max-w-2xl">{{ chapter.desc }}</p>
+      <div class="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-void-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+        Read Chapter <span class="text-lg leading-none">&rarr;</span>
+      </div>
+    </a>
     {% endfor %}
-
   </div>
 </section>
 {% endblock %}
