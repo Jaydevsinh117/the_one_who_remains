@@ -4,30 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}The One Who remains{% endblock %}</title>
+  <title>{% block title %}The One Who Remains{% endblock %}</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            heading: ['"DM Serif Display"', 'serif'],
-            sans: ['"Outfit"', 'sans-serif'],
+            sans: ['"Roboto"', 'sans-serif'],
             shloka: ['"Noto Serif Devanagari"', 'serif']
           },
           colors: {
-            vishnublue: '#002366',
-            gold: '#f4c430',
-            'slate-text': '#2c3e50',
-            'mist-light': '#f0f2f5',
-            'mist-dark': '#cfd9df',
-            'divine-gold': '#d4af37'
+            'ash-white': '#E6E8EB',
+            'stone-grey': '#B8BDC3',
+            'void-black': '#0E0F11',
+            'muted-celestial': '#5F738A',
           },
-          backgroundImage: {
-            'mist-gradient': 'linear-gradient(to bottom, #e0e0e0 0%, #f5f5f5 100%)',
-          }
         }
       }
     };
@@ -44,31 +37,29 @@
       height: 100%;
       pointer-events: none;
       z-index: 50;
-      opacity: 0.03;
+      opacity: 0.05;
       mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Misty Background */
+    /* Ethereal Monochrome Background */
     body {
-        background-color: #f5f5f5;
-        background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        background-color: #E6E8EB;
+        color: #0E0F11;
         min-height: 100vh;
-        color: #2c3e50;
     }
 
-    /* Subtle Fog Animation */
-    @keyframes fog {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Selection Color */
+    ::selection {
+      background: #5F738A;
+      color: #E6E8EB;
     }
   </style>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=DM+Serif+Display&family=Noto+Serif+Devanagari&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Noto+Serif+Devanagari&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
@@ -80,89 +71,54 @@
   <div class="grain-overlay"></div>
 
   <!-- 🔱 Navigation Bar -->
-  <nav class="p-4 fixed w-full top-0 z-40 bg-white/30 backdrop-blur-xl border-b border-white/40 shadow-sm">
+  <nav class="p-4 fixed w-full top-0 z-40 bg-ash-white/80 backdrop-blur-md border-b border-stone-grey/20">
     <div class="flex justify-between items-center max-w-7xl mx-auto">
       <a href="/"
-        class="text-3xl font-sans font-extralight tracking-tight text-slate-text hover:tracking-wide transition-all duration-300">
-        The One Who Remains
+        class="text-2xl font-light tracking-wide text-void-black hover:text-muted-celestial transition-colors duration-300">
+        One Who Remains
       </a>
-      <div class="flex items-center space-x-6 text-base font-medium text-slate-text tracking-wide">
-        <a href="/" class="hover:text-divine-gold transition-all duration-300">Home</a>
-        <a href="/about" class="hover:text-divine-gold transition-all duration-300">About</a>
-        <a href="/contact" class="hover:text-divine-gold transition-all duration-300">Contact</a>
-        <a href="/product" class="hover:text-divine-gold transition-all duration-300">Product</a>
-        <a href="/showcase" class="hover:text-divine-gold transition-all duration-300">Showcase</a>
-        <a href="/blog" class="hover:text-divine-gold transition-all duration-300">Blog</a>
-        <a href="/deep-dive" class="hover:text-divine-gold transition-all duration-300">Deep Dive</a>
+      <div class="flex items-center space-x-8 text-sm font-normal text-void-black tracking-widest uppercase">
+        <a href="/" class="hover:text-muted-celestial transition-all duration-300">Home</a>
+        <a href="/about" class="hover:text-muted-celestial transition-all duration-300">About</a>
+        <a href="/deep-dive" class="hover:text-muted-celestial transition-all duration-300">Deep Dive</a>
+        <a href="/blog" class="hover:text-muted-celestial transition-all duration-300">Journal</a>
       </div>
     </div>
   </nav>
 
   <!-- 📖 Main Content -->
-  <main class="p-6 pt-24 max-w-7xl mx-auto relative z-10">
+  <main class="p-6 pt-32 max-w-5xl mx-auto relative z-10 min-h-screen">
     {% block content %}{% endblock %}
   </main>
 
   <footer>
     {% block footer %}
     <footer
-      class="relative bg-white/20 backdrop-blur-lg border-t border-white/30 text-slate-text px-6 pt-12 pb-16 overflow-hidden z-10">
-      <!-- Decorative Floating Icon -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Vishnu_icon.png" alt="Lord Vishnu Icon"
-        class="absolute top-4 right-4 w-20 opacity-10 animate-pulse hidden md:block pointer-events-none" />
+      class="relative border-t border-stone-grey/20 text-void-black px-6 py-20 overflow-hidden z-10">
 
-      <!-- Background Floating Leaf -->
-      <div class="absolute left-0 bottom-0 w-40 opacity-10">
-        <img src="https://img.icons8.com/emoji/96/leaf-fluttering-in-wind.png" alt="Leaf" />
-      </div>
+      <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12 text-left relative z-10">
 
-      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-8 text-center sm:text-left relative z-10">
-
-        <!-- Logo + Tagline -->
+        <!-- Brand -->
         <div>
-          <h2 class="text-2xl font-bold tracking-wide text-slate-700">Maha Vishnu Project</h2>
-          <p class="mt-2 text-sm opacity-80 text-slate-600">Exploring divine wisdom,<br>one shloka at a time.</p>
+          <h2 class="text-xl font-light tracking-widest text-void-black uppercase mb-4">The One Who Remains</h2>
+          <p class="text-sm text-stone-grey leading-relaxed max-w-xs">
+            Silence is not absence.<br>
+            It is presence refined.
+          </p>
         </div>
 
-        <!-- Navigation Links -->
-        <div>
-          <h3 class="text-lg font-semibold mb-3 text-slate-700">Quick Links</h3>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li><a href="/about" class="hover:underline hover:text-divine-gold">About</a></li>
-            <li><a href="/deep-dive" class="hover:underline hover:text-divine-gold">Deep Dive</a></li>
-            <li><a href="/blog" class="hover:underline hover:text-divine-gold">Blog</a></li>
-            <li><a href="/contact" class="hover:underline hover:text-divine-gold">Contact</a></li>
-          </ul>
-        </div>
-
-        <!-- Social Media -->
-        <div>
-          <h3 class="text-lg font-semibold mb-3 text-slate-700">Connect</h3>
-          <div class="flex justify-center sm:justify-start gap-4 text-xl text-slate-600">
-            <a href="#" class="hover:text-divine-gold transition"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-divine-gold transition"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-divine-gold transition"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-divine-gold transition"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-
-        <!-- Email Subscription -->
-        <div>
-          <h3 class="text-lg font-semibold mb-3 text-slate-700">Subscribe</h3>
-          <form class="space-y-3">
-            <input type="email" placeholder="Your email"
-              class="w-full px-4 py-2 rounded-lg bg-white/60 text-slate-800 border border-slate-200 focus:outline-none focus:border-divine-gold">
-            <button type="submit"
-              class="w-full bg-slate-800 text-white py-2 rounded-lg hover:bg-slate-900 transition">
-              Subscribe
-            </button>
-          </form>
+        <!-- Links -->
+        <div class="flex flex-col sm:items-end gap-2 text-sm text-stone-grey uppercase tracking-wider">
+          <a href="/about" class="hover:text-muted-celestial transition-colors">About</a>
+          <a href="/deep-dive" class="hover:text-muted-celestial transition-colors">Deep Dive</a>
+          <a href="/blog" class="hover:text-muted-celestial transition-colors">Journal</a>
+          <a href="/contact" class="hover:text-muted-celestial transition-colors">Contact</a>
         </div>
       </div>
 
       <!-- Footer Base -->
-      <div class="mt-12 border-t border-slate-300 pt-6 text-center text-sm text-slate-500 relative z-10">
-        © 2025 Maha Vishnu Project • All rights reserved
+      <div class="mt-20 text-center text-xs text-stone-grey tracking-widest relative z-10 uppercase">
+        © 2026 One Who Remains
       </div>
 
       <!-- Font Awesome -->
