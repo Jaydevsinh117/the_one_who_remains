@@ -1,10 +1,15 @@
 # controllers/user_controller.py
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from werkzeug.security import generate_password_hash, check_password_hash
+from models.user_model import User
 import uuid
 
 user_bp = Blueprint('user', __name__)
+
+@user_bp.route('/register')
+def register_page():
+    return render_template('register.html')
 
 @user_bp.route('/api/register', methods=['POST'])
 def register():
@@ -19,7 +24,7 @@ def register():
     if User.query.filter_by(username=data['username']).first():
         return jsonify({"error": "Username already exists"}), 400
 
-    hashed_password = generate_password_hash(data['password'], method='sha256')
+    hashed_password = generate_password_hash(data['password'])
     new_user = User(
         username=data['username'],
         email=data['email'],
