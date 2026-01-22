@@ -1,3 +1,3 @@
-## 2025-05-20 - Cosmic Theme Contrast & Simulated Feedback
-**Learning:** The "Cosmic" theme relies heavily on transparent backgrounds (`bg-white/10`) with Gold text, which often fails WCAG contrast standards. Additionally, missing backend endpoints (like `/subscribe`) can break the experience; simulated feedback (mock success) is a superior interim UX pattern to maintain immersion.
-**Action:** When working with the Cosmic theme, verify contrast against the specific background gradient. Use the `handleSubscription` simulation pattern for forms where backend logic is pending.
+## 2025-02-19 - Accessibility of Icon-Only Links
+**Learning:** Icon-only buttons (like social media links) are invisible to screen readers without `aria-label`. Standard focus rings are often suppressed by reset stylesheets or `outline-none`, making keyboard navigation impossible. In "Cosmic" themes (dark backgrounds), the default focus ring might be low contrast.
+**Action:** Always add descriptive `aria-label` to icon-only links. Explicitly add `focus-visible:ring-2` and a high-contrast color (like `ring-yellow-300` or `ring-gold`) to ensure visibility for keyboard users on dark backgrounds. Verify color validity in `tailwind.config` if using custom names like `gold`, but prefer standard palette colors (e.g., `yellow-300`) for consistency and safety.
