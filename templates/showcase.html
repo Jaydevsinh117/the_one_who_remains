@@ -4,15 +4,13 @@
 
 {% block content %}
 <section class="max-w-7xl mx-auto py-16 px-6">
-  <!-- Heading -->
   <div class="text-center mb-12">
     <h1 class="text-4xl font-heading font-bold text-vishnublue dark:text-gold mb-4">Shloka Showcase</h1>
     <p class="text-lg text-darkslate dark:text-cream font-sans max-w-3xl mx-auto">
-      Explore sacred verses from the Bhagavad Gita in both Sanskrit and English with chanting options and divine filters.
+      Explore sacred verses from the Bhagavad Gita in both Sanskrit and English.
     </p>
   </div>
 
-  <!-- Filter Tabs -->
   <div class="flex flex-wrap justify-center gap-4 mb-10" id="filter-tabs">
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="karma">Karma Yoga</button>
@@ -21,7 +19,6 @@
     <button class="filter-btn" data-filter="moksha">Moksha</button>
   </div>
 
-  <!-- Shloka Cards -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="shloka-grid">
     {% for shloka in shlokas %}
     <div class="shloka-card bg-cream dark:bg-gray-900 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 transition" data-category="{{ shloka.category }}">
@@ -30,44 +27,75 @@
       </p>
       <p class="text-base italic text-center text-darkslate dark:text-cream mb-4">“{{ shloka.english }}”</p>
       <p class="text-sm text-right text-gold dark:text-vishnublue font-semibold mb-3">– Gita {{ shloka.chapter }}.{{ shloka.verse }}</p>
-      <div class="flex justify-between items-center gap-2 text-sm">
-        <button onclick="copyShloka(this)" class="copy-btn hover:text-vishnublue">📋 Copy</button>
-        <button onclick="shareShloka('{{ shloka.english }}')" class="hover:text-vishnublue">🔗 Share</button>
-        <button onclick="playAudio('{{ shloka.audio_male }}')" class="hover:text-vishnublue">👨‍🎤 Male</button>
-        <button onclick="playAudio('{{ shloka.audio_female }}')" class="hover:text-vishnublue">👩‍🎤 Female</button>
+
+      <div class="flex justify-between items-center gap-3 text-sm mt-4 border-t border-gray-200 dark:border-gray-700 pt-3">
+        <button onclick="copyShloka(this)" class="group flex items-center gap-1.5 hover:text-vishnublue dark:hover:text-gold transition-colors" aria-label="Copy shloka text">
+          <i class="fas fa-copy transition-transform group-hover:scale-110"></i> <span>Copy</span>
+        </button>
+
+        <button onclick="shareShloka(this, '{{ shloka.english }}')" class="group flex items-center gap-1.5 hover:text-vishnublue dark:hover:text-gold transition-colors" aria-label="Share shloka">
+          <i class="fas fa-share-alt transition-transform group-hover:scale-110"></i> <span>Share</span>
+        </button>
+
+        <div class="flex gap-3">
+          <button onclick="playAudio(this, '{{ shloka.audio_male }}')" class="group flex items-center gap-1.5 hover:text-vishnublue dark:hover:text-gold transition-colors" aria-label="Play male chanting">
+            <i class="fas fa-play text-xs border border-current rounded-full p-1 w-5 h-5 flex items-center justify-center"></i> <span>Male</span>
+          </button>
+
+          <button onclick="playAudio(this, '{{ shloka.audio_female }}')" class="group flex items-center gap-1.5 hover:text-vishnublue dark:hover:text-gold transition-colors" aria-label="Play female chanting">
+            <i class="fas fa-play text-xs border border-current rounded-full p-1 w-5 h-5 flex items-center justify-center"></i> <span>Female</span>
+          </button>
+        </div>
       </div>
     </div>
     {% else %}
-    <p class="col-span-full text-center text-gray-600 dark:text-gray-400 font-sans">
-      No shlokas available yet.
-    </p>
+    <p class="col-span-full text-center text-gray-600 dark:text-gray-400 font-sans">No shlokas available yet.</p>
     {% endfor %}
   </div>
 </section>
 
 <script>
+function showFeedback(btn, iconClass, text) {
+  const icon = btn.querySelector('i');
+  const span = btn.querySelector('span');
+  const originalIconClass = icon.className;
+  const originalText = span.innerText;
+
+  icon.className = iconClass;
+  span.innerText = text;
+  btn.classList.add('text-green-600', 'dark:text-green-400');
+
+  setTimeout(() => {
+    icon.className = originalIconClass;
+    span.innerText = originalText;
+    btn.classList.remove('text-green-600', 'dark:text-green-400');
+  }, 2000);
+}
+
 function copyShloka(btn) {
   const text = btn.closest('.shloka-card').querySelector('p.italic').innerText;
   navigator.clipboard.writeText(text);
-  btn.innerText = '✅ Copied';
-  setTimeout(() => btn.innerText = '📋 Copy', 1500);
+  showFeedback(btn, 'fas fa-check text-green-600 dark:text-green-400', 'Copied');
 }
 
-function shareShloka(text) {
+function shareShloka(btn, text) {
   if (navigator.share) {
-    navigator.share({
-      title: 'Bhagavad Gita Shloka',
-      text: text,
-      url: window.location.href
-    });
+    navigator.share({ title: 'Bhagavad Gita Shloka', text: text, url: window.location.href }).catch(console.error);
   } else {
-    alert("Share not supported on this browser.");
+    navigator.clipboard.writeText(`"${text}" - ${window.location.href}`);
+    showFeedback(btn, 'fas fa-check text-green-600 dark:text-green-400', 'Link Copied');
   }
 }
 
-function playAudio(src) {
-  const audio = new Audio(src);
-  audio.play();
+function playAudio(btn, src) {
+   // Simple play attempt
+   const audio = new Audio(src);
+   audio.play().catch(() => {
+       const span = btn.querySelector('span');
+       const originalText = span.innerText;
+       span.innerText = 'N/A';
+       setTimeout(() => span.innerText = originalText, 1500);
+   });
 }
 
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -84,16 +112,7 @@ filterBtns.forEach(btn => btn.addEventListener('click', () => {
 </script>
 
 <style>
-  .filter-btn {
-    padding: 0.5rem 1rem;
-    background: #f0f0f0;
-    border-radius: 9999px;
-    cursor: pointer;
-    font-weight: 600;
-  }
-  .filter-btn.active {
-    background: #2d6146;
-    color: white;
-  }
+  .filter-btn { padding: 0.5rem 1rem; background: #f0f0f0; border-radius: 9999px; cursor: pointer; font-weight: 600; }
+  .filter-btn.active { background: #2d6146; color: white; }
 </style>
 {% endblock %}
