@@ -2,6 +2,7 @@
 
 from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
+from models.user_model import User
 import uuid
 
 user_bp = Blueprint('user', __name__)
@@ -19,7 +20,7 @@ def register():
     if User.query.filter_by(username=data['username']).first():
         return jsonify({"error": "Username already exists"}), 400
 
-    hashed_password = generate_password_hash(data['password'], method='sha256')
+    hashed_password = generate_password_hash(data['password'])
     new_user = User(
         username=data['username'],
         email=data['email'],
