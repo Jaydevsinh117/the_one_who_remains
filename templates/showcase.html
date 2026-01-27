@@ -14,11 +14,11 @@
 
   <!-- Filter Tabs -->
   <div class="flex flex-wrap justify-center gap-4 mb-10" id="filter-tabs">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="karma">Karma Yoga</button>
-    <button class="filter-btn" data-filter="bhakti">Bhakti Yoga</button>
-    <button class="filter-btn" data-filter="jnana">Jnana Yoga</button>
-    <button class="filter-btn" data-filter="moksha">Moksha</button>
+    <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-btn" data-filter="karma" aria-pressed="false">Karma Yoga</button>
+    <button class="filter-btn" data-filter="bhakti" aria-pressed="false">Bhakti Yoga</button>
+    <button class="filter-btn" data-filter="jnana" aria-pressed="false">Jnana Yoga</button>
+    <button class="filter-btn" data-filter="moksha" aria-pressed="false">Moksha</button>
   </div>
 
   <!-- Shloka Cards -->
@@ -31,10 +31,10 @@
       <p class="text-base italic text-center text-darkslate dark:text-cream mb-4">“{{ shloka.english }}”</p>
       <p class="text-sm text-right text-gold dark:text-vishnublue font-semibold mb-3">– Gita {{ shloka.chapter }}.{{ shloka.verse }}</p>
       <div class="flex justify-between items-center gap-2 text-sm">
-        <button onclick="copyShloka(this)" class="copy-btn hover:text-vishnublue">📋 Copy</button>
-        <button onclick="shareShloka('{{ shloka.english }}')" class="hover:text-vishnublue">🔗 Share</button>
-        <button onclick="playAudio('{{ shloka.audio_male }}')" class="hover:text-vishnublue">👨‍🎤 Male</button>
-        <button onclick="playAudio('{{ shloka.audio_female }}')" class="hover:text-vishnublue">👩‍🎤 Female</button>
+        <button onclick="copyShloka(this)" class="copy-btn hover:text-vishnublue" aria-label="Copy shloka text">📋 Copy</button>
+        <button onclick="shareShloka('{{ shloka.english }}')" class="hover:text-vishnublue" aria-label="Share this shloka">🔗 Share</button>
+        <button onclick="playAudio('{{ shloka.audio_male }}')" class="hover:text-vishnublue" aria-label="Play male audio chant">👨‍🎤 Male</button>
+        <button onclick="playAudio('{{ shloka.audio_female }}')" class="hover:text-vishnublue" aria-label="Play female audio chant">👩‍🎤 Female</button>
       </div>
     </div>
     {% else %}
@@ -42,6 +42,12 @@
       No shlokas available yet.
     </p>
     {% endfor %}
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-notification" class="fixed bottom-4 right-4 bg-darkslate dark:bg-starlight text-cream dark:text-darkslate px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3 pointer-events-none" role="alert" aria-live="polite">
+    <span id="toast-icon"></span>
+    <span id="toast-message" class="font-medium"></span>
   </div>
 </section>
 
@@ -53,15 +59,37 @@ function copyShloka(btn) {
   setTimeout(() => btn.innerText = '📋 Copy', 1500);
 }
 
+function showToast(message, icon = '✅') {
+  const toast = document.getElementById('toast-notification');
+  const msgEl = document.getElementById('toast-message');
+  const iconEl = document.getElementById('toast-icon');
+
+  if (!toast || !msgEl || !iconEl) return;
+
+  msgEl.innerText = message;
+  iconEl.innerText = icon;
+
+  toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+
+  if (toast.dismissTimeout) clearTimeout(toast.dismissTimeout);
+
+  toast.dismissTimeout = setTimeout(() => {
+    toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+  }, 3000);
+}
+
 function shareShloka(text) {
   if (navigator.share) {
     navigator.share({
       title: 'Bhagavad Gita Shloka',
       text: text,
       url: window.location.href
-    });
+    }).catch(console.error); // Ignore errors (e.g. user cancelled)
   } else {
-    alert("Share not supported on this browser.");
+    const shareText = `"${text}" - Bhagavad Gita\n${window.location.href}`;
+    navigator.clipboard.writeText(shareText)
+      .then(() => showToast('Link copied to clipboard', '📋'))
+      .catch(() => showToast('Failed to copy link', '❌'));
   }
 }
 
@@ -73,8 +101,12 @@ function playAudio(src) {
 const filterBtns = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.shloka-card');
 filterBtns.forEach(btn => btn.addEventListener('click', () => {
-  filterBtns.forEach(b => b.classList.remove('active'));
+  filterBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+  });
   btn.classList.add('active');
+  btn.setAttribute('aria-pressed', 'true');
   const filter = btn.getAttribute('data-filter');
   cards.forEach(card => {
     const category = card.getAttribute('data-category');
