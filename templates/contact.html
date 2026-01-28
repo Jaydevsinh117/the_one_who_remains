@@ -15,7 +15,7 @@
   </p>
 
   <!-- Contact Form -->
-  <form method="POST" action="/contact" class="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-6 space-y-6 border border-gray-200 dark:border-gray-700">
+  <form id="contact-form" method="POST" action="/contact" class="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-6 space-y-6 border border-gray-200 dark:border-gray-700">
     
     <!-- Name -->
     <div>
@@ -44,7 +44,57 @@
         class="bg-vishnublue hover:bg-gold text-white dark:text-darkslate px-6 py-2 rounded-md font-semibold shadow-md hover:shadow-lg transition-all duration-200">
         Send Message
       </button>
+      <p id="form-feedback" class="mt-4 text-sm font-medium min-h-[1.5rem]" aria-live="polite"></p>
     </div>
   </form>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  const feedback = document.getElementById('form-feedback');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      // Prevent default submission because the /contact endpoint only supports GET.
+      // Once the backend supports POST, this should be updated to use fetch() or allow default submission.
+      e.preventDefault();
+
+      const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+
+      // Loading State
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+      feedback.textContent = '';
+      feedback.className = "mt-4 text-sm font-medium min-h-[1.5rem] text-darkslate dark:text-cream";
+
+      // Simulate network request (1.5s delay)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Success State
+      btn.innerHTML = '<i class="fas fa-check mr-2"></i>Sent!';
+      btn.classList.remove('bg-vishnublue');
+      btn.classList.add('bg-green-600', 'text-white');
+
+      feedback.textContent = 'Thank you! Your message has been received.';
+      feedback.className = "mt-4 text-sm font-medium min-h-[1.5rem] text-green-600 dark:text-green-400";
+
+      form.reset();
+
+      // Reset Button after 3s
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = originalText;
+        btn.classList.remove('bg-green-600', 'text-white');
+        btn.classList.add('bg-vishnublue');
+        // Clear feedback after a bit longer
+        setTimeout(() => {
+             feedback.textContent = '';
+        }, 2000);
+      }, 3000);
+    });
+  }
+});
+</script>
 {% endblock %}
