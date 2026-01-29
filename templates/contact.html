@@ -15,7 +15,7 @@
   </p>
 
   <!-- Contact Form -->
-  <form method="POST" action="/contact" class="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-6 space-y-6 border border-gray-200 dark:border-gray-700">
+  <form id="contact-form" method="POST" action="/contact" class="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-6 space-y-6 border border-gray-200 dark:border-gray-700">
     
     <!-- Name -->
     <div>
@@ -44,7 +44,61 @@
         class="bg-vishnublue hover:bg-gold text-white dark:text-darkslate px-6 py-2 rounded-md font-semibold shadow-md hover:shadow-lg transition-all duration-200">
         Send Message
       </button>
+      <!-- Live Feedback Region -->
+      <p id="contact-message" class="mt-4 text-sm font-medium h-6 transition-all duration-300 opacity-0" aria-live="polite"></p>
     </div>
   </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contact-form');
+      const messageEl = document.getElementById('contact-message');
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerHTML;
+
+        // TODO: Backend endpoint for /contact is missing.
+        // Simulating successful submission for UX demo purposes.
+        // Once backend is ready, remove e.preventDefault() or switch to fetch().
+
+        // Loading state
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+        // Hide previous message
+        messageEl.classList.add('opacity-0');
+        messageEl.textContent = '';
+
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // Success state
+        btn.innerHTML = 'Message Sent <i class="fas fa-check ml-1"></i>';
+        btn.classList.remove('bg-vishnublue', 'hover:bg-gold', 'text-white', 'dark:text-darkslate');
+        btn.classList.add('bg-green-600', 'text-white', 'hover:bg-green-700');
+
+        // Show success message
+        messageEl.textContent = "Thank you! We've received your message.";
+        messageEl.className = "mt-4 text-sm font-medium h-6 transition-all duration-300 opacity-100 text-green-600 dark:text-green-400";
+
+        // Reset form
+        form.reset();
+
+        // Restore button after delay
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+          btn.classList.remove('opacity-75', 'cursor-not-allowed', 'bg-green-600', 'text-white', 'hover:bg-green-700');
+          btn.classList.add('bg-vishnublue', 'hover:bg-gold', 'text-white', 'dark:text-darkslate');
+
+          // Fade out message
+          messageEl.classList.add('opacity-0');
+        }, 4000);
+      });
+    });
+  </script>
 </section>
 {% endblock %}
