@@ -1,5 +1,8 @@
 import json
 import random
+import kagglehub
+import pandas as pd
+import os
 
 def generate_strategist_data():
     """
@@ -120,53 +123,63 @@ def generate_strategist_data():
     ]
     return data
 
-def generate_support_data():
+def download_and_process_bitext():
     """
-    Generates mock Customer Support Q&A pairs.
-    Topics: Shipping, Pricing, Login Issues.
-    NOTE: This function is structured to be easily replaced by a CSV loader later.
+    Downloads the Bitext Customer Support dataset and processes it.
     """
+    print("Downloading Bitext dataset from Kaggle...")
+    try:
+        # Download latest version
+        path = kagglehub.dataset_download("bitext/bitext-gen-ai-chatbot-customer-support-dataset")
+        print("Dataset downloaded to:", path)
 
-    # In the future, this list could be replaced by reading from a CSV file.
-    # e.g., using pandas or csv module to load 'Bitext' data.
+        # Find the CSV file
+        csv_file = None
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if file.endswith(".csv"):
+                    csv_file = os.path.join(root, file)
+                    break
 
-    raw_support_scenarios = [
-        # Shipping
-        ("Where is my order?", "I can help with that! Please provide your order number, and I'll check the current shipping status for you."),
-        ("Do you ship internationally?", "Yes, we ship to over 50 countries! Shipping times and costs vary by location, which you can see at checkout."),
-        ("My package arrived damaged.", "I'm so sorry to hear that. Please send us a photo of the damaged item and the box, and we will send a replacement immediately."),
-        ("How long does standard shipping take?", "Standard shipping usually takes 3-5 business days within the continental US."),
-        ("Can I expedite my shipping?", "Yes, we offer 2-day and overnight shipping options at checkout for an additional fee."),
-        ("I entered the wrong address!", "Oh no! Please contact us immediately. If the order hasn't left our warehouse yet, we can update the address for you."),
-        ("Why is my tracking number not working?", "Sometimes it takes up to 24 hours for the carrier to scan the package. If it's been longer than that, let me know and I'll investigate."),
+        if not csv_file:
+            print("Error: No CSV file found in the downloaded dataset.")
+            return []
 
-        # Pricing
-        ("Do you offer discounts for students?", "Yes, we offer a 15% discount for students! You can verify your student status via ID.me at checkout."),
-        ("Why was I charged twice?", "That sounds concerning. It might be a pending authorization charge. Please check your statement again in 24 hours, but I can also look up your transaction history now."),
-        ("Can I get a refund if the price drops?", "We offer price adjustments if the price drops within 7 days of your purchase. Just reach out with your order details."),
-        ("Is there a subscription plan?", "Yes, our monthly subscription saves you 10% on every order and includes free shipping."),
-        ("What payment methods do you accept?", "We accept Visa, Mastercard, AMEX, PayPal, and Apple Pay."),
-        ("Do you have a wholesale price list?", "We do! Please email our wholesale team at wholesale@agency.com for a catalog and pricing application."),
+        print(f"Processing CSV: {csv_file}")
 
-        # Login Issues
-        ("I forgot my password.", "No problem! Click the 'Forgot Password' link on the login page, and we'll email you a link to reset it."),
-        ("I can't log in to my account.", "Let's troubleshoot. Are you seeing a specific error message? Ensure your caps lock is off and you're using the email associated with your account."),
-        ("How do I change my email address?", "You can update your email address in the 'Account Settings' section after logging in."),
-        ("My account is locked.", "For security reasons, accounts lock after too many failed attempts. I can send a reset link to your email to unlock it."),
-        ("I'm not receiving the verification code.", "Please check your spam folder. If it's not there, I can trigger a new code to be sent via SMS if you have a phone number linked."),
-        ("Can I merge two accounts?", "Unfortunately, we cannot merge accounts at this time. We recommend sticking to the one with your main order history."),
-        ("How do I delete my account?", "We'd hate to see you go, but you can request account deletion through the 'Privacy' tab in your settings or I can process that request for you now.")
-    ]
+        # Load CSV
+        df = pd.read_csv(csv_file)
 
-    data = []
-    for user_input, model_output in raw_support_scenarios:
-        data.append({
-            "instruction": "You are a Friendly Support Rep.",
-            "input": user_input,
-            "output": model_output
-        })
+        # Basic inspection of columns to robustly identify instruction/response
+        # Bitext dataset usually has 'instruction' and 'response' or similar.
+        # Fallback logic if names differ (common variations)
+        input_col = next((col for col in ['instruction', 'question', 'query'] if col in df.columns), None)
+        output_col = next((col for col in ['response', 'answer', 'reply'] if col in df.columns), None)
 
-    return data
+        if not input_col or not output_col:
+            print(f"Error: Could not identify input/output columns. Found: {df.columns.tolist()}")
+            return []
+
+        print(f"Using columns: Input='{input_col}', Output='{output_col}'")
+
+        # Convert to list of dicts
+        data = []
+        for index, row in df.iterrows():
+            # Basic cleaning (handle NaNs)
+            if pd.isna(row[input_col]) or pd.isna(row[output_col]):
+                continue
+
+            data.append({
+                "instruction": "You are a Friendly Support Rep.",
+                "input": str(row[input_col]).strip(),
+                "output": str(row[output_col]).strip()
+            })
+
+        return data
+
+    except Exception as e:
+        print(f"An error occurred while processing Bitext data: {e}")
+        return []
 
 def export_to_jsonl(combined_data, filename="agency_training_data.jsonl"):
     """
@@ -188,9 +201,12 @@ def main():
     strategist_data = generate_strategist_data()
     print(f"Generated {len(strategist_data)} strategist records.")
 
-    print("Generating Support Data...")
-    support_data = generate_support_data()
+    print("Processing Support Data (Bitext)...")
+    support_data = download_and_process_bitext()
     print(f"Generated {len(support_data)} support records.")
+
+    if len(support_data) == 0:
+        print("Warning: No support data was generated. The dataset will only contain strategist data.")
 
     all_data = strategist_data + support_data
 
