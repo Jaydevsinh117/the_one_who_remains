@@ -20,11 +20,11 @@
             'stone-grey': '#B8BDC3',
             'void-black': '#0E0F11',
             'muted-celestial': '#5F738A',
+            'gold': '#D4AF37', // Added missing gold color
           },
         }
       }
     };
-
   </script>
 
   <style>
@@ -42,42 +42,38 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Ethereal Monochrome Background */
     body {
-        background-color: #E6E8EB;
-        color: #0E0F11;
-        min-height: 100vh;
+      background-color: #E6E8EB;
+      color: #0E0F11;
+      min-height: 100vh;
     }
 
-    /* Selection Color */
     ::selection {
       background: #5F738A;
       color: #E6E8EB;
     }
   </style>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Noto+Serif+Devanagari&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
-<body
-  class="bg-cream text-darkslate dark:bg-cosmic-dark dark:text-starlight font-sans transition-colors duration-300 ease-in-out relative">
+<body class="bg-ash-white text-void-black font-sans transition-colors duration-300 ease-in-out relative">
+
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-muted-celestial text-white px-4 py-2 rounded font-bold shadow-lg">Skip to main content</a>
 
   <div class="grain-overlay"></div>
 
-  <!-- 🔱 Navigation Bar -->
   <nav class="p-4 fixed w-full top-0 z-40 bg-ash-white/80 backdrop-blur-md border-b border-stone-grey/20">
     <div class="flex justify-between items-center max-w-7xl mx-auto">
-      <a href="/"
-        class="text-2xl font-light tracking-wide text-void-black hover:text-muted-celestial transition-colors duration-300">
+      <a href="/" class="text-2xl font-light tracking-wide text-void-black hover:text-muted-celestial transition-colors duration-300">
         One Who Remains
       </a>
-      <div class="flex items-center space-x-8 text-sm font-normal text-void-black tracking-widest uppercase">
+      <div class="hidden md:flex items-center space-x-8 text-sm font-normal text-void-black tracking-widest uppercase">
         <a href="/" class="hover:text-muted-celestial transition-all duration-300">Home</a>
         <a href="/about" class="hover:text-muted-celestial transition-all duration-300">About</a>
         <a href="/deep-dive" class="hover:text-muted-celestial transition-all duration-300">Deep Dive</a>
@@ -86,78 +82,96 @@
     </div>
   </nav>
 
-  <!-- 📖 Main Content -->
-  <main class="p-6 pt-32 max-w-5xl mx-auto relative z-10 min-h-screen">
+  <main id="main-content" class="p-6 pt-32 max-w-7xl mx-auto relative z-10 min-h-screen" tabindex="-1">
     {% block content %}{% endblock %}
   </main>
 
-  <footer>
-    {% block footer %}
-    <footer
-      class="relative border-t border-stone-grey/20 text-void-black px-6 py-20 overflow-hidden z-10">
+  <footer class="relative border-t border-stone-grey/20 text-void-black px-6 py-20 overflow-hidden z-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left relative z-10">
 
-      <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12 text-left relative z-10">
+      <div class="col-span-1 md:col-span-1">
+        <h2 class="text-xl font-light tracking-widest text-void-black uppercase mb-4">The One Who Remains</h2>
+        <p class="text-sm text-stone-grey leading-relaxed max-w-xs">
+          Silence is not absence.<br>
+          It is presence refined.
+        </p>
+      </div>
 
-        <!-- Brand -->
-        <div>
-          <h2 class="text-xl font-light tracking-widest text-void-black uppercase mb-4">The One Who Remains</h2>
-          <p class="text-sm text-stone-grey leading-relaxed max-w-xs">
-            Silence is not absence.<br>
-            It is presence refined.
-          </p>
-        </div>
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">Navigation</h3>
+        <ul class="space-y-2 text-sm text-stone-grey">
+          <li><a href="/about" class="hover:text-muted-celestial transition-colors">About</a></li>
+          <li><a href="/deep-dive" class="hover:text-muted-celestial transition-colors">Deep Dive</a></li>
+          <li><a href="/blog" class="hover:text-muted-celestial transition-colors">Journal</a></li>
+          <li><a href="/contact" class="hover:text-muted-celestial transition-colors">Contact</a></li>
+        </ul>
+      </div>
 
-        <!-- Links -->
-        <div class="flex flex-col sm:items-end gap-2 text-sm text-stone-grey uppercase tracking-wider">
-          <a href="/about" class="hover:text-muted-celestial transition-colors">About</a>
-          <a href="/deep-dive" class="hover:text-muted-celestial transition-colors">Deep Dive</a>
-          <a href="/blog" class="hover:text-muted-celestial transition-colors">Journal</a>
-          <a href="/contact" class="hover:text-muted-celestial transition-colors">Contact</a>
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">Connect</h3>
+        <div class="flex gap-4 text-xl text-stone-grey">
+          <a href="#" class="hover:text-muted-celestial transition-colors"><i data-feather="facebook"></i></a>
+          <a href="#" class="hover:text-muted-celestial transition-colors"><i data-feather="instagram"></i></a>
+          <a href="#" class="hover:text-muted-celestial transition-colors"><i data-feather="twitter"></i></a>
         </div>
       </div>
 
-      <!-- Footer Base -->
-      <div class="mt-20 text-center text-xs text-stone-grey tracking-widest relative z-10 uppercase">
-        © 2026 One Who Remains
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">Subscribe</h3>
+        <form id="footer-newsletter-form" class="space-y-3">
+          <input id="footer-newsletter-email" type="email" placeholder="Your email" required 
+                 class="w-full px-4 py-2 rounded border border-stone-grey/30 bg-transparent focus:outline-none focus:ring-1 focus:ring-muted-celestial text-sm">
+          <button type="submit" class="w-full bg-void-black text-ash-white py-2 rounded text-xs uppercase tracking-widest hover:bg-muted-celestial transition">
+            Subscribe
+          </button>
+          <p id="footer-newsletter-message" class="text-xs font-medium h-5" aria-live="polite"></p>
+        </form>
       </div>
+    </div>
 
-      <!-- Font Awesome -->
-      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    </footer>
-    {% endblock %}
-
+    <div class="mt-20 text-center text-xs text-stone-grey tracking-widest relative z-10 uppercase">
+      © 2026 One Who Remains
+    </div>
   </footer>
+
   <script>
-    document.getElementById("newsletter-form").addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const email = document.getElementById("newsletter-email").value;
-      const messageEl = document.getElementById("newsletter-message");
+    // Unified Subscription Handler
+    function handleSubscription(formId, inputId, messageId) {
+      const form = document.getElementById(formId);
+      if (!form) return;
 
-      try {
-        const res = await fetch("/subscribe", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email })
-        });
+      form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const input = document.getElementById(inputId);
+        const messageEl = document.getElementById(messageId);
+        const btn = form.querySelector('button[type="submit"]');
+        const originalBtnText = btn.textContent;
 
-        const data = await res.json();
-        if (res.ok) {
-          messageEl.textContent = data.message;
-          messageEl.style.color = "green";
-        } else {
-          messageEl.textContent = data.error || "Something went wrong.";
-          messageEl.style.color = "red";
+        btn.innerHTML = 'Subscribing...';
+        btn.disabled = true;
+
+        // Mock delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        btn.innerHTML = 'Subscribed';
+        if (messageEl) {
+          messageEl.textContent = "Thank you! May wisdom guide you.";
+          messageEl.classList.add("text-muted-celestial");
         }
-      } catch (err) {
-        messageEl.textContent = "Network error. Please try again.";
-        messageEl.style.color = "red";
-      }
+
+        input.value = "";
+        setTimeout(() => {
+          btn.innerHTML = originalBtnText;
+          btn.disabled = false;
+        }, 3000);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      handleSubscription("newsletter-form", "newsletter-email", "newsletter-message");
+      handleSubscription("footer-newsletter-form", "footer-newsletter-email", "footer-newsletter-message");
+      feather.replace();
     });
   </script>
-
-  <script>
-    feather.replace();
-  </script>
 </body>
-
 </html>

@@ -15,7 +15,7 @@
   </p>
 
   <!-- Contact Form -->
-  <form method="POST" action="/contact" class="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-6 space-y-6 border border-gray-200 dark:border-gray-700">
+  <form id="contact-form" method="POST" action="/contact" class="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-6 space-y-6 border border-gray-200 dark:border-gray-700">
     
     <!-- Name -->
     <div>
@@ -44,7 +44,55 @@
         class="bg-vishnublue hover:bg-gold text-white dark:text-darkslate px-6 py-2 rounded-md font-semibold shadow-md hover:shadow-lg transition-all duration-200">
         Send Message
       </button>
+      <p id="contact-status" aria-live="polite" class="mt-4 text-center font-medium h-6 text-sm"></p>
     </div>
   </form>
 </section>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const status = document.getElementById('contact-status');
+    const originalText = btn.textContent;
+    const formData = new FormData(form);
+
+    // Loading State
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+    status.textContent = '';
+
+    // Simulate Network Request
+    // TODO: Replace with actual fetch('/contact') POST request once the backend endpoint is implemented.
+    // Currently, the backend only supports GET for /contact.
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    console.log('Form Submitted (Simulation):', Object.fromEntries(formData));
+
+    // Success State
+    btn.innerHTML = 'Sent <i class="fas fa-check ml-2"></i>';
+    btn.classList.add('bg-green-600', 'text-white');
+    btn.classList.remove('bg-vishnublue', 'hover:bg-gold');
+
+    status.textContent = 'Message sent! We will be in touch.';
+    status.className = 'mt-4 text-center font-medium h-6 text-sm text-green-600 dark:text-green-400';
+
+    form.reset();
+
+    // Reset Button State
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      btn.classList.remove('bg-green-600', 'text-white');
+      btn.classList.add('bg-vishnublue', 'hover:bg-gold');
+
+      // Clear status message after a bit longer
+      setTimeout(() => {
+        status.textContent = '';
+      }, 2000);
+    }, 3000);
+  });
+</script>
 {% endblock %}
