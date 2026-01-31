@@ -1,53 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ dark: localStorage.getItem('theme') === 'dark' }" :class="{ 'dark': dark }">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}The One Who remains{% endblock %}</title>
+  <title>{% block title %}The One Who Remains{% endblock %}</title>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'media', // Uses system preference
       theme: {
         extend: {
           fontFamily: {
-            heading: ['"DM Serif Display"', 'serif'],
-            sans: ['"Poppins"', 'sans-serif'],
+            sans: ['"Roboto"', 'sans-serif'],
+            serif: ['"Noto Serif Devanagari"', 'serif'],
             shloka: ['"Noto Serif Devanagari"', 'serif']
           },
           colors: {
-            vishnublue: '#002366',
-            gold: '#f4c430',
-            cream: '#f5f5dc',
-            sky: '#e8f1f9',
-            darkslate: '#1e293b',
-            'cosmic-dark': '#0b0d17',
-            'cosmic-blue': '#1c1e26',
-            'starlight': '#e2e8f0',
-            'divine-gold': '#ffd700'
+            'ash-white': '#E6E8EB',
+            'stone-grey': '#B8BDC3',
+            'void-black': '#0E0F11',
+            'muted-celestial': '#5F738A',
+            'gold': '#D4AF37',
+            'vishnublue': '#2d6146', // Preserved from chat branch
+            'darkslate': '#1e293b',
           },
-          backgroundImage: {
-            'cosmic-gradient': 'radial-gradient(circle at center, #1b2735 0%, #090a0f 100%)',
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
           }
         }
       }
     };
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-
-    // Force dark mode for cosmic theme preference
-    if (localStorage.getItem('theme') !== 'light') {
-      document.documentElement.classList.add('dark');
-    }
   </script>
 
+  <!-- Alpine.js -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
   <style>
+    /* Utility */
+    [x-cloak] { display: none !important; }
+
     /* Grain Effect */
     .grain-overlay {
       position: fixed;
@@ -58,74 +67,146 @@
       pointer-events: none;
       z-index: 50;
       opacity: 0.05;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Cosmic Background */
     body {
-        background-color: #0b0d17;
-        background-image: radial-gradient(circle at 50% 50%, #1c2e4a 0%, #0b0d17 100%);
-        min-height: 100vh;
+      background-color: #E6E8EB;
+      color: #0E0F11;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-  </style>
 
-  <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Serif+Devanagari&family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet" />
+    /* Selection Color */
+    ::selection {
+      background: #5F738A;
+      color: #E6E8EB;
+    }
 
-  <!-- Icons -->
-  <script src="https://unpkg.com/feather-icons"></script>
-
-  <!-- Alpine.js -->
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <style>
-    [x-cloak] { display: none !important; }
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #E6E8EB;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #B8BDC3;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #5F738A;
+    }
   </style>
 </head>
 
-<body
-  class="bg-cream text-darkslate dark:bg-cosmic-dark dark:text-starlight font-sans transition-colors duration-300 ease-in-out relative">
+<body class="bg-ash-white dark:bg-void-black text-void-black dark:text-ash-white font-sans transition-colors duration-300 ease-in-out relative selection:bg-gold selection:text-white">
 
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-gold text-black px-4 py-2 rounded font-bold shadow-lg border border-white">Skip to main content</a>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[100] bg-gold text-void-black px-4 py-2 rounded font-bold shadow-lg transition-transform">
+    Skip to main content
+  </a>
 
+  <!-- Global Texture -->
   <div class="grain-overlay"></div>
 
-  <!-- 🔱 Navigation Bar -->
-  <nav class="p-4 fixed w-full top-0 z-40 bg-white/10 dark:bg-black/20 backdrop-blur-md border-b border-white/10">
-    <div class="flex justify-between items-center max-w-7xl mx-auto">
-      <a href="/"
-        class="text-2xl font-heading text-vishnublue dark:text-divine-gold hover:tracking-wide transition-all duration-300 drop-shadow-lg">
-        The One Who Remains
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-40 bg-ash-white/80 dark:bg-void-black/80 backdrop-blur-md border-b border-stone-grey/20 transition-all duration-300">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
+      <a href="/" class="text-2xl font-serif font-light tracking-wide hover:text-muted-celestial transition-colors duration-300">
+        One Who Remains
       </a>
-      <div class="flex items-center space-x-4 text-sm font-medium text-darkslate dark:text-starlight">
-        <a href="/" class="hover:text-divine-gold transition">Home</a>
-        <a href="/about" class="hover:text-divine-gold transition">About</a>
-        <a href="/contact" class="hover:text-divine-gold transition">Contact</a>
-        <a href="/product" class="hover:text-divine-gold transition">Product</a>
-        <a href="/showcase" class="hover:text-divine-gold transition">Showcase</a>
-        <a href="/blog" class="hover:text-divine-gold transition">Blog</a>
-        <a href="/deep-dive" class="hover:text-divine-gold transition">Deep Dive</a>
-        <button onclick="toggleTheme()" aria-label="Toggle Theme"
-          class="flex items-center gap-2 bg-gold/80 dark:bg-vishnublue text-white px-3 py-1 rounded hover:opacity-90 transition">
-          <i data-feather="sun" class="dark:hidden w-4 h-4"></i>
-          <i data-feather="moon" class="hidden dark:inline w-4 h-4"></i>
-          <span>Theme</span>
-        </button>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8 text-xs font-medium tracking-[0.2em] uppercase">
+        <a href="/" class="hover:text-gold transition-all duration-300">Home</a>
+        <a href="/about" class="hover:text-gold transition-all duration-300">About</a>
+        <a href="/deep-dive" class="hover:text-gold transition-all duration-300">Deep Dive</a>
+        <a href="/blog" class="hover:text-gold transition-all duration-300">Journal</a>
       </div>
+
+      <!-- Mobile Menu Button (Placeholder for functionality) -->
+      <button class="md:hidden text-void-black dark:text-white">
+        <i data-feather="menu"></i>
+      </button>
     </div>
   </nav>
 
-  <!-- 📖 Main Content -->
-  <main id="main-content" class="p-6 pt-24 max-w-7xl mx-auto relative z-10" tabindex="-1">
-    {% block content %}{% endblock %}
+  <!-- Main Content -->
+  <main id="main-content" class="flex-grow pt-32 px-6 max-w-7xl mx-auto w-full relative z-10 focus:outline-none" tabindex="-1">
+    {% block content %}
+    <!-- Default content if block is empty -->
+    <div class="min-h-[50vh] flex items-center justify-center">
+        <p class="text-stone-grey italic">Content loads here...</p>
+    </div>
+    {% endblock %}
   </main>
 
+  <!-- Footer -->
+  <footer class="relative border-t border-stone-grey/20 bg-ash-white dark:bg-void-black text-void-black dark:text-stone-grey px-6 py-20 overflow-hidden z-10 mt-20">
+    
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left relative z-10">
+      
+      <!-- Brand & Quote -->
+      <div class="col-span-1">
+        <h2 class="text-xl font-serif font-light tracking-widest uppercase mb-4 text-void-black dark:text-white">The One Who Remains</h2>
+        <p class="text-sm text-muted-celestial leading-relaxed max-w-xs font-serif italic">
+          Silence is not absence.<br>
+          It is presence refined.
+        </p>
+      </div>
 
+      <!-- Navigation Links -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-6 text-gold">Navigation</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/about" class="hover:text-gold transition-colors duration-300 block transform hover:translate-x-1">About</a></li>
+          <li><a href="/deep-dive" class="hover:text-gold transition-colors duration-300 block transform hover:translate-x-1">Deep Dive</a></li>
+          <li><a href="/blog" class="hover:text-gold transition-colors duration-300 block transform hover:translate-x-1">Journal</a></li>
+          <li><a href="/contact" class="hover:text-gold transition-colors duration-300 block transform hover:translate-x-1">Contact</a></li>
+        </ul>
+      </div>
 
+      <!-- Socials -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-6 text-gold">Connect</h3>
+        <div class="flex gap-6 text-stone-grey">
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="facebook"></i></a>
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="instagram"></i></a>
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="twitter"></i></a>
+        </div>
+      </div>
 
-  <!-- 🤖 Chatbot Widget -->
-  <div x-data="{ open: false, minimized: false, messages: [{text: 'Hello! I\'m your Agency Assistant. I can help with SEO, social media strategy, or brand positioning. How can I assist you today?', isBot: true}] }"
+      <!-- Newsletter -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-6 text-gold">Subscribe</h3>
+        <form id="footer-newsletter-form" class="space-y-4">
+          <div class="relative">
+            <input id="footer-newsletter-email" type="email" placeholder="Your email" required 
+                   class="w-full px-4 py-3 rounded-none border-b border-stone-grey/50 bg-transparent focus:outline-none focus:border-gold transition-colors text-sm placeholder-stone-grey/50">
+          </div>
+          <button type="submit" class="w-full bg-void-black dark:bg-white text-white dark:text-void-black py-3 px-6 text-xs uppercase tracking-widest hover:bg-gold dark:hover:bg-gold hover:text-white transition-colors duration-300">
+            Join the Circle
+          </button>
+          <p id="footer-newsletter-message" class="text-xs font-serif italic h-5" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-20 border-t border-stone-grey/10 pt-8 text-center text-xs text-stone-grey tracking-widest relative z-10 uppercase">
+      © 2026 One Who Remains. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- 🤖 Chatbot Widget (Merged from feature branch) -->
+  <div x-data="{ 
+          open: false, 
+          minimized: false, 
+          messages: [{text: 'Greetings. I am your guide to the deeper meanings of this archive. How may I assist your journey?', isBot: true}] 
+       }"
        x-cloak
        class="fixed bottom-6 right-6 z-[60] flex flex-col items-end font-sans">
 
@@ -137,43 +218,48 @@
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100 translate-y-0 scale-100"
          x-transition:leave-end="opacity-0 translate-y-4 scale-95"
-         class="mb-4 w-80 sm:w-96 bg-white dark:bg-darkslate border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[500px]"
+         class="mb-4 w-80 sm:w-96 bg-white dark:bg-darkslate border border-stone-grey/20 dark:border-gray-700 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[500px]"
          :class="{'h-14 overflow-hidden': minimized}">
 
       <!-- Header -->
-      <div class="bg-gradient-to-r from-vishnublue to-blue-900 dark:from-black dark:to-gray-900 p-4 flex justify-between items-center text-white shrink-0 cursor-pointer"
+      <div class="bg-void-black dark:bg-black p-4 flex justify-between items-center text-ash-white shrink-0 cursor-pointer border-b border-gold/20"
            @click="minimized = !minimized">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
-            <i class="fas fa-robot text-gold text-lg"></i>
+          <div class="w-8 h-8 rounded-full border border-gold/50 flex items-center justify-center">
+            <i class="fas fa-dharmachakra text-gold text-sm animate-spin-slow"></i>
           </div>
           <div>
-            <h3 class="font-bold text-sm tracking-wide">Agency Assistant</h3>
+            <h3 class="font-serif font-bold text-sm tracking-wide text-gold">Guide</h3>
             <div class="flex items-center gap-1.5 opacity-80" x-show="!minimized">
-              <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.5)]"></span>
-              <span class="text-xs font-medium">Online</span>
+              <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+              <span class="text-[10px] uppercase tracking-widest">Active</span>
             </div>
           </div>
         </div>
         <div class="flex items-center gap-2">
-            <button @click.stop="minimized = !minimized" class="text-white/70 hover:text-white transition p-1 rounded-md hover:bg-white/10">
-                <i class="fas" :class="minimized ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+            <button @click.stop="minimized = !minimized" class="text-stone-grey hover:text-white transition p-1">
+              <i class="fas" :class="minimized ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
             </button>
-            <button @click.stop="open = false" class="text-white/70 hover:text-white transition p-1 rounded-md hover:bg-white/10">
-                <i data-feather="x" class="w-5 h-5"></i>
+            <button @click.stop="open = false" class="text-stone-grey hover:text-white transition p-1">
+              <i data-feather="x" class="w-4 h-4"></i>
             </button>
         </div>
       </div>
 
       <!-- Messages Area -->
-      <div class="flex-1 bg-gray-50 dark:bg-[#0f1219] p-4 overflow-y-auto space-y-4" x-show="!minimized">
+      <div class="flex-1 bg-ash-white dark:bg-[#1a1d21] p-4 overflow-y-auto space-y-4 relative" x-show="!minimized">
+        <!-- Background Pattern inside Chat -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
+            <i class="fas fa-om text-9xl"></i>
+        </div>
+        
         <template x-for="(msg, index) in messages" :key="index">
-            <div class="flex gap-3" :class="{'flex-row-reverse': !msg.isBot}">
-                <div x-show="msg.isBot" class="w-8 h-8 rounded-full bg-vishnublue flex-shrink-0 flex items-center justify-center text-gold text-xs shadow-md border border-white/10">
+            <div class="flex gap-3 relative z-10" :class="{'flex-row-reverse': !msg.isBot}">
+                <div x-show="msg.isBot" class="w-8 h-8 rounded-full bg-void-black flex-shrink-0 flex items-center justify-center text-gold text-xs border border-gold/20">
                     <i class="fas fa-robot"></i>
                 </div>
-                <div class="p-3 rounded-2xl shadow-sm border max-w-[85%] text-sm leading-relaxed"
-                     :class="msg.isBot ? 'bg-white dark:bg-gray-800 rounded-tl-none border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-200' : 'bg-gold/10 dark:bg-blue-900/30 rounded-tr-none border-gold/20 dark:border-blue-500/20 text-gray-900 dark:text-white'">
+                <div class="p-3 rounded-lg shadow-sm border max-w-[85%] text-sm leading-relaxed"
+                     :class="msg.isBot ? 'bg-white dark:bg-darkslate border-stone-grey/10 text-void-black dark:text-ash-white rounded-tl-none' : 'bg-gold/10 dark:bg-gold/20 border-gold/20 text-void-black dark:text-ash-white rounded-tr-none'">
                     <p x-text="msg.text"></p>
                 </div>
             </div>
@@ -181,12 +267,12 @@
       </div>
 
       <!-- Input Area -->
-      <div class="p-4 bg-white dark:bg-darkslate border-t border-gray-100 dark:border-gray-700 shrink-0" x-show="!minimized">
-        <form @submit.prevent="messages.push({text: $refs.chatInput.value, isBot: false}); $refs.chatInput.value = ''; setTimeout(() => { messages.push({text: 'I am a demo bot. I am still learning!', isBot: true}); }, 1000)" class="flex gap-2">
-          <input x-ref="chatInput" type="text" placeholder="Type your question..."
-                 class="flex-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gold/50 transition border border-transparent focus:border-gold/30 placeholder-gray-400">
-          <button type="submit" class="bg-vishnublue hover:bg-blue-900 dark:bg-gold dark:hover:bg-yellow-400 text-white dark:text-black p-2.5 rounded-xl transition-all duration-200 transform active:scale-95 shadow-lg flex items-center justify-center w-10 h-10">
-            <i class="fas fa-paper-plane text-sm"></i>
+      <div class="p-4 bg-white dark:bg-darkslate border-t border-stone-grey/20 shrink-0" x-show="!minimized">
+        <form @submit.prevent="messages.push({text: $refs.chatInput.value, isBot: false}); $refs.chatInput.value = ''; setTimeout(() => { messages.push({text: 'The path is long, but I am learning every day.', isBot: true}); }, 1000)" class="flex gap-2">
+          <input x-ref="chatInput" type="text" placeholder="Ask a question..."
+                 class="flex-1 bg-ash-white dark:bg-black/30 text-void-black dark:text-white px-4 py-2 rounded border border-stone-grey/20 focus:outline-none focus:border-gold/50 text-sm transition-colors">
+          <button type="submit" class="bg-void-black hover:bg-gold dark:bg-gold dark:hover:bg-yellow-500 text-white dark:text-black p-2 rounded transition-colors duration-300 w-10 h-10 flex items-center justify-center">
+            <i class="fas fa-paper-plane text-xs"></i>
           </button>
         </form>
       </div>
@@ -194,159 +280,68 @@
 
     <!-- Toggle Button -->
     <button @click="open = !open"
-            :class="open ? 'rotate-90 bg-gray-600 hover:bg-gray-700' : 'bg-vishnublue hover:bg-blue-800 dark:bg-gold dark:hover:bg-yellow-400'"
-            class="w-14 h-14 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center text-white dark:text-black transition-all duration-300 transform hover:scale-110 group relative overflow-hidden border-2 border-white/20 dark:border-black/10">
-
+            :class="open ? 'rotate-90 bg-stone-grey' : 'bg-void-black dark:bg-gold animate-float'"
+            class="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white dark:text-black transition-all duration-300 hover:scale-105 group relative overflow-hidden z-50">
+        
         <!-- Ripple Effect -->
         <span class="absolute inset-0 bg-white/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500"></span>
 
         <!-- Icon Switch -->
         <div class="relative w-6 h-6 flex items-center justify-center">
-            <i x-show="!open" class="fas fa-comment-dots text-2xl absolute transition-all duration-300 scale-100 opacity-100"></i>
+            <i x-show="!open" class="fas fa-comment-alt text-xl absolute transition-all duration-300 scale-100 opacity-100"></i>
             <i x-show="open" class="fas fa-times text-xl absolute transition-all duration-300 scale-100 opacity-100"></i>
         </div>
 
         <!-- Notification Dot -->
-        <span x-show="!open" class="absolute top-3 right-3 w-3 h-3 bg-red-500 border-2 border-white dark:border-black rounded-full animate-bounce shadow-sm"></span>
+        <span x-show="!open" class="absolute top-3 right-3 w-2.5 h-2.5 bg-red-500 border-2 border-void-black dark:border-gold rounded-full animate-bounce"></span>
     </button>
   </div>
 
-  <footer>
-    {% block footer %}
-    <footer
-      class="relative bg-[#2d6146] dark:bg-black/40 backdrop-blur-lg border-t border-white/10 text-white dark:text-gray-300 px-6 pt-12 pb-16 overflow-hidden z-10">
-      <!-- Decorative Floating Icon -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Vishnu_icon.png" alt="Lord Vishnu Icon"
-        class="absolute top-4 right-4 w-20 opacity-10 animate-pulse hidden md:block pointer-events-none" />
-
-      <!-- Background Floating Leaf -->
-      <div class="absolute left-0 bottom-0 w-40 opacity-10">
-        <img src="https://img.icons8.com/emoji/96/leaf-fluttering-in-wind.png" alt="Leaf" />
-      </div>
-
-      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-8 text-center sm:text-left relative z-10">
-
-        <!-- Logo + Tagline -->
-        <div>
-          <h2 class="text-2xl font-bold tracking-wide text-gold">Maha Vishnu Project</h2>
-          <p class="mt-2 text-sm opacity-80">Exploring divine wisdom,<br>one shloka at a time.</p>
-        </div>
-
-        <!-- Navigation Links -->
-        <div>
-          <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/about" class="hover:underline hover:text-yellow-300">About</a></li>
-            <li><a href="/deep-dive" class="hover:underline hover:text-yellow-300">Deep Dive</a></li>
-            <li><a href="/blog" class="hover:underline hover:text-yellow-300">Blog</a></li>
-            <li><a href="/contact" class="hover:underline hover:text-yellow-300">Contact</a></li>
-          </ul>
-        </div>
-
-        <!-- Social Media -->
-        <div>
-          <h3 class="text-lg font-semibold mb-3">Connect</h3>
-          <div class="flex justify-center sm:justify-start gap-4 text-xl">
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-yellow-300 transition"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-
-        <!-- Email Subscription -->
-        <div>
-          <h3 class="text-lg font-semibold mb-3">Subscribe</h3>
-          <form id="footer-newsletter-form" class="space-y-3">
-            <label for="footer-newsletter-email" class="sr-only">Email address</label>
-            <input id="footer-newsletter-email" type="email" placeholder="Your email" required
-              class="w-full px-4 py-2 rounded-lg bg-white text-black dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold"
-              aria-label="Email address for newsletter">
-            <button type="submit"
-              class="w-full bg-gold dark:bg-vishnublue text-black dark:text-white py-2 rounded-lg hover:brightness-110 transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gold">
-              Subscribe
-            </button>
-            <p id="footer-newsletter-message" class="text-sm font-medium h-5" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-
-      <!-- Footer Base -->
-      <div class="mt-12 border-t border-white/30 pt-6 text-center text-sm opacity-80 relative z-10">
-        © 2025 Maha Vishnu Project • All rights reserved
-      </div>
-
-      <!-- Font Awesome -->
-      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    </footer>
-    {% endblock %}
-
-  </footer>
   <script>
+    // Unified Subscription Logic
     function handleSubscription(formId, inputId, messageId) {
       const form = document.getElementById(formId);
       if (!form) return;
 
-      form.addEventListener("submit", async function (e) {
+      form.addEventListener("submit", async function(e) {
         e.preventDefault();
         const input = document.getElementById(inputId);
         const messageEl = document.getElementById(messageId);
-        if (!input) return;
-
-        const originalBtnText = form.querySelector('button[type="submit"]').textContent.trim();
         const btn = form.querySelector('button[type="submit"]');
+        const originalBtnText = btn.textContent;
 
-        // Loading state
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+        btn.innerHTML = '<span class="animate-pulse">Processing...</span>';
         btn.disabled = true;
-        if(messageEl) {
-            messageEl.textContent = "";
-            messageEl.className = "text-sm mt-2"; // Reset classes
-        }
 
-        // Simulate network request
-        // TODO: Replace with actual fetch('/subscribe') once backend endpoint is implemented.
-        // Currently mocking success to demonstrate UI feedback.
+        // Mock delay
         await new Promise(resolve => setTimeout(resolve, 1500));
 
-        // Mock success
-        btn.innerHTML = 'Subscribed <i class="fas fa-check ml-1"></i>';
-        btn.classList.add('bg-green-600', 'text-white');
-
+        btn.innerHTML = 'Subscribed';
+        btn.classList.add('bg-gold', 'text-black');
+        
         if (messageEl) {
-          messageEl.textContent = "Thank you! May wisdom guide you.";
-          messageEl.classList.add("text-green-500", "dark:text-green-400");
+          messageEl.textContent = "Thank you. Your journey begins.";
+          messageEl.classList.add("text-gold");
         }
 
         input.value = "";
-
-        // Reset button after 3 seconds
+        
         setTimeout(() => {
           btn.innerHTML = originalBtnText;
           btn.disabled = false;
-          btn.classList.remove('bg-green-600', 'text-white');
-        }, 3000);
+          btn.classList.remove('bg-gold', 'text-black');
+          if (messageEl) messageEl.textContent = "";
+        }, 4000);
       });
     }
 
-    // Initialize logic for both forms
     document.addEventListener('DOMContentLoaded', () => {
-        handleSubscription("newsletter-form", "newsletter-email", "newsletter-message"); // Home page form
-        handleSubscription("footer-newsletter-form", "footer-newsletter-email", "footer-newsletter-message"); // Footer form
+      // Initialize Handlers
+      handleSubscription("footer-newsletter-form", "footer-newsletter-email", "footer-newsletter-message");
+      
+      // Initialize Feather Icons
+      feather.replace();
     });
   </script>
-
-  <!-- 🪔 Footer
-  <footer class="p-6 text-center bg-sky dark:bg-darkslate mt-10 border-t border-gray-300 dark:border-gray-700">
-    <p class="text-sm text-gray-700 dark:text-gray-300 font-shloka">
-      &copy; 2025 Maha Vishnu Project. All rights reserved.
-    </p>
-  </footer> -->
-
-
-  <script>
-    feather.replace();
-  </script>
 </body>
-
 </html>

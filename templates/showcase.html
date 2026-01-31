@@ -1,45 +1,58 @@
 {% extends 'base.html' %}
 
-{% block title %}Shloka Showcase | Maha Vishnu Project{% endblock %}
+{% block title %}Shloka Showcase | One Who Remains{% endblock %}
 
 {% block content %}
-<section class="max-w-7xl mx-auto py-16 px-6">
+<section class="max-w-7xl mx-auto py-20 px-6">
   <!-- Heading -->
-  <div class="text-center mb-12">
-    <h1 class="text-4xl font-heading font-bold text-vishnublue dark:text-gold mb-4">Shloka Showcase</h1>
-    <p class="text-lg text-darkslate dark:text-cream font-sans max-w-3xl mx-auto">
-      Explore sacred verses from the Bhagavad Gita in both Sanskrit and English with chanting options and divine filters.
+  <div class="text-center mb-16 space-y-4" data-aos="fade-down">
+    <h1 class="text-5xl md:text-6xl font-light text-void-black tracking-tight">Showcase</h1>
+    <div class="w-12 h-[1px] bg-stone-grey mx-auto opacity-50"></div>
+    <p class="text-lg text-stone-grey font-light max-w-2xl mx-auto leading-relaxed">
+      Sacred verses. Pure knowledge.
     </p>
   </div>
 
   <!-- Filter Tabs -->
-  <div class="flex flex-wrap justify-center gap-4 mb-10" id="filter-tabs">
+  <div class="flex flex-wrap justify-center gap-3 mb-16" id="filter-tabs">
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="karma">Karma Yoga</button>
-    <button class="filter-btn" data-filter="bhakti">Bhakti Yoga</button>
-    <button class="filter-btn" data-filter="jnana">Jnana Yoga</button>
+    <button class="filter-btn" data-filter="karma">Karma</button>
+    <button class="filter-btn" data-filter="bhakti">Bhakti</button>
+    <button class="filter-btn" data-filter="jnana">Jnana</button>
     <button class="filter-btn" data-filter="moksha">Moksha</button>
   </div>
 
   <!-- Shloka Cards -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="shloka-grid">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="shloka-grid">
     {% for shloka in shlokas %}
-    <div class="shloka-card bg-cream dark:bg-gray-900 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 transition" data-category="{{ shloka.category }}">
-      <p class="text-xl font-shloka text-center text-darkslate dark:text-cream leading-relaxed mb-4">
-        {{ shloka.sanskrit }}
-      </p>
-      <p class="text-base italic text-center text-darkslate dark:text-cream mb-4">“{{ shloka.english }}”</p>
-      <p class="text-sm text-right text-gold dark:text-vishnublue font-semibold mb-3">– Gita {{ shloka.chapter }}.{{ shloka.verse }}</p>
-      <div class="flex justify-between items-center gap-2 text-sm">
-        <button onclick="copyShloka(this)" class="copy-btn hover:text-vishnublue">📋 Copy</button>
-        <button onclick="shareShloka('{{ shloka.english }}')" class="hover:text-vishnublue">🔗 Share</button>
-        <button onclick="playAudio('{{ shloka.audio_male }}')" class="hover:text-vishnublue">👨‍🎤 Male</button>
-        <button onclick="playAudio('{{ shloka.audio_female }}')" class="hover:text-vishnublue">👩‍🎤 Female</button>
+    <div class="shloka-card relative bg-white/60 backdrop-blur-md p-8 border-l-2 border-stone-grey/20 hover:border-muted-celestial transition-colors duration-500 group" data-category="{{ shloka.category }}">
+      <!-- Decorative Icon -->
+      <div class="absolute top-6 right-6 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor" class="text-void-black">
+          <path d="M14.017 21L14.017 18C14.017 16.896 14.321 15.923 14.932 15.079C15.543 14.235 16.299 13.565 17.198 13.07C18.098 12.574 19.011 12.308 19.937 12.271L19.98 12.271C20.485 12.271 20.895 11.861 20.895 11.356L20.895 6.4C20.895 5.895 20.485 5.485 19.98 5.485C19.066 5.485 18.04 5.753 16.902 6.289C15.764 6.825 14.654 7.643 13.571 8.743C12.489 9.843 11.751 11.196 11.358 12.802L11.332 12.924L11.232 13.344C11.127 13.801 11.074 14.227 11.074 14.622L11.074 21L14.017 21ZM4.975 21L4.975 18C4.975 16.896 5.279 15.923 5.889 15.079C6.5 14.235 7.256 13.565 8.155 13.07C9.055 12.574 9.969 12.308 10.895 12.271L10.938 12.271C11.443 12.271 11.853 11.861 11.853 11.356L11.853 6.4C11.853 5.895 11.443 5.485 10.938 5.485C10.023 5.485 8.997 5.753 7.859 6.289C6.721 6.825 5.611 7.643 4.529 8.743C3.447 9.843 2.709 11.196 2.316 12.802L2.29 12.924L2.19 13.344C2.084 13.801 2.032 14.227 2.032 14.622L2.032 21L4.975 21Z" />
+        </svg>
+      </div>
+
+      <div class="relative z-10">
+        <p class="text-xl font-shloka text-center text-void-black leading-loose mb-6 font-medium">
+          {{ shloka.sanskrit }}
+        </p>
+        <p class="text-sm italic text-center text-stone-grey mb-6 font-light">“{{ shloka.english }}”</p>
+        <div class="text-center mb-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-muted-celestial">Gita {{ shloka.chapter }}.{{ shloka.verse }}</span>
+        </div>
+
+        <div class="flex justify-center items-center gap-6 pt-6 border-t border-stone-grey/10">
+          <button onclick="copyShloka(this)" class="text-xs uppercase tracking-widest font-bold text-stone-grey hover:text-void-black transition-colors">Copy</button>
+          <button onclick="shareShloka('{{ shloka.english }}')" class="text-xs uppercase tracking-widest font-bold text-stone-grey hover:text-void-black transition-colors">Share</button>
+          <!-- Simplified Audio Controls -->
+          <button onclick="playAudio('{{ shloka.audio_male }}')" class="text-xs uppercase tracking-widest font-bold text-stone-grey hover:text-void-black transition-colors">Audio</button>
+        </div>
       </div>
     </div>
     {% else %}
-    <p class="col-span-full text-center text-gray-600 dark:text-gray-400 font-sans">
-      No shlokas available yet.
+    <p class="col-span-full text-center text-stone-grey font-light italic">
+      Silence. No verses found.
     </p>
     {% endfor %}
   </div>
@@ -49,23 +62,25 @@
 function copyShloka(btn) {
   const text = btn.closest('.shloka-card').querySelector('p.italic').innerText;
   navigator.clipboard.writeText(text);
-  btn.innerText = '✅ Copied';
-  setTimeout(() => btn.innerText = '📋 Copy', 1500);
+  const original = btn.innerText;
+  btn.innerText = 'Copied';
+  setTimeout(() => btn.innerText = original, 1500);
 }
 
 function shareShloka(text) {
   if (navigator.share) {
     navigator.share({
-      title: 'Bhagavad Gita Shloka',
+      title: 'One Who Remains',
       text: text,
       url: window.location.href
     });
   } else {
-    alert("Share not supported on this browser.");
+    alert("Share not supported on this device.");
   }
 }
 
 function playAudio(src) {
+  // Simple audio player implementation
   const audio = new Audio(src);
   audio.play();
 }
@@ -85,15 +100,22 @@ filterBtns.forEach(btn => btn.addEventListener('click', () => {
 
 <style>
   .filter-btn {
-    padding: 0.5rem 1rem;
-    background: #f0f0f0;
-    border-radius: 9999px;
-    cursor: pointer;
-    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    border: 1px solid #B8BDC3; /* Stone Grey */
+    color: #0E0F11;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  .filter-btn:hover {
+    border-color: #0E0F11;
   }
   .filter-btn.active {
-    background: #2d6146;
-    color: white;
+    background: #0E0F11; /* Void Black */
+    color: #E6E8EB; /* Ash White */
+    border-color: #0E0F11;
   }
 </style>
 {% endblock %}
