@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}The One Who Remains{% endblock %}</title>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'media', // Uses system preference
       theme: {
         extend: {
           fontFamily: {
             sans: ['"Roboto"', 'sans-serif'],
+            serif: ['"Noto Serif Devanagari"', 'serif'],
             shloka: ['"Noto Serif Devanagari"', 'serif']
           },
           colors: {
@@ -20,14 +32,31 @@
             'stone-grey': '#B8BDC3',
             'void-black': '#0E0F11',
             'muted-celestial': '#5F738A',
-            'gold': '#D4AF37', // Added missing gold color
+            'gold': '#D4AF37',
+            'vishnublue': '#2d6146', // Preserved from chat branch
+            'darkslate': '#1e293b',
           },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
         }
       }
     };
   </script>
 
+  <!-- Alpine.js -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
   <style>
+    /* Utility */
+    [x-cloak] { display: none !important; }
+
     /* Grain Effect */
     .grain-overlay {
       position: fixed;
@@ -46,96 +75,230 @@
       background-color: #E6E8EB;
       color: #0E0F11;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* Selection Color */
     ::selection {
       background: #5F738A;
       color: #E6E8EB;
     }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #E6E8EB;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #B8BDC3;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #5F738A;
+    }
   </style>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Noto+Serif+Devanagari&display=swap" rel="stylesheet">
-
-  <script src="https://unpkg.com/feather-icons"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-ash-white text-void-black font-sans transition-colors duration-300 ease-in-out relative">
+<body class="bg-ash-white dark:bg-void-black text-void-black dark:text-ash-white font-sans transition-colors duration-300 ease-in-out relative selection:bg-gold selection:text-white">
 
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-muted-celestial text-white px-4 py-2 rounded font-bold shadow-lg">Skip to main content</a>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[100] bg-gold text-void-black px-4 py-2 rounded font-bold shadow-lg transition-transform">
+    Skip to main content
+  </a>
 
+  <!-- Global Texture -->
   <div class="grain-overlay"></div>
 
-  <nav class="p-4 fixed w-full top-0 z-40 bg-ash-white/80 backdrop-blur-md border-b border-stone-grey/20">
-    <div class="flex justify-between items-center max-w-7xl mx-auto">
-      <a href="/" class="text-2xl font-light tracking-wide text-void-black hover:text-muted-celestial transition-colors duration-300">
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-40 bg-ash-white/80 dark:bg-void-black/80 backdrop-blur-md border-b border-stone-grey/20 transition-all duration-300">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
+      <a href="/" class="text-2xl font-serif font-light tracking-wide hover:text-muted-celestial transition-colors duration-300">
         One Who Remains
       </a>
-      <div class="hidden md:flex items-center space-x-8 text-sm font-normal text-void-black tracking-widest uppercase">
-        <a href="/" class="hover:text-muted-celestial transition-all duration-300">Home</a>
-        <a href="/about" class="hover:text-muted-celestial transition-all duration-300">About</a>
-        <a href="/deep-dive" class="hover:text-muted-celestial transition-all duration-300">Deep Dive</a>
-        <a href="/blog" class="hover:text-muted-celestial transition-all duration-300">Journal</a>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8 text-xs font-medium tracking-[0.2em] uppercase">
+        <a href="/" class="hover:text-gold transition-all duration-300">Home</a>
+        <a href="/about" class="hover:text-gold transition-all duration-300">About</a>
+        <a href="/deep-dive" class="hover:text-gold transition-all duration-300">Deep Dive</a>
+        <a href="/blog" class="hover:text-gold transition-all duration-300">Journal</a>
       </div>
+
+      <!-- Mobile Menu Button (Placeholder for functionality) -->
+      <button class="md:hidden text-void-black dark:text-white">
+        <i data-feather="menu"></i>
+      </button>
     </div>
   </nav>
 
-  <main id="main-content" class="p-6 pt-32 max-w-7xl mx-auto relative z-10 min-h-screen" tabindex="-1">
-    {% block content %}{% endblock %}
+  <!-- Main Content -->
+  <main id="main-content" class="flex-grow pt-32 px-6 max-w-7xl mx-auto w-full relative z-10 focus:outline-none" tabindex="-1">
+    {% block content %}
+    <!-- Default content if block is empty -->
+    <div class="min-h-[50vh] flex items-center justify-center">
+        <p class="text-stone-grey italic">Content loads here...</p>
+    </div>
+    {% endblock %}
   </main>
 
-  <footer class="relative border-t border-stone-grey/20 text-void-black px-6 py-20 overflow-hidden z-10">
+  <!-- Footer -->
+  <footer class="relative border-t border-stone-grey/20 bg-ash-white dark:bg-void-black text-void-black dark:text-stone-grey px-6 py-20 overflow-hidden z-10 mt-20">
+    
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left relative z-10">
-
-      <div class="col-span-1 md:col-span-1">
-        <h2 class="text-xl font-light tracking-widest text-void-black uppercase mb-4">The One Who Remains</h2>
-        <p class="text-sm text-stone-grey leading-relaxed max-w-xs">
+      
+      <!-- Brand & Quote -->
+      <div class="col-span-1">
+        <h2 class="text-xl font-serif font-light tracking-widest uppercase mb-4 text-void-black dark:text-white">The One Who Remains</h2>
+        <p class="text-sm text-muted-celestial leading-relaxed max-w-xs font-serif italic">
           Silence is not absence.<br>
           It is presence refined.
         </p>
       </div>
 
+      <!-- Navigation Links -->
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">Navigation</h3>
-        <ul class="space-y-2 text-sm text-stone-grey">
-          <li><a href="/about" class="hover:text-muted-celestial transition-colors">About</a></li>
-          <li><a href="/deep-dive" class="hover:text-muted-celestial transition-colors">Deep Dive</a></li>
-          <li><a href="/blog" class="hover:text-muted-celestial transition-colors">Journal</a></li>
-          <li><a href="/contact" class="hover:text-muted-celestial transition-colors">Contact</a></li>
+        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-6 text-gold">Navigation</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/about" class="hover:text-gold transition-colors duration-300 block transform hover:translate-x-1">About</a></li>
+          <li><a href="/deep-dive" class="hover:text-gold transition-colors duration-300 block transform hover:translate-x-1">Deep Dive</a></li>
+          <li><a href="/blog" class="hover:text-gold transition-colors duration-300 block transform hover:translate-x-1">Journal</a></li>
+          <li><a href="/contact" class="hover:text-gold transition-colors duration-300 block transform hover:translate-x-1">Contact</a></li>
         </ul>
       </div>
 
+      <!-- Socials -->
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">Connect</h3>
-        <div class="flex gap-4 text-xl text-stone-grey">
-          <a href="#" class="hover:text-muted-celestial transition-colors"><i data-feather="facebook"></i></a>
-          <a href="#" class="hover:text-muted-celestial transition-colors"><i data-feather="instagram"></i></a>
-          <a href="#" class="hover:text-muted-celestial transition-colors"><i data-feather="twitter"></i></a>
+        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-6 text-gold">Connect</h3>
+        <div class="flex gap-6 text-stone-grey">
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="facebook"></i></a>
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="instagram"></i></a>
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="twitter"></i></a>
         </div>
       </div>
 
+      <!-- Newsletter -->
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">Subscribe</h3>
-        <form id="footer-newsletter-form" class="space-y-3">
-          <input id="footer-newsletter-email" type="email" placeholder="Your email" required 
-                 class="w-full px-4 py-2 rounded border border-stone-grey/30 bg-transparent focus:outline-none focus:ring-1 focus:ring-muted-celestial text-sm">
-          <button type="submit" class="w-full bg-void-black text-ash-white py-2 rounded text-xs uppercase tracking-widest hover:bg-muted-celestial transition">
-            Subscribe
+        <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-6 text-gold">Subscribe</h3>
+        <form id="footer-newsletter-form" class="space-y-4">
+          <div class="relative">
+            <input id="footer-newsletter-email" type="email" placeholder="Your email" required 
+                   class="w-full px-4 py-3 rounded-none border-b border-stone-grey/50 bg-transparent focus:outline-none focus:border-gold transition-colors text-sm placeholder-stone-grey/50">
+          </div>
+          <button type="submit" class="w-full bg-void-black dark:bg-white text-white dark:text-void-black py-3 px-6 text-xs uppercase tracking-widest hover:bg-gold dark:hover:bg-gold hover:text-white transition-colors duration-300">
+            Join the Circle
           </button>
-          <p id="footer-newsletter-message" class="text-xs font-medium h-5" aria-live="polite"></p>
+          <p id="footer-newsletter-message" class="text-xs font-serif italic h-5" aria-live="polite"></p>
         </form>
       </div>
     </div>
 
-    <div class="mt-20 text-center text-xs text-stone-grey tracking-widest relative z-10 uppercase">
-      © 2026 One Who Remains
+    <!-- Copyright -->
+    <div class="mt-20 border-t border-stone-grey/10 pt-8 text-center text-xs text-stone-grey tracking-widest relative z-10 uppercase">
+      © 2026 One Who Remains. All Rights Reserved.
     </div>
   </footer>
 
+  <!-- 🤖 Chatbot Widget (Merged from feature branch) -->
+  <div x-data="{ 
+          open: false, 
+          minimized: false, 
+          messages: [{text: 'Greetings. I am your guide to the deeper meanings of this archive. How may I assist your journey?', isBot: true}] 
+       }"
+       x-cloak
+       class="fixed bottom-6 right-6 z-[60] flex flex-col items-end font-sans">
+
+    <!-- Chat Window -->
+    <div x-show="open"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-y-4 scale-95"
+         x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+         x-transition:leave-end="opacity-0 translate-y-4 scale-95"
+         class="mb-4 w-80 sm:w-96 bg-white dark:bg-darkslate border border-stone-grey/20 dark:border-gray-700 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[500px]"
+         :class="{'h-14 overflow-hidden': minimized}">
+
+      <!-- Header -->
+      <div class="bg-void-black dark:bg-black p-4 flex justify-between items-center text-ash-white shrink-0 cursor-pointer border-b border-gold/20"
+           @click="minimized = !minimized">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full border border-gold/50 flex items-center justify-center">
+            <i class="fas fa-dharmachakra text-gold text-sm animate-spin-slow"></i>
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-sm tracking-wide text-gold">Guide</h3>
+            <div class="flex items-center gap-1.5 opacity-80" x-show="!minimized">
+              <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+              <span class="text-[10px] uppercase tracking-widest">Active</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <button @click.stop="minimized = !minimized" class="text-stone-grey hover:text-white transition p-1">
+              <i class="fas" :class="minimized ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+            </button>
+            <button @click.stop="open = false" class="text-stone-grey hover:text-white transition p-1">
+              <i data-feather="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+      </div>
+
+      <!-- Messages Area -->
+      <div class="flex-1 bg-ash-white dark:bg-[#1a1d21] p-4 overflow-y-auto space-y-4 relative" x-show="!minimized">
+        <!-- Background Pattern inside Chat -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
+            <i class="fas fa-om text-9xl"></i>
+        </div>
+        
+        <template x-for="(msg, index) in messages" :key="index">
+            <div class="flex gap-3 relative z-10" :class="{'flex-row-reverse': !msg.isBot}">
+                <div x-show="msg.isBot" class="w-8 h-8 rounded-full bg-void-black flex-shrink-0 flex items-center justify-center text-gold text-xs border border-gold/20">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="p-3 rounded-lg shadow-sm border max-w-[85%] text-sm leading-relaxed"
+                     :class="msg.isBot ? 'bg-white dark:bg-darkslate border-stone-grey/10 text-void-black dark:text-ash-white rounded-tl-none' : 'bg-gold/10 dark:bg-gold/20 border-gold/20 text-void-black dark:text-ash-white rounded-tr-none'">
+                    <p x-text="msg.text"></p>
+                </div>
+            </div>
+        </template>
+      </div>
+
+      <!-- Input Area -->
+      <div class="p-4 bg-white dark:bg-darkslate border-t border-stone-grey/20 shrink-0" x-show="!minimized">
+        <form @submit.prevent="messages.push({text: $refs.chatInput.value, isBot: false}); $refs.chatInput.value = ''; setTimeout(() => { messages.push({text: 'The path is long, but I am learning every day.', isBot: true}); }, 1000)" class="flex gap-2">
+          <input x-ref="chatInput" type="text" placeholder="Ask a question..."
+                 class="flex-1 bg-ash-white dark:bg-black/30 text-void-black dark:text-white px-4 py-2 rounded border border-stone-grey/20 focus:outline-none focus:border-gold/50 text-sm transition-colors">
+          <button type="submit" class="bg-void-black hover:bg-gold dark:bg-gold dark:hover:bg-yellow-500 text-white dark:text-black p-2 rounded transition-colors duration-300 w-10 h-10 flex items-center justify-center">
+            <i class="fas fa-paper-plane text-xs"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <button @click="open = !open"
+            :class="open ? 'rotate-90 bg-stone-grey' : 'bg-void-black dark:bg-gold animate-float'"
+            class="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white dark:text-black transition-all duration-300 hover:scale-105 group relative overflow-hidden z-50">
+        
+        <!-- Ripple Effect -->
+        <span class="absolute inset-0 bg-white/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500"></span>
+
+        <!-- Icon Switch -->
+        <div class="relative w-6 h-6 flex items-center justify-center">
+            <i x-show="!open" class="fas fa-comment-alt text-xl absolute transition-all duration-300 scale-100 opacity-100"></i>
+            <i x-show="open" class="fas fa-times text-xl absolute transition-all duration-300 scale-100 opacity-100"></i>
+        </div>
+
+        <!-- Notification Dot -->
+        <span x-show="!open" class="absolute top-3 right-3 w-2.5 h-2.5 bg-red-500 border-2 border-void-black dark:border-gold rounded-full animate-bounce"></span>
+    </button>
+  </div>
+
   <script>
-    // Unified Subscription Handler
+    // Unified Subscription Logic
     function handleSubscription(formId, inputId, messageId) {
       const form = document.getElementById(formId);
       if (!form) return;
@@ -147,29 +310,36 @@
         const btn = form.querySelector('button[type="submit"]');
         const originalBtnText = btn.textContent;
 
-        btn.innerHTML = 'Subscribing...';
+        btn.innerHTML = '<span class="animate-pulse">Processing...</span>';
         btn.disabled = true;
 
         // Mock delay
         await new Promise(resolve => setTimeout(resolve, 1500));
 
         btn.innerHTML = 'Subscribed';
+        btn.classList.add('bg-gold', 'text-black');
+        
         if (messageEl) {
-          messageEl.textContent = "Thank you! May wisdom guide you.";
-          messageEl.classList.add("text-muted-celestial");
+          messageEl.textContent = "Thank you. Your journey begins.";
+          messageEl.classList.add("text-gold");
         }
 
         input.value = "";
+        
         setTimeout(() => {
           btn.innerHTML = originalBtnText;
           btn.disabled = false;
-        }, 3000);
+          btn.classList.remove('bg-gold', 'text-black');
+          if (messageEl) messageEl.textContent = "";
+        }, 4000);
       });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      handleSubscription("newsletter-form", "newsletter-email", "newsletter-message");
+      // Initialize Handlers
       handleSubscription("footer-newsletter-form", "footer-newsletter-email", "footer-newsletter-message");
+      
+      // Initialize Feather Icons
       feather.replace();
     });
   </script>
