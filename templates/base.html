@@ -128,7 +128,7 @@
       </div>
 
       <!-- Mobile Menu Button (Placeholder for functionality) -->
-      <button class="md:hidden text-void-black dark:text-white">
+      <button class="md:hidden text-void-black dark:text-white" aria-label="Toggle navigation menu">
         <i data-feather="menu"></i>
       </button>
     </div>
@@ -173,9 +173,9 @@
       <div>
         <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-6 text-gold">Connect</h3>
         <div class="flex gap-6 text-stone-grey">
-          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="facebook"></i></a>
-          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="instagram"></i></a>
-          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300"><i data-feather="twitter"></i></a>
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300" aria-label="Visit us on Facebook"><i data-feather="facebook"></i></a>
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300" aria-label="Visit us on Instagram"><i data-feather="instagram"></i></a>
+          <a href="#" class="hover:text-gold hover:-translate-y-1 transition-all duration-300" aria-label="Visit us on Twitter"><i data-feather="twitter"></i></a>
         </div>
       </div>
 
@@ -184,6 +184,7 @@
         <h3 class="text-xs font-bold uppercase tracking-[0.15em] mb-6 text-gold">Subscribe</h3>
         <form id="footer-newsletter-form" class="space-y-4">
           <div class="relative">
+            <label for="footer-newsletter-email" class="sr-only">Email Address</label>
             <input id="footer-newsletter-email" type="email" placeholder="Your email" required 
                    class="w-full px-4 py-3 rounded-none border-b border-stone-grey/50 bg-transparent focus:outline-none focus:border-gold transition-colors text-sm placeholder-stone-grey/50">
           </div>
@@ -281,6 +282,8 @@
     <!-- Toggle Button -->
     <button @click="open = !open"
             :class="open ? 'rotate-90 bg-stone-grey' : 'bg-void-black dark:bg-gold animate-float'"
+            x-bind:aria-label="open ? 'Close chat' : 'Open chat'"
+            title="Chat with our guide"
             class="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white dark:text-black transition-all duration-300 hover:scale-105 group relative overflow-hidden z-50">
         
         <!-- Ripple Effect -->
