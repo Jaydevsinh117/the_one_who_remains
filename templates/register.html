@@ -27,6 +27,8 @@
     };
   </script>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-cream text-darkslate dark:bg-darkslate dark:text-cream font-sans transition-all duration-300 ease-in-out">
@@ -60,11 +62,13 @@
       </div>
 
       <!-- Submit -->
-      <div class="text-center">
-        <button type="submit"
-          class="bg-vishnublue hover:bg-gold text-white dark:text-darkslate px-6 py-2 rounded-md shadow-md hover:shadow-lg transition-all">
+      <div class="text-center space-y-4">
+        <button type="submit" id="submit-btn"
+          class="bg-vishnublue hover:bg-gold disabled:opacity-70 disabled:cursor-not-allowed text-white dark:text-darkslate px-6 py-2 rounded-md shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 mx-auto min-w-[140px]">
           Register
         </button>
+        <!-- Inline Feedback (Accessible) -->
+        <div id="register-message" aria-live="polite" class="text-sm font-medium text-center min-h-[1.5rem]"></div>
       </div>
     </form>
   </section>
@@ -74,24 +78,64 @@
     document.getElementById('register-form').onsubmit = async function(event) {
       event.preventDefault();
 
+      const form = event.target;
+      const btn = document.getElementById('submit-btn');
+      const messageEl = document.getElementById('register-message');
+
+      const originalBtnContent = btn.innerHTML;
+
+      // 1. Loading State
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
+      messageEl.textContent = '';
+      messageEl.className = 'text-sm font-medium text-center min-h-[1.5rem] text-darkslate dark:text-cream';
+
       const data = {
         username: document.getElementById('username').value,
         email: document.getElementById('email').value,
         password: document.getElementById('password').value
       };
 
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
+      try {
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
 
-      const result = await response.json();
-      if (response.ok) {
-        alert('🪔 Registration successful!');
-        document.getElementById('register-form').reset();
-      } else {
-        alert('⚠️ Error: ' + result.error);
+        const result = await response.json();
+
+        if (response.ok) {
+          // 2. Success Feedback
+          messageEl.textContent = '🪔 Registration successful!';
+          messageEl.className = 'text-sm font-medium text-center min-h-[1.5rem] text-green-600 dark:text-green-400';
+
+          btn.innerHTML = 'Registered <i class="fas fa-check"></i>';
+          btn.classList.remove('bg-vishnublue', 'hover:bg-gold');
+          btn.classList.add('bg-green-600');
+
+          form.reset();
+
+          // Restore button after delay
+          setTimeout(() => {
+            btn.innerHTML = originalBtnContent;
+            btn.disabled = false;
+            btn.classList.remove('bg-green-600');
+            btn.classList.add('bg-vishnublue', 'hover:bg-gold');
+            messageEl.textContent = ''; // Clear success message too? Maybe keep it.
+          }, 3000);
+
+        } else {
+          // 3. Error Feedback
+          throw new Error(result.error || 'Registration failed');
+        }
+      } catch (error) {
+        messageEl.textContent = '⚠️ ' + error.message;
+        messageEl.className = 'text-sm font-medium text-center min-h-[1.5rem] text-red-600 dark:text-red-400';
+
+        // Restore button immediately
+        btn.innerHTML = originalBtnContent;
+        btn.disabled = false;
       }
     };
   </script>

@@ -62,6 +62,11 @@ def contact():
     return render_template("contact.html")  # Render the contact.html template
 
 
+@app.route("/register")
+def register():
+    return render_template("register.html")  # Render the register.html template
+
+
 @app.route("/product")
 def product():
     return render_template("product.html")  # Render the product.html template
